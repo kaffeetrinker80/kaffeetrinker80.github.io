@@ -1,241 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MN Tools</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>kaffeetrinker80</title>
   <style>
     :root{
-      --bg:#eef2f7;
-      --card:#ffffff;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --border:#d6dbe3;
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --bg:#f6f1eb;
+      --bg-2:#efe7de;
+      --surface:#fffaf5;
+      --surface-2:#f7efe7;
+      --text:#2f241d;
+      --muted:#6f6157;
+      --border:#e4d7ca;
+      --shadow:0 8px 24px rgba(70,40,20,.10);
+      --shadow-hover:0 14px 30px rgba(70,40,20,.16);
 
-      --private:#7c3aed;
-      --business:#2563eb;
-      --theocratic:#15803d;
+      --coffee:#6f4e37;
+      --coffee-dark:#4e3426;
+      --cream:#d7b899;
+      --amber:#b7791f;
+
+      --private:#8e5cf7;
+      --business:#1976d2;
+      --theocratic:#2e7d32;
     }
 
-    *{
-      box-sizing:border-box;
-      margin:0;
-      padding:0;
+    *{box-sizing:border-box}
+
+    html{
+      scroll-behavior:smooth;
     }
 
     body{
+      margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg,#f7f9fc 0%, #eef2f7 100%);
+      background:
+        radial-gradient(circle at top right, rgba(215,184,153,.35), transparent 22%),
+        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
       color:var(--text);
       min-height:100vh;
-      padding:32px 18px 48px;
     }
 
-    .container{
-      max-width:1100px;
+    .topbar{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter:blur(10px);
+      background:rgba(255,250,245,.82);
+      border-bottom:1px solid rgba(228,215,202,.8);
+    }
+
+    .topbar-inner{
+      max-width:1180px;
       margin:0 auto;
-    }
-
-    .hero{
-      text-align:center;
-      margin-bottom:36px;
-    }
-
-    .hero h1{
-      font-size:2.5rem;
-      margin-bottom:10px;
-      letter-spacing:.02em;
-    }
-
-    .hero p{
-      color:var(--muted);
-      font-size:1.05rem;
-      max-width:700px;
-      margin:0 auto;
-      line-height:1.6;
-    }
-
-    .grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-      gap:22px;
-    }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:24px;
-      box-shadow:var(--shadow);
+      padding:14px 18px;
       display:flex;
-      flex-direction:column;
-      min-height:280px;
-      transition:transform .18s ease, box-shadow .18s ease;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
     }
 
-    .card:hover{
-      transform:translateY(-4px);
-      box-shadow:0 16px 36px rgba(0,0,0,.12);
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width:0;
     }
 
-    .icon{
-      width:56px;
-      height:56px;
-      border-radius:16px;
+    .brand-badge{
+      width:42px;
+      height:42px;
+      border-radius:14px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:1.6rem;
+      background:linear-gradient(135deg, var(--coffee), var(--coffee-dark));
       color:#fff;
-      margin-bottom:18px;
+      box-shadow:var(--shadow);
+      font-size:1.2rem;
     }
 
-    .private .icon{ background:var(--private); }
-    .business .icon{ background:var(--business); }
-    .theocratic .icon{ background:var(--theocratic); }
-
-    .card h2{
-      font-size:1.35rem;
-      margin-bottom:10px;
+    .brand-text{
+      min-width:0;
     }
 
-    .card p{
+    .brand-text h1{
+      margin:0;
+      font-size:1.05rem;
+      line-height:1.1;
+      letter-spacing:.02em;
+    }
+
+    .brand-text p{
+      margin:2px 0 0;
       color:var(--muted);
-      line-height:1.55;
-      margin-bottom:18px;
-      flex:1;
+      font-size:.85rem;
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
     }
 
-    .tool-list{
-      list-style:none;
-      margin-bottom:22px;
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
     }
 
-    .tool-list li{
-      color:#374151;
-      font-size:.95rem;
-      margin-bottom:8px;
-      padding-left:16px;
+    .nav a{
+      text-decoration:none;
+      color:var(--text);
+      background:rgba(255,255,255,.7);
+      border:1px solid var(--border);
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.92rem;
+      transition:.18s ease;
+    }
+
+    .nav a:hover{
+      transform:translateY(-1px);
+      box-shadow:var(--shadow);
+      background:#fff;
+    }
+
+    .container{
+      max-width:1180px;
+      margin:0 auto;
+      padding:26px 18px 44px;
+    }
+
+    .hero{
+      display:grid;
+      grid-template-columns:1.2fr .9fr;
+      gap:22px;
+      align-items:stretch;
+      margin-bottom:26px;
+    }
+
+    .hero-main,
+    .hero-side{
+      background:linear-gradient(180deg, rgba(255,250,245,.96), rgba(247,239,231,.96));
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
+
+    .hero-main{
+      padding:32px 28px;
       position:relative;
+      overflow:hidden;
     }
 
-    .tool-list li::before{
-      content:"•";
+    .hero-main::after{
+      content:"☕";
       position:absolute;
-      left:0;
-      color:#9ca3af;
+      right:20px;
+      bottom:8px;
+      font-size:5rem;
+      opacity:.08;
+      transform:rotate(-10deg);
+      pointer-events:none;
+    }
+
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      background:#fff;
+      color:var(--coffee-dark);
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:.88rem;
+      margin-bottom:16px;
+    }
+
+    .hero-main h2{
+      margin:0 0 12px;
+      font-size:2.35rem;
+      line-height:1.08;
+      letter-spacing:-0.02em;
+    }
+
+    .hero-main p{
+      margin:0;
+      font-size:1.03rem;
+      line-height:1.7;
+      color:var(--muted);
+      max-width:720px;
+    }
+
+    .hero-actions{
+      margin-top:22px;
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
       justify-content:center;
+      gap:8px;
       text-decoration:none;
       border:none;
-      border-radius:12px;
-      padding:12px 16px;
-      color:#fff;
-      font-weight:600;
-      transition:filter .15s ease;
+      cursor:pointer;
+      border-radius:999px;
+      padding:13px 18px;
+      font-weight:700;
+      letter-spacing:.01em;
+      transition:.18s ease;
+      box-shadow:none;
     }
 
     .btn:hover{
-      filter:brightness(.95);
+      transform:translateY(-2px);
+      box-shadow:var(--shadow);
     }
 
-    .private .btn{ background:var(--private); }
-    .business .btn{ background:var(--business); }
-    .theocratic .btn{ background:var(--theocratic); }
+    .btn-primary{
+      background:linear-gradient(135deg, var(--coffee), var(--coffee-dark));
+      color:#fff;
+    }
+
+    .btn-secondary{
+      background:#fff;
+      color:var(--text);
+      border:1px solid var(--border);
+    }
+
+    .hero-side{
+      padding:24px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      gap:18px;
+    }
+
+    .quote{
+      background:rgba(255,255,255,.76);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:18px 18px 16px;
+    }
+
+    .quote small{
+      display:block;
+      color:var(--muted);
+      margin-bottom:8px;
+      text-transform:uppercase;
+      letter-spacing:.08em;
+      font-size:.72rem;
+    }
+
+    .quote p{
+      margin:0;
+      font-size:1rem;
+      line-height:1.65;
+      color:var(--text);
+    }
+
+    .chips{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+    }
+
+    .chip{
+      padding:10px 12px;
+      border-radius:999px;
+      background:#fff;
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:.88rem;
+    }
+
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:16px;
+      margin:28px 0 16px;
+    }
+
+    .section-head h3{
+      margin:0;
+      font-size:1.6rem;
+      letter-spacing:-0.02em;
+    }
+
+    .section-head p{
+      margin:6px 0 0;
+      color:var(--muted);
+      line-height:1.6;
+      max-width:760px;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:repeat(3, minmax(0,1fr));
+      gap:18px;
+    }
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,250,245,.97), rgba(247,239,231,.97));
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:flex;
+      flex-direction:column;
+      transition:.18s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:var(--shadow-hover);
+    }
+
+    .card-top{
+      padding:20px 20px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+
+    .card-icon{
+      width:56px;
+      height:56px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      font-size:1.45rem;
+      flex:0 0 auto;
+      box-shadow:0 6px 16px rgba(0,0,0,.14);
+    }
+
+    .private .card-icon{ background:linear-gradient(135deg, #7a4df0, #a77bff); }
+    .business .card-icon{ background:linear-gradient(135deg, #1565c0, #42a5f5); }
+    .theocratic .card-icon{ background:linear-gradient(135deg, #2e7d32, #66bb6a); }
+
+    .tag{
+      font-size:.8rem;
+      padding:8px 10px;
+      border-radius:999px;
+      background:#fff;
+      color:var(--muted);
+      border:1px solid var(--border);
+      white-space:nowrap;
+    }
+
+    .card-body{
+      padding:0 20px 20px;
+      display:flex;
+      flex-direction:column;
+      height:100%;
+    }
+
+    .card h4{
+      margin:0 0 10px;
+      font-size:1.35rem;
+      letter-spacing:-0.01em;
+    }
+
+    .card p{
+      margin:0 0 16px;
+      color:var(--muted);
+      line-height:1.65;
+    }
+
+    .list{
+      margin:0 0 20px;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:9px;
+    }
+
+    .list li{
+      position:relative;
+      padding-left:18px;
+      color:#4b3d35;
+      line-height:1.45;
+    }
+
+    .list li::before{
+      content:"";
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      position:absolute;
+      left:0;
+      top:.45em;
+      background:var(--cream);
+    }
+
+    .card-actions{
+      margin-top:auto;
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+
+    .btn-card{
+      background:#fff;
+      color:var(--text);
+      border:1px solid var(--border);
+      padding:12px 14px;
+      border-radius:14px;
+      text-decoration:none;
+      font-weight:700;
+      transition:.18s ease;
+      flex:1 1 auto;
+      text-align:center;
+    }
+
+    .btn-card:hover{
+      transform:translateY(-1px);
+      box-shadow:var(--shadow);
+    }
+
+    .btn-card.primary-private{
+      background:#ede3ff;
+      border-color:#d9c8ff;
+      color:#5b34ba;
+    }
+
+    .btn-card.primary-business{
+      background:#e3f0ff;
+      border-color:#c7dfff;
+      color:#0f5aa6;
+    }
+
+    .btn-card.primary-theocratic{
+      background:#e7f6e8;
+      border-color:#cde9cf;
+      color:#256629;
+    }
 
     .footer{
+      margin-top:34px;
+      padding:20px 6px 8px;
       text-align:center;
       color:var(--muted);
-      margin-top:36px;
       font-size:.9rem;
     }
 
-    @media (max-width:700px){
-      body{
-        padding:22px 14px 36px;
+    @media (max-width: 980px){
+      .hero{
+        grid-template-columns:1fr;
       }
 
-      .hero h1{
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .hero-main h2{
         font-size:2rem;
       }
+    }
 
+    @media (max-width: 680px){
+      .topbar-inner{
+        padding:12px 14px;
+      }
+
+      .container{
+        padding:18px 14px 36px;
+      }
+
+      .hero-main,
+      .hero-side,
       .card{
-        min-height:auto;
+        border-radius:22px;
+      }
+
+      .hero-main{
+        padding:24px 20px;
+      }
+
+      .hero-main h2{
+        font-size:1.72rem;
+      }
+
+      .section-head h3{
+        font-size:1.35rem;
+      }
+
+      .nav{
+        display:none;
       }
     }
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <div class="brand-badge">☕</div>
+        <div class="brand-text">
+          <h1>kaffeetrinker80</h1>
+          <p>Private collection of practical and theocratic tools</p>
+        </div>
+      </div>
+
+      <div class="nav">
+        <a href="#tools">Tools</a>
+        <a href="#private">Private</a>
+        <a href="#business">Business</a>
+        <a href="#theocratic">Theocratic</a>
+      </div>
+    </div>
+  </div>
+
   <div class="container">
-
-    <div class="hero">
-      <h1>MN Tools</h1>
-      <p>
-        Private collection of practical and theocratic tools — plus a few personal projects.
-      </p>
-    </div>
-
-    <div class="grid">
-
-      <div class="card private">
-        <div class="icon">🎬</div>
-        <h2>Private</h2>
+    <section class="hero">
+      <div class="hero-main">
+        <div class="eyebrow">☕ Built with ideas, caffeine and curiosity</div>
+        <h2>Welcome to my little toolbox on the web.</h2>
         <p>
-          Personal projects, experiments and hobby tools. A place for ideas, media collections and small side projects.
+          A warm mix of personal projects, practical work helpers and carefully kept
+          theocratic tools. Clean, browser-based, and always evolving one step at a time.
         </p>
 
-        <ul class="tool-list">
-          <li>Movie & series database</li>
-          <li>Netflix-style media overview</li>
-          <li>Private helper tools</li>
-        </ul>
-
-        <a class="btn" href="#">Open Private Tools</a>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#tools">Explore tools</a>
+          <a class="btn btn-secondary" href="https://kaffeetrinker80.github.io/Arbeitsnachweis-mobil/">Open Spülprotokoll</a>
+        </div>
       </div>
 
-      <div class="card business">
-        <div class="icon">💼</div>
-        <h2>Business</h2>
-        <p>
-          Practical tools for work, documentation and organization. Includes protocols, logs and workflow support.
-        </p>
+      <div class="hero-side">
+        <div class="quote">
+          <small>Currently brewing</small>
+          <p>
+            Small tools that should feel simple, useful and clean —
+            more practical helper than bloated software.
+          </p>
+        </div>
 
-        <ul class="tool-list">
-          <li>Spülprotokoll / Arbeitsnachweis</li>
-          <li>Water hygiene tools</li>
-          <li>Documentation & workflow support</li>
-        </ul>
+        <div class="chips">
+          <div class="chip">Material-inspired UI</div>
+          <div class="chip">Coffee vibe</div>
+          <div class="chip">Browser based</div>
+          <div class="chip">Mobile friendly</div>
+        </div>
+      </div>
+    </section>
 
-        <a class="btn" href="./Arbeitsnachweis-mobil/">Open Business Tools</a>
+    <section id="tools">
+      <div class="section-head">
+        <div>
+          <h3>Tool Categories</h3>
+          <p>
+            Three areas, one home base: personal side projects, business helpers,
+            and neutral theocratic tools for planning and organization.
+          </p>
+        </div>
       </div>
 
-      <div class="card theocratic">
-        <div class="icon">📋</div>
-        <h2>Theocratic Tools</h2>
-        <p>
-          General-purpose tools for planning, coordination and internal organizational support.
-        </p>
+      <div class="cards">
+        <article class="card private" id="private">
+          <div class="card-top">
+            <div class="card-icon">🎬</div>
+            <div class="tag">Personal stuff</div>
+          </div>
+          <div class="card-body">
+            <h4>Private</h4>
+            <p>
+              A space for hobby projects, media ideas and experiments with a bit more personality.
+            </p>
+            <ul class="list">
+              <li>Movie and series ideas</li>
+              <li>Netflix-style collections</li>
+              <li>Small helper tools and experiments</li>
+            </ul>
+            <div class="card-actions">
+              <a class="btn-card primary-private" href="#">Open Private</a>
+            </div>
+          </div>
+        </article>
 
-        <ul class="tool-list">
-          <li>Schedules & planning</li>
-          <li>Volunteer coordination</li>
-          <li>Meeting support tools</li>
-        </ul>
+        <article class="card business" id="business">
+          <div class="card-top">
+            <div class="card-icon">💼</div>
+            <div class="tag">Work & documentation</div>
+          </div>
+          <div class="card-body">
+            <h4>Business</h4>
+            <p>
+              Practical tools for documentation, protocols and structured workflow support.
+            </p>
+            <ul class="list">
+              <li>Spülprotokoll / Arbeitsnachweis</li>
+              <li>Water hygiene related helpers</li>
+              <li>Clean browser-based workflow tools</li>
+            </ul>
+            <div class="card-actions">
+              <a class="btn-card primary-business" href="https://kaffeetrinker80.github.io/Arbeitsnachweis-mobil/">Open Spülprotokoll</a>
+            </div>
+          </div>
+        </article>
 
-        <a class="btn" href="#">Open Theocratic Tools</a>
+        <article class="card theocratic" id="theocratic">
+          <div class="card-top">
+            <div class="card-icon">📋</div>
+            <div class="tag">Neutral & careful</div>
+          </div>
+          <div class="card-body">
+            <h4>Theocratic Tools</h4>
+            <p>
+              General-purpose tools for planning, coordination and internal organizational support.
+            </p>
+            <ul class="list">
+              <li>Schedules and planning</li>
+              <li>Volunteer coordination</li>
+              <li>Meeting support tools</li>
+            </ul>
+            <div class="card-actions">
+              <a class="btn-card primary-theocratic" href="#">Open Theocratic Tools</a>
+            </div>
+          </div>
+        </article>
       </div>
-
-    </div>
+    </section>
 
     <div class="footer">
-      Made with Love © · MN Tools
+      Made with Love © · kaffeetrinker80
     </div>
-
   </div>
 </body>
 </html>
