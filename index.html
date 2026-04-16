@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MN Tools</title>
+  <style>
+    :root{
+      --bg:#eef2f7;
+      --card:#ffffff;
+      --text:#1f2937;
+      --muted:#6b7280;
+      --border:#d6dbe3;
+      --shadow:0 10px 30px rgba(0,0,0,.08);
+
+      --private:#7c3aed;
+      --business:#2563eb;
+      --theocratic:#15803d;
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+
+    body{
+      font-family:Arial, Helvetica, sans-serif;
+      background:linear-gradient(180deg,#f7f9fc 0%, #eef2f7 100%);
+      color:var(--text);
+      min-height:100vh;
+      padding:32px 18px 48px;
+    }
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+    }
+
+    .hero{
+      text-align:center;
+      margin-bottom:36px;
+    }
+
+    .hero h1{
+      font-size:2.5rem;
+      margin-bottom:10px;
+      letter-spacing:.02em;
+    }
+
+    .hero p{
+      color:var(--muted);
+      font-size:1.05rem;
+      max-width:700px;
+      margin:0 auto;
+      line-height:1.6;
+    }
+
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:22px;
+    }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:22px;
+      padding:24px;
+      box-shadow:var(--shadow);
+      display:flex;
+      flex-direction:column;
+      min-height:280px;
+      transition:transform .18s ease, box-shadow .18s ease;
+    }
+
+    .card:hover{
+      transform:translateY(-4px);
+      box-shadow:0 16px 36px rgba(0,0,0,.12);
+    }
+
+    .icon{
+      width:56px;
+      height:56px;
+      border-radius:16px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.6rem;
+      color:#fff;
+      margin-bottom:18px;
+    }
+
+    .private .icon{ background:var(--private); }
+    .business .icon{ background:var(--business); }
+    .theocratic .icon{ background:var(--theocratic); }
+
+    .card h2{
+      font-size:1.35rem;
+      margin-bottom:10px;
+    }
+
+    .card p{
+      color:var(--muted);
+      line-height:1.55;
+      margin-bottom:18px;
+      flex:1;
+    }
+
+    .tool-list{
+      list-style:none;
+      margin-bottom:22px;
+    }
+
+    .tool-list li{
+      color:#374151;
+      font-size:.95rem;
+      margin-bottom:8px;
+      padding-left:16px;
+      position:relative;
+    }
+
+    .tool-list li::before{
+      content:"•";
+      position:absolute;
+      left:0;
+      color:#9ca3af;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      border:none;
+      border-radius:12px;
+      padding:12px 16px;
+      color:#fff;
+      font-weight:600;
+      transition:filter .15s ease;
+    }
+
+    .btn:hover{
+      filter:brightness(.95);
+    }
+
+    .private .btn{ background:var(--private); }
+    .business .btn{ background:var(--business); }
+    .theocratic .btn{ background:var(--theocratic); }
+
+    .footer{
+      text-align:center;
+      color:var(--muted);
+      margin-top:36px;
+      font-size:.9rem;
+    }
+
+    @media (max-width:700px){
+      body{
+        padding:22px 14px 36px;
+      }
+
+      .hero h1{
+        font-size:2rem;
+      }
+
+      .card{
+        min-height:auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="hero">
+      <h1>MN Tools</h1>
+      <p>
+        Private collection of practical and theocratic tools — plus a few personal projects.
+      </p>
+    </div>
+
+    <div class="grid">
+
+      <div class="card private">
+        <div class="icon">🎬</div>
+        <h2>Private</h2>
+        <p>
+          Personal projects, experiments and hobby tools. A place for ideas, media collections and small side projects.
+        </p>
+
+        <ul class="tool-list">
+          <li>Movie & series database</li>
+          <li>Netflix-style media overview</li>
+          <li>Private helper tools</li>
+        </ul>
+
+        <a class="btn" href="#">Open Private Tools</a>
+      </div>
+
+      <div class="card business">
+        <div class="icon">💼</div>
+        <h2>Business</h2>
+        <p>
+          Practical tools for work, documentation and organization. Includes protocols, logs and workflow support.
+        </p>
+
+        <ul class="tool-list">
+          <li>Spülprotokoll / Arbeitsnachweis</li>
+          <li>Water hygiene tools</li>
+          <li>Documentation & workflow support</li>
+        </ul>
+
+        <a class="btn" href="./Arbeitsnachweis-mobil/">Open Business Tools</a>
+      </div>
+
+      <div class="card theocratic">
+        <div class="icon">📋</div>
+        <h2>Theocratic Tools</h2>
+        <p>
+          General-purpose tools for planning, coordination and internal organizational support.
+        </p>
+
+        <ul class="tool-list">
+          <li>Schedules & planning</li>
+          <li>Volunteer coordination</li>
+          <li>Meeting support tools</li>
+        </ul>
+
+        <a class="btn" href="#">Open Theocratic Tools</a>
+      </div>
+
+    </div>
+
+    <div class="footer">
+      Made with Love © · MN Tools
+    </div>
+
+  </div>
+</body>
+</html>
