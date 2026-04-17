@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Spülprotokoll / Arbeitsnachweis</title>
+  <style>
+    :root{
+      --bg:#f3f4f6;
+      --card:#ffffff;
+      --text:#111827;
+      --muted:#6b7280;
+      --border:#d1d5db;
+      --primary:#1f2937;
+      --accent:#2563eb;
+      --danger:#b91c1c;
+      --soft:#eef2f7;
+      --shadow:0 6px 20px rgba(0,0,0,.08);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family:Arial, Helvetica, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      font-size:14px;
+      -webkit-text-size-adjust:100%;
+    }
+    .app{
+      max-width:1600px;
+      margin:0 auto;
+      padding:10px;
+    }
+    .header{
+      background:var(--primary);
+      color:#fff;
+      border-radius:12px;
+      padding:9px 10px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      box-shadow:var(--shadow);
+      margin-bottom:10px;
+    }
+    .header-title{
+      font-size:1.08rem;
+      font-weight:700;
+      line-height:1.1;
+      white-space:nowrap;
+    }
+    .header-actions{
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .btn{
+      border:1px solid rgba(255,255,255,.12);
+      background:#fff;
+      color:var(--text);
+      border-radius:10px;
+      padding:8px 10px;
+      cursor:pointer;
+      font-size:.9rem;
+      min-height:40px;
+      touch-action:manipulation;
+    }
+    .btn:hover{filter:brightness(.98)}
+    .btn.primary{background:var(--accent); color:#fff; border-color:transparent}
+    .btn.danger{background:var(--danger); color:#fff; border-color:transparent}
+    .card{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:12px;
+      box-shadow:var(--shadow);
+      padding:12px;
+      margin-bottom:10px;
+    }
+    .meta-grid{
+      display:grid;
+      grid-template-columns:1.7fr 1.2fr 1.2fr;
+      gap:12px;
+      align-items:end;
+    }
+    .field label{
+      display:block;
+      font-weight:700;
+      margin-bottom:5px;
+      font-size:.94rem;
+    }
+    .field input{
+      width:100%;
+      border:none;
+      border-bottom:2px solid #9ca3af;
+      padding:10px 6px 8px;
+      font-size:1rem;
+      background:transparent;
+      outline:none;
+      border-radius:0;
+    }
+    .field input:focus{border-bottom-color:var(--accent)}
+    .table-card{padding:0; overflow:hidden}
+    .table-wrap{overflow:auto}
+    table{
+      width:100%;
+      border-collapse:collapse;
+      background:#fff;
+      min-width:1320px;
+    }
+    thead th{
+      position:sticky;
+      top:0;
+      z-index:2;
+      background:#e5eefc;
+      border-bottom:1px solid var(--border);
+      font-size:.79rem;
+      line-height:1.1;
+      text-align:left;
+      padding:7px 5px;
+      white-space:normal;
+    }
+    thead th .sub{
+      display:block;
+      font-size:.72rem;
+      color:#475569;
+      font-weight:600;
+      margin-top:2px;
+    }
+    td{
+      border-top:1px solid #e5e7eb;
+      padding:4px 5px;
+      vertical-align:top;
+    }
+    .idx-col{width:44px; text-align:center}
+    .date-col{width:112px}
+    .time-col{width:88px}
+    .floor-col{width:92px}
+    .resident-col{width:240px}
+    .temp-col{width:92px}
+    .aerator-col{width:92px}
+    .notes-col{width:220px}
+
+    input[type="date"],
+    input[type="time"],
+    input[type="number"],
+    input[type="text"],
+    textarea,
+    select{
+      width:100%;
+      font:inherit;
+      border:1px solid #cbd5e1;
+      border-radius:8px;
+      padding:8px 7px;
+      background:#fff;
+      min-height:38px;
+    }
+    input[type="number"]{text-align:center}
+    textarea{
+      resize:vertical;
+      min-height:38px;
+      max-height:120px;
+    }
+    .row-actions{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      justify-content:center;
+    }
+    .icon-btn{
+      width:30px;
+      height:30px;
+      border:none;
+      background:#eef2f7;
+      border-radius:8px;
+      cursor:pointer;
+      font-size:15px;
+      touch-action:manipulation;
+    }
+    .toolbar-bottom{
+      padding:10px;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      border-top:1px solid var(--border);
+      background:#fafafa;
+    }
+    .footer{
+      color:var(--muted);
+      font-size:.8rem;
+      text-align:right;
+      padding:2px 4px 0 4px;
+    }
+    .toast{
+      position:fixed;
+      left:50%;
+      bottom:18px;
+      transform:translateX(-50%);
+      background:rgba(17,24,39,.95);
+      color:#fff;
+      padding:10px 14px;
+      border-radius:999px;
+      font-size:.88rem;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .18s ease;
+      z-index:9999;
+      max-width:92vw;
+      text-align:center;
+    }
+    .toast.show{opacity:1}
+
+    @media (max-width: 980px){
+      .header{align-items:flex-start; flex-direction:column}
+      .header-title{white-space:normal}
+      .header-actions{justify-content:flex-start; width:100%}
+      .header-actions .btn{flex:1 1 calc(50% - 6px)}
+      .meta-grid{grid-template-columns:1fr}
+      .app{padding:8px}
+      .card{padding:10px}
+      .field input{padding:11px 6px 9px}
+      .table-wrap{overflow:visible}
+      table, thead, tbody, tr, th, td{display:block}
+      thead{display:none}
+      table{min-width:0; background:transparent}
+      tbody{display:grid; gap:10px; padding:10px}
+      tr{
+        background:#fff;
+        border:1px solid var(--border);
+        border-radius:12px;
+        box-shadow:var(--shadow);
+        padding:10px;
+      }
+      td{
+        border:none;
+        padding:0;
+        margin-bottom:8px;
+      }
+      td:last-child{margin-bottom:0}
+      td::before{
+        content:attr(data-label);
+        display:block;
+        font-size:.8rem;
+        font-weight:700;
+        color:var(--muted);
+        margin-bottom:4px;
+      }
+      .idx-col::before{display:none}
+      .idx-col{
+        width:auto;
+        text-align:left;
+        border-bottom:1px solid #e5e7eb;
+        padding-bottom:8px;
+        margin-bottom:10px;
+      }
+      .row-actions{justify-content:space-between}
+      .row-actions span{font-weight:700; font-size:1rem}
+      .toolbar-bottom .btn{flex:1 1 calc(50% - 8px)}
+      .notes-col, .resident-col, .date-col, .time-col, .floor-col, .temp-col, .aerator-col{width:auto}
+      input[type="date"],
+      input[type="time"],
+      input[type="number"],
+      input[type="text"],
+      textarea,
+      select{font-size:16px;}
+    }
+
+    @media print{
+  .print-info{
+    display:block !important;
+    position:absolute !important;
+    top:8mm !important;
+    left:57% !important;
+    right:10mm !important;
+    margin:0 !important;
+    font-size:7pt !important;
+    color:#8a8a8a !important;
+    line-height:1.2 !important;
+    z-index:1 !important;
+  }
+  .header{
+    position:relative !important;
+    min-height:26mm !important;
+    padding-right:44% !important;
+  }
+
+      @page{size:A4 landscape; margin:10mm}
+      body{background:#fff; font-size:11px}
+      .app{max-width:none; padding:0}
+      .header{
+        border-radius:0;
+        box-shadow:none;
+        padding:0 0 6px 0;
+        margin-bottom:6px;
+        background:#fff;
+        color:#000;
+        border-bottom:1px solid #000;
+      }
+      .header-actions,
+      .toolbar-bottom,
+      .icon-btn,
+      .footer,
+      #importInput{display:none !important}
+      .card{
+        box-shadow:none;
+        border:none;
+        padding:0;
+        margin-bottom:6px;
+      }
+      .meta-grid{gap:10px; grid-template-columns:1.7fr 1.2fr 1.2fr}
+      .field label{margin-bottom:2px; font-size:11px}
+      .field input{
+        border:none;
+        border-bottom:1px solid #000;
+        padding:2px 2px 3px 2px;
+        border-radius:0;
+      }
+      .table-card, .table-wrap{overflow:visible}
+      table{display:table; min-width:0; width:100%; background:#fff}
+      thead{display:table-header-group}
+      tbody{display:table-row-group; padding:0}
+      tr{display:table-row; border:none; box-shadow:none; padding:0}
+      th, td{display:table-cell}
+      thead th{
+        position:static;
+        background:#fff;
+        border:1px solid #000;
+        padding:4px 4px;
+        font-size:10px;
+      }
+      td{
+        border:1px solid #000;
+        padding:2px 3px;
+        margin:0;
+      }
+      td::before{display:none !important}
+      input, textarea, select{
+        border:none !important;
+        padding:0 !important;
+        border-radius:0 !important;
+        background:transparent !important;
+        box-shadow:none !important;
+        min-height:0 !important;
+      }
+      textarea{min-height:0; max-height:none; overflow:visible}
+      .idx-col{width:28px}
+      .date-col{width:76px}
+      .time-col{width:54px}
+      .floor-col{width:54px}
+      .resident-col{width:170px}
+      .temp-col{width:62px}
+      .aerator-col{width:92px}
+      .notes-col{width:150px}
+    }
+
+    .header-top{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap}
+    .print-info{display:none;font-size:.8rem;line-height:1.35;color:#374151;margin-top:8px;padding-top:6px;border-top:1px dashed #cbd5e1}
+    
+
+
+    @media screen and (max-width: 800px){
+      .row-actions{
+        display:grid !important;
+        grid-template-columns: auto 1fr auto !important;
+        align-items:center !important;
+        gap:6px !important;
+      }
+      .mobile-inline-datetime{
+        display:flex !important;
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:6px !important;
+        min-width:0 !important;
+      }
+      .mobile-inline-datetime input[type="date"]{
+        width: 8.2rem !important;
+        min-width: 8.2rem !important;
+      }
+      .mobile-inline-datetime input[type="time"]{
+        width: 5.8rem !important;
+        min-width: 5.8rem !important;
+      }
+      td.date-col, td.time-col{
+        display:none !important;
+      }
+    }
+
+
+@media print{
+  .header{
+    position: relative !important;
+    padding-top: 8mm !important;
+    padding-right: 46% !important; /* reserve space on the right for facts */
+    padding-bottom: 2mm !important;
+    min-height: 22mm !important;
+  }
+  .print-info{
+    position: absolute !important;
+    top: 8mm !important;
+    left: 58% !important;
+    right: 10mm !important;
+    margin: 0 !important;
+    font-size: 7pt !important;
+    color: #8a8a8a !important;
+    line-height: 1.2 !important;
+    text-align: left !important;
+  }
+  .header-title,
+  .header-title-editable{
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  .header-sub,
+  .header-meta,
+  .meta-grid,
+  .top-fields{
+    position: relative !important;
+    z-index: 2 !important;
+  }
+}
+
+
+    .header-title-editable{
+      width: 100%;
+      max-width: 100%;
+    }
+
+    @media screen and (max-width: 800px){
+      .header{
+        padding-right: 12px !important;
+      }
+      .header-title-editable{
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        display: block !important;
+      }
+
+      /* only inline date/time row on mobile */
+      .mobile-inline-datetime{
+        display:flex !important;
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:4px !important;
+        flex:1 1 auto !important;
+        min-width:0 !important;
+      }
+      .mobile-inline-datetime .inline-icon{
+        font-size: 0.95rem;
+        opacity: 0.8;
+        line-height: 1;
+        flex: 0 0 auto;
+      }
+      .mobile-inline-datetime input{
+        width:auto !important;
+        max-width:none !important;
+        flex:0 1 auto !important;
+      }
+      .mobile-inline-datetime input[type="date"]{
+        min-width:7.8rem !important;
+        width:7.8rem !important;
+      }
+      .mobile-inline-datetime input[type="time"]{
+        min-width:5.4rem !important;
+        width:5.4rem !important;
+      }
+
+      td.date-col,
+      td.time-col{
+        display:none !important;
+      }
+
+      .row-actions{
+        display:grid !important;
+        grid-template-columns:auto 1fr auto !important;
+        align-items:center !important;
+        gap:6px !important;
+      }
+    }
+
+    @media screen and (min-width: 801px){
+      .mobile-inline-datetime{
+        display:none !important;
+      }
+      td.date-col,
+      td.time-col{
+        display:table-cell !important;
+      }
+    }
+
+
+    .row-no{
+      color:#a8a8a8;
+      font-weight:500;
+      font-size:0.88rem;
+      min-width:0;
+      display:inline-block;
+      text-align:left;
+    }
+
+    @media screen and (max-width: 800px){
+      .row-actions{
+        display:grid !important;
+        grid-template-columns: 12px 1fr auto !important;
+        align-items:center !important;
+        gap:6px !important;
+      }
+      .row-no{
+        font-size:0.8rem !important;
+        color:#b3b3b3 !important;
+        justify-self:start;
+      }
+      .mobile-inline-datetime{
+        display:flex !important;
+        flex-direction:row !important;
+        align-items:center !important;
+        gap:4px !important;
+        flex:1 1 auto !important;
+        min-width:0 !important;
+      }
+      .mobile-inline-datetime .inline-icon{
+        font-size:0.7rem;
+        color:#999;
+        line-height:1;
+        flex:0 0 auto;
+      }
+      /* Keep browser's own date/time value rendering intact */
+      .mobile-inline-datetime input[type="date"],
+      .mobile-inline-datetime input[type="time"]{
+        -webkit-appearance:auto !important;
+        appearance:auto !important;
+        background:#fff !important;
+        color:#111 !important;
+        min-height:30px;
+      }
+      .mobile-inline-datetime input[type="date"]{
+        width:8.0rem !important;
+        min-width:8.0rem !important;
+      }
+      .mobile-inline-datetime input[type="time"]{
+        width:5.7rem !important;
+        min-width:5.7rem !important;
+      }
+    }
+
+    @media print{
+      /* no strange picker indicators in print */
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator{
+        display:none !important;
+        opacity:0 !important;
+      }
+      .mobile-inline-datetime,
+      .inline-icon{
+        display:none !important;
+      }
+      td.date-col, td.time-col{
+        display:table-cell !important;
+      }
+      .row-no{
+        color:#b0b0b0 !important;
+        font-size:8pt !important;
+        font-weight:400 !important;
+      }
+    }
+
+
+    @media print{
+      /* suppress native control indicators that show as weird hooks on some mobile print paths */
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator,
+      input[type="date"]::-webkit-inner-spin-button,
+      input[type="time"]::-webkit-inner-spin-button,
+      input[type="date"]::-webkit-clear-button,
+      input[type="time"]::-webkit-clear-button,
+      input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+      input[type="time"]::-webkit-datetime-edit-fields-wrapper,
+      input[type="date"]::-webkit-date-and-time-value,
+      input[type="time"]::-webkit-date-and-time-value{
+        opacity:0 !important;
+        display:none !important;
+        visibility:hidden !important;
+      }
+
+      /* don't show placeholders in print */
+      input::placeholder,
+      textarea::placeholder{
+        color: transparent !important;
+        opacity: 0 !important;
+      }
+
+      .mobile-inline-datetime,
+      .inline-icon{
+        display:none !important;
+      }
+      td.date-col, td.time-col{
+        display:table-cell !important;
+      }
+
+      /* header colors in print */
+      th.kw-col, .kw-col, [data-col="kw"]{
+        color:#1d4ed8 !important;
+      }
+      th.ww-col, .ww-col, [data-col="ww"]{
+        color:#b91c1c !important;
+      }
+      th.aerator-col, .aerator-col, [data-col="aerator"]{
+        color:#666 !important;
+      }
+
+      /* If inputs inherit text color from cells, this helps */
+      td.kw-col input, td.kw-col textarea, td.kw-col select{
+        color:#1d4ed8 !important;
+      }
+      td.ww-col input, td.ww-col textarea, td.ww-col select{
+        color:#b91c1c !important;
+      }
+      td.aerator-col input, td.aerator-col textarea, td.aerator-col select{
+        color:#666 !important;
+      }
+    }
+
+    @media screen and (max-width: 800px){
+      .mobile-inline-datetime .inline-icon{
+        font-size:0.9rem;
+        line-height:1;
+        flex:0 0 auto;
+      }
+    }
+
+
+    @media print{
+      /* Keep desktop date/time cells visible in print */
+      td.date-col, td.time-col{
+        display: table-cell !important;
+      }
+
+      /* Hide the mobile inline controls in print */
+      .mobile-inline-datetime,
+      .inline-icon{
+        display:none !important;
+      }
+
+      /* Kill native picker/selector chrome that prints as hooks/arrows */
+      select,
+      input[type="date"],
+      input[type="time"]{
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        background-image: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+      }
+
+      select::-ms-expand{
+        display:none !important;
+      }
+
+      input[type="date"]::-webkit-calendar-picker-indicator,
+      input[type="time"]::-webkit-calendar-picker-indicator,
+      input[type="date"]::-webkit-inner-spin-button,
+      input[type="time"]::-webkit-inner-spin-button,
+      input[type="date"]::-webkit-clear-button,
+      input[type="time"]::-webkit-clear-button{
+        opacity:0 !important;
+        display:none !important;
+        visibility:hidden !important;
+      }
+
+      /* Make sure values print as plain text */
+      input[type="date"],
+      input[type="time"],
+      select{
+        color:#111 !important;
+        border:none !important;
+        padding:0 !important;
+        min-height:0 !important;
+      }
+    }
+
+
+
+
+    .print-date-value,
+    .print-time-value,
+    .print-floor-value,
+    .print-resident-value{
+      display:none;
+    }
+
+    @media print{
+      td.date-col input,
+      td.time-col input,
+      td.floor-col select{
+        display:none !important;
+      }
+      .print-date-value,
+      .print-time-value,
+      .print-floor-value{
+        display:inline !important;
+        color:#111 !important;
+        font: inherit !important;
+        white-space: nowrap !important;
+      }
+    }
+
+
+@media print{
+  td.date-col,
+  td.time-col,
+  td.floor-col{
+    text-align: center !important;
+  }
+
+  /* Hide native controls, show plain text mirrors */
+  td.date-col input,
+  td.time-col input,
+  td.floor-col select{
+    display:none !important;
+  }
+
+  .print-date-value,
+  .print-time-value,
+  .print-floor-value{
+    display:inline-block !important;
+    color:#111 !important;
+    font-size:inherit !important;
+    line-height:1.1 !important;
+    min-height:1em;
+  }
+
+  /* Print colors */
+  th.kw-col,
+  td.kw-col,
+  td.kw-col input{
+    color:#1e40af !important;
+  }
+
+  th.ww-col,
+  td.ww-col,
+  td.ww-col input{
+    color:#b91c1c !important;
+  }
+
+  th.aerator-col,
+  td.aerator-col,
+  td.aerator-col input{
+    color:#777 !important;
+  }
+}
+
+
+@media print{
+  table td, table th{
+    vertical-align: middle !important;
+  }
+}
+
+
+}
+
+
+@media print{
+  td.floor-col select{
+    display:none !important;
+  }
+  td.resident-col input{
+    display:none !important;
+  }
+  .print-floor-value{
+    display:inline-block !important;
+    color:#111 !important;
+    font: inherit !important;
+    white-space: nowrap !important;
+  }
+  .print-resident-value{
+    display:inline-block !important;
+    color:#111 !important;
+    font: inherit !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap:anywhere !important;
+    line-height:1.15 !important;
+  }
+}
+
+
+
+    @media print{
+      td.floor-col select{
+        display:none !important;
+        -webkit-appearance:none !important;
+        appearance:none !important;
+        background:none !important;
+      }
+      .print-floor-value{
+        display:inline !important;
+        color:#111 !important;
+        font: inherit !important;
+        white-space:nowrap !important;
+      }
+      /* keep all data columns typographically aligned without enlarging rows */
+      table td, table th{
+        vertical-align: middle !important;
+      }
+      td.temp-col input,
+      td.temp-col textarea,
+      td.temp-col select{
+        font: inherit !important;
+        color: inherit !important;
+        -webkit-text-fill-color: currentColor !important;
+      }
+    }
+
+
+
+th .sub{
+  display:block;
+  font-size:0.82em !important;
+  line-height:1.05 !important;
+  font-weight:inherit;
+}
+
+@media print{
+  th .sub{
+    font-size:0.78em !important;
+    line-height:1.0 !important;
+  }
+}
+
+</style>
+</head>
+<body>
+  <div class="app">
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <div class="header">
+      <div class="header-top">
+        <div id="mainTitleEditable" class="header-title header-title-editable" contenteditable="plaintext-only" spellcheck="false">Spülprotokoll / Arbeitsnachweis</div>
+        <div class="header-actions">
+          <button class="btn" id="fillTodayBtn">Heute eintragen</button>
+          <button class="btn danger" id="resetTopBtn">Alles leeren</button>
+          <button class="btn" id="downloadBtn">Download</button>
+          <button class="btn" id="importBtn">Import JSON</button>
+          <button class="btn primary" id="printBtn">Drucken</button>
+          <input type="file" id="importInput" accept="application/json" hidden>
+        </div>
+      </div>
+      <div class="print-info desi-facts">
+        <strong><span class="desi-facts-title">Wichtige Fakten zur Durchführung</span>:</strong> Warm- und Kaltwasser möglichst konsequent spülen. Zielwert warm: nach Möglichkeit 70&nbsp;°C. Alle Entnahmestellen mindestens 3 Minuten spülen. In der Praxis werden 70&nbsp;°C nicht immer an jeder Stelle erreicht.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="meta-grid">
+        <div class="field">
+          <label for="siteInput">Einsatzort</label>
+          <input id="siteInput" type="text" placeholder="Freizeile zum Eintragen">
+        </div>
+        <div class="field">
+          <label for="clientInput">Auftraggeber</label>
+          <input id="clientInput" type="text" placeholder="Freizeile zum Eintragen">
+        </div>
+        <div class="field">
+          <label for="performedByInput">Ausgeführt durch</label>
+          <input id="performedByInput" type="text" placeholder="Name / Kürzel">
+        </div>
+      </div>
+    </div>
+
+    <div class="card table-card">
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th class="idx-col">Nr.</th>
+              <th class="date-col">Datum</th>
+              <th class="time-col">Uhrzeit</th>
+              <th class="floor-col">Stockwerk</th>
+              <th class="resident-col">Lage / Bewohner</th>
+              <th class="temp-col">KW Temp.<span class="sub">(min.)</span></th>
+              <th class="temp-col">WW Küche<span class="sub">(max.)</span></th>
+              <th class="temp-col">WW Bad WB<span class="sub">(max.)</span></th>
+              <th class="temp-col">WW Wanne / Dusche<span class="sub">(max.)</span></th>
+              <th class="temp-col">WW Gäste-WC<span class="sub">(max.)</span></th>
+              <th class="temp-col">Strahlregler<br><span class="sub">getauscht (Anz.)</span></th>
+              <th class="notes-col">Bemerkung</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+      </div>
+
+      <div class="toolbar-bottom">
+        <button class="btn primary" id="addRowBtn">+ Zeile</button>
+        <button class="btn danger" id="resetBtn">Alles leeren</button>
+      </div>
+    </div>
+
+    <div class="footer">Made with Love © · Version 2.1.9</div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'spuelprotokoll_arbeitsnachweis_v2_1_9';
+    const DEFAULT_ROWS = 14;
+    const FLOOR_OPTIONS = ['', 'UG', 'EG', '1. OG', '2. OG', '3. OG', '4. OG', '5. OG', '6. OG', '7. OG'];
+
+    function todayISO(){
+      const d = new Date();
+      const yyyy = d.getFullYear();
+      const mm = String(d.getMonth()+1).padStart(2,'0');
+      const dd = String(d.getDate()).padStart(2,'0');
+      return `${yyyy}-${mm}-${dd}`;
+    }
+    function filenameStamp(){
+      const d = new Date();
+      return `${todayISO()}_${String(d.getHours()).padStart(2,'0')}${String(d.getMinutes()).padStart(2,'0')}`;
+    }
+    function toast(msg){
+      const el = document.getElementById('toast');
+      el.textContent = msg;
+      el.classList.add('show');
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => el.classList.remove('show'), 2400);
+    }
+    function makeRow(index){
+      return {
+        index,
+        date:'',
+        time:'',
+        floor:'',
+        resident:'',
+        kwTemp:'',
+        wwKitchen:'',
+        wwBathWb:'',
+        wwGuestWc:'',
+        wwTubShower:'',
+        aeratorCount:'',
+        notes:''
+      };
+    }
+    function makeDefaultState(){
+      return {
+        meta:{
+          site:'',
+          client:'',
+          performedBy:''
+        },
+        rows:Array.from({length:DEFAULT_ROWS}, (_,i)=>makeRow(i+1))
+      };
+    }
+
+    let state = makeDefaultState();
+
+    function normalizeImportedRow(row, index){
+      return {
+        index,
+        date: row?.date || '',
+        time: row?.time || '',
+        floor: row?.floor || '',
+        resident: row?.resident || row?.unit || row?.roomType || '',
+        kwTemp: row?.kwTemp || '',
+        wwKitchen: row?.wwKitchen || '',
+        wwBathWb: row?.wwBathWb || row?.wwBath || '',
+        wwGuestWc: row?.wwGuestWc || row?.wwGaesteWc || '',
+        wwTubShower: row?.wwTubShower || '',
+        aeratorCount: row?.aeratorCount || row?.aeratorChangedCount || '',
+        notes: row?.notes || ''
+      };
+    }
+
+    function loadState(){
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      try{
+        const parsed = JSON.parse(raw);
+        if (parsed && typeof parsed === 'object'){
+          state.meta = {
+            site: parsed.meta?.site || '',
+            client: parsed.meta?.client || '',
+            performedBy: parsed.meta?.performedBy || ''
+          };
+          const rows = Array.isArray(parsed.rows) ? parsed.rows : [];
+          state.rows = rows.length ? rows.map((r,i)=>normalizeImportedRow(r, i+1)) : makeDefaultState().rows;
+        }
+      }catch(e){
+        console.warn('Lokale Daten konnten nicht geladen werden.', e);
+      }
+    }
+
+    function saveState(){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    function renderMeta(){
+      document.getElementById('siteInput').value = state.meta.site || '';
+      document.getElementById('clientInput').value = state.meta.client || '';
+      document.getElementById('performedByInput').value = state.meta.performedBy || '';
+    }
+
+    function floorSelectHtml(selected){
+      return `<select data-field="floor">${FLOOR_OPTIONS.map(v => `<option value="${escapeAttr(v)}" ${v===selected?'selected':''}>${v || '–'}</option>`).join('')}</select>`;
+    }
+
+    function renderRows(){
+      const tbody = document.getElementById('tableBody');
+      tbody.innerHTML = '';
+
+      state.rows.forEach((row, idx) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td class="idx-col" data-label="Zeile">
+            <div class="row-actions">
+              <span class="row-no">${idx + 1}</span>
+              <div class="mobile-inline-datetime">
+                <span class="inline-icon" aria-hidden="true">📅</span>
+                <input type="date" data-field="date" data-index="${idx}" value="${escapeAttr(row.date)}" aria-label="Datum">
+                <span class="inline-icon" aria-hidden="true">🕒</span>
+                <input type="time" data-field="time" data-index="${idx}" value="${escapeAttr(row.time)}" aria-label="Uhrzeit">
+              </div>
+              <button type="button" class="icon-btn" title="Zeile leeren" data-clear="${idx}">🗑</button>
+            </div>
+          </td>
+          <td class="date-col" data-label="Datum"><input type="date" data-field="date" data-index="${idx}" value="${escapeAttr(row.date)}"><span class="print-date-value">${escapeHtml(formatDateForPrint(row.date || ""))}</span></td>
+          <td class="time-col" data-label="Uhrzeit"><input type="time" data-field="time" data-index="${idx}" value="${escapeAttr(row.time)}"><span class="print-time-value">${escapeHtml(row.time || "")}</span></td>
+          <td class="floor-col" data-label="Stockwerk">${floorSelectHtml(row.floor).replace('data-field="floor"', `data-field="floor" data-index="${idx}"`)}<span class="print-floor-value">${escapeHtml(row.floor || "")}</span></td>
+          <td class="resident-col" data-label="Lage / Bewohner"><input type="text" placeholder="" data-field="resident" data-index="${idx}" value="${escapeAttr(row.resident)}"><span class="print-resident-value">${escapeHtml(row.resident || "")}</span></td>
+          <td class="temp-col" data-label="KW Temp. (min.)"><input type="number" step="0.1" inputmode="decimal" data-field="kwTemp" data-index="${idx}" value="${escapeAttr(row.kwTemp)}"></td>
+          <td class="temp-col" data-label="WW Küche (max.)"><input type="number" step="0.1" inputmode="decimal" data-field="wwKitchen" data-index="${idx}" value="${escapeAttr(row.wwKitchen)}"></td>
+          <td class="temp-col" data-label="WW Bad WB (max.)"><input type="number" step="0.1" inputmode="decimal" data-field="wwBathWb" data-index="${idx}" value="${escapeAttr(row.wwBathWb)}"></td>
+          <td class="temp-col" data-label="WW Wanne / Dusche (max.)"><input type="number" step="0.1" inputmode="decimal" data-field="wwTubShower" data-index="${idx}" value="${escapeAttr(row.wwTubShower)}"></td>
+          <td class="temp-col" data-label="WW Gäste-WC (max.)"><input type="number" step="0.1" inputmode="decimal" data-field="wwGuestWc" data-index="${idx}" value="${escapeAttr(row.wwGuestWc)}"></td>
+          <td class="temp-col" data-label="Strahlregler getauscht (Anz.)"><input type="number" step="1" min="0" data-field="aeratorCount" data-index="${idx}" value="${escapeAttr(row.aeratorCount)}"></td>
+          <td class="notes-col" data-label="Bemerkung"><textarea data-field="notes" data-index="${idx}">${escapeHtml(row.notes)}</textarea></td>
+        `;
+        tbody.appendChild(tr);
+      });
+      syncPrintMirrors();
+    }
+
+    
+    function formatDateForPrint(value){
+      if (!value) return "";
+      const m = String(value).match(/^(\d{4})-(\d{2})-(\d{2})$/);
+      if (!m) return value;
+      return `${m[3]}.${m[2]}.${m[1]}`;
+    }
+
+function escapeHtml(value){
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+    }
+    function escapeAttr(value){
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/"/g, '&quot;')
+        .replace(/</g, '&lt;');
+    }
+
+    function renderAll(){
+      renderMeta();
+      renderRows();
+    }
+
+    function buildExportFile(){
+      const payload = {
+        version: 'einfach-2.1.9',
+        exportedAt: new Date().toISOString(),
+        ...state
+      };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], {type:'application/json'});
+      const filename = buildExportFilename();
+      const file = new File([blob], filename, { type: 'application/json' });
+      return { payload, blob, filename, file };
+    }
+
+    async function downloadJSON(){
+      const { blob, filename } = buildExportFile();
+      if (window.showSaveFilePicker) {
+        try {
+          const handle = await window.showSaveFilePicker({
+            suggestedName: filename,
+            types: [{ description:'JSON', accept:{'application/json':['.json']} }]
+          });
+          const writable = await handle.createWritable();
+          await writable.write(blob);
+          await writable.close();
+          toast('Export gespeichert.');
+          return;
+        } catch (err) {
+          if (err && err.name === 'AbortError') return;
+        }
+      }
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url), 1000);
+      toast('JSON heruntergeladen.');
+    }
+
+
+    function confirmAndResetAll(){
+      const msg = 'Wirklich alle Eingaben und Kopfzeilen löschen? Dieser Vorgang kann nicht rückgängig gemacht werden.';
+      if (!confirm(msg)) return;
+      state = makeDefaultState();
+      saveState();
+      renderAll();
+      syncPrintMirrors();
+      toast('Alles wurde geleert.');
+    }
+
+    function bindEvents(){
+      document.getElementById('siteInput').addEventListener('input', (e) => {
+        state.meta.site = e.target.value;
+        saveState();
+      });
+      document.getElementById('clientInput').addEventListener('input', (e) => {
+        state.meta.client = e.target.value;
+        saveState();
+      });
+      document.getElementById('performedByInput').addEventListener('input', (e) => {
+        state.meta.performedBy = e.target.value;
+        saveState();
+      });
+
+      document.getElementById('tableBody').addEventListener('input', (e) => {
+        const field = e.target.dataset.field;
+        const index = Number(e.target.dataset.index);
+        if (!field || Number.isNaN(index) || !state.rows[index]) return;
+        state.rows[index][field] = e.target.value;
+        saveState();
+      });
+
+      document.getElementById('tableBody').addEventListener('click', (e) => {
+        const clearIndex = e.target.dataset.clear;
+        if (clearIndex === undefined) return;
+        const idx = Number(clearIndex);
+        if (Number.isNaN(idx) || !state.rows[idx]) return;
+        if (!confirm(`Zeile ${idx + 1} wirklich leeren?`)) return;
+        state.rows[idx] = makeRow(idx + 1);
+        saveState();
+        renderRows();
+      });
+
+      document.getElementById('addRowBtn').addEventListener('click', () => {
+        state.rows.push(makeRow(state.rows.length + 1));
+        saveState();
+        renderRows();
+        toast('Zeile hinzugefügt.');
+      });
+
+      document.getElementById('fillTodayBtn').addEventListener('click', () => {
+        const d = todayISO();
+        state.rows.forEach(r => {
+          if (!r.date) r.date = d;
+        });
+        saveState();
+        renderRows();
+        toast('Heutiges Datum ergänzt.');
+      });
+
+      document.getElementById('resetBtn').addEventListener('click', confirmAndResetAll);
+      document.getElementById('resetTopBtn').addEventListener('click', confirmAndResetAll);
+
+      document.getElementById('printBtn').addEventListener('click', () => window.print());
+      document.getElementById('downloadBtn').addEventListener('click', downloadJSON);
+      document.getElementById('importBtn').addEventListener('click', () => {
+        document.getElementById('importInput').click();
+      });
+
+      document.getElementById('importInput').addEventListener('change', (e) => {
+        const file = e.target.files?.[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            const parsed = JSON.parse(reader.result);
+            state.meta = {
+              site: parsed.meta?.site || '',
+              client: parsed.meta?.client || '',
+              performedBy: parsed.meta?.performedBy || ''
+            };
+            state.rows = Array.isArray(parsed.rows) && parsed.rows.length
+              ? parsed.rows.map((r,i)=>normalizeImportedRow(r, i+1))
+              : makeDefaultState().rows;
+            saveState();
+            renderAll();
+            toast('Import erfolgreich.');
+          } catch (err) {
+            alert('Import fehlgeschlagen: ' + err.message);
+          }
+        };
+        reader.readAsText(file);
+        e.target.value = '';
+      });
+    }
+
+    loadState();
+    renderAll();
+    bindEvents();
+  
+function sanitizeFilenamePart(value) {
+  return String(value || "")
+    .trim()
+    .replace(/[\\\/:*?"<>|]+/g, "_")
+    .replace(/\s+/g, "_")
+    .replace(/_+/g, "_")
+    .replace(/^_+|_+$/g, "")
+    .slice(0, 80);
+}
+
+function buildExportFilename() {
+  const placeEl = document.getElementById("siteInput");
+  const rawPlace = placeEl ? placeEl.value : "";
+  const place = sanitizeFilenamePart(rawPlace) || "spuelprotokoll_arbeitsnachweis";
+  const d = new Date();
+  const yyyy = d.getFullYear();
+  const mm = String(d.getMonth() + 1).padStart(2, "0");
+  const dd = String(d.getDate()).padStart(2, "0");
+  const hh = String(d.getHours()).padStart(2, "0");
+  const mi = String(d.getMinutes()).padStart(2, "0");
+  return `${place}_${yyyy}-${mm}-${dd}_${hh}${mi}.json`;
+}
+
+
+    const TITLE_STORAGE_KEY = 'spuelprotokoll_arbeitsnachweis_title_v2_1_9';
+
+    function normalizeTitle(value){
+      const raw = String(value || '').replace(/\s+/g, ' ').trim();
+      return raw || 'Spülprotokoll / Arbeitsnachweis';
+    }
+
+    function applyEditableTitle(value){
+      const el = document.getElementById('mainTitleEditable');
+      const title = normalizeTitle(value);
+      if (el && el.textContent !== title) el.textContent = title;
+      try{ document.title = title; }catch(e){}
+      return title;
+    }
+
+    function loadCustomTitle(){
+      try{
+        const saved = localStorage.getItem(TITLE_STORAGE_KEY) || 'Spülprotokoll / Arbeitsnachweis';
+        applyEditableTitle(saved);
+      }catch(e){
+        applyEditableTitle('Spülprotokoll / Arbeitsnachweis');
+      }
+    }
+
+    function bindCustomTitle(){
+      const el = document.getElementById('mainTitleEditable');
+      if (!el) return;
+      const save = () => {
+        const title = normalizeTitle(el.textContent);
+        if (el.textContent !== title) el.textContent = title;
+        try{ localStorage.setItem(TITLE_STORAGE_KEY, title); }catch(e){}
+        try{ document.title = title; }catch(e){}
+      };
+      el.addEventListener('input', save);
+      el.addEventListener('blur', save);
+      save();
+    }
+
+    loadCustomTitle();
+    bindCustomTitle();
+    syncPrintMirrors();
+    syncPrintMirrors();
+
+function syncPrintMirrors(){
+  document.querySelectorAll('td.date-col').forEach(td => {
+    const input = td.querySelector('input[type="date"]');
+    let out = td.querySelector('.print-date-value');
+    if (!out) {
+      out = document.createElement('span');
+      out.className = 'print-date-value';
+      td.appendChild(out);
+    }
+    out.textContent = formatDateForPrint(input ? (input.value || '') : '');
+  });
+
+  document.querySelectorAll('td.time-col').forEach(td => {
+    const input = td.querySelector('input[type="time"]');
+    let out = td.querySelector('.print-time-value');
+    if (!out) {
+      out = document.createElement('span');
+      out.className = 'print-time-value';
+      td.appendChild(out);
+    }
+    out.textContent = input ? (input.value || '') : '';
+  });
+
+  document.querySelectorAll('td.floor-col').forEach(td => {
+    const select = td.querySelector('select');
+    let out = td.querySelector('.print-floor-value');
+    if (!out) {
+      out = document.createElement('span');
+      out.className = 'print-floor-value';
+      td.appendChild(out);
+    }
+    out.textContent = select ? (select.value || '') : '';
+  });
+
+  document.querySelectorAll('td.resident-col').forEach(td => {
+    const input = td.querySelector('input[type="text"]');
+    let out = td.querySelector('.print-resident-value');
+    if (!out) {
+      out = document.createElement('span');
+      out.className = 'print-resident-value';
+      td.appendChild(out);
+    }
+    out.textContent = input ? (input.value || '') : '';
+  });
+}
+
+document.addEventListener('input', syncPrintMirrors);
+document.addEventListener('change', syncPrintMirrors);
+window.addEventListener('beforeprint', syncPrintMirrors);
+
+</script>
+</body>
+</html>
