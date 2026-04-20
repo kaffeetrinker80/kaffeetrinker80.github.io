@@ -20,8 +20,8 @@
       --work:#1565c0;
       --work-soft:#e3f0ff;
 
-      --private:#7c3aed;
-      --private-soft:#efe7ff;
+      --projects:#7c3aed;
+      --projects-soft:#efe7ff;
 
       --theocratic:#2e7d32;
       --theocratic-soft:#e8f5e9;
@@ -232,9 +232,9 @@
       color:var(--work);
     }
 
-    .private .icon{
-      background:var(--private-soft);
-      color:var(--private);
+    .projects .icon{
+      background:var(--projects-soft);
+      color:var(--projects);
     }
 
     .theocratic .icon{
@@ -321,9 +321,9 @@
       border-color:#cfe0ff;
     }
 
-    .btn-private{
-      background:var(--private-soft);
-      color:var(--private);
+    .btn-projects{
+      background:var(--projects-soft);
+      color:var(--projects);
       border-color:#dfd2ff;
     }
 
@@ -331,6 +331,42 @@
       background:var(--theocratic-soft);
       color:var(--theocratic);
       border-color:#cfe8d1;
+    }
+
+    .contact{
+      margin-top:28px;
+      background:var(--surface);
+      border:1px solid var(--border);
+      border-radius:var(--radius-lg);
+      box-shadow:var(--shadow);
+      padding:20px 22px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .contact-title{
+      font-weight:700;
+      margin-bottom:4px;
+    }
+
+    .contact-text{
+      color:var(--muted);
+      line-height:1.6;
+      font-size:.95rem;
+    }
+
+    .contact a{
+      color:var(--primary);
+      font-weight:700;
+      text-decoration:none;
+      background:var(--primary-soft);
+      border:1px solid #d5e4ff;
+      border-radius:999px;
+      padding:11px 14px;
+      white-space:nowrap;
     }
 
     .footer{
@@ -366,6 +402,10 @@
       .section-head h2{
         font-size:1.35rem;
       }
+
+      .contact{
+        padding:18px;
+      }
     }
   </style>
 </head>
@@ -380,8 +420,8 @@
       <nav class="nav">
         <a href="#categories">Categories</a>
         <a href="/worktools/">Work Tools</a>
-        <a href="https://kaffeetrinker80.github.io/private/">Private</a>
-        <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic</a>
+        <a href="https://kaffeetrinker80.github.io/private/">More Projects</a>
+        <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
       </nav>
     </header>
 
@@ -395,7 +435,7 @@
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="#categories">Explore categories</a>
-        <a class="btn btn-secondary" href="/worktools/spuelprotokoll/">Open Spülprotokoll</a>
+        <a class="btn btn-secondary" href="https://kaffeetrinker80.github.io/theocratic/">Open Theocratic Tools</a>
       </div>
     </section>
 
@@ -403,7 +443,7 @@
       <div class="section-head">
         <h2>Main Categories</h2>
         <p>
-          Three main areas keep everything organized: practical work tools, private projects and carefully separated theocratic tools.
+          Three main areas keep everything organized: practical work tools, theocratic tools and additional projects collected separately.
         </p>
       </div>
 
@@ -411,7 +451,7 @@
         <article class="card work">
           <div class="card-top">
             <div class="icon">W</div>
-            <div class="tag">Documentation & workflow</div>
+            <div class="tag">Practical and structured</div>
           </div>
 
           <h3>Work Tools</h3>
@@ -430,37 +470,37 @@
           </div>
         </article>
 
-        <article class="card private">
+        <article class="card projects">
           <div class="card-top">
-            <div class="icon">P</div>
-            <div class="tag">Ideas & side projects</div>
+            <div class="icon">M</div>
+            <div class="tag">Ideas and experiments</div>
           </div>
 
-          <h3>Private</h3>
+          <h3>More Projects</h3>
           <p>
-            Personal projects, experiments and creative tool ideas collected in one place.
+            Personal projects, experiments and smaller ideas collected in one place.
           </p>
 
           <ul class="list">
-            <li>Media-related ideas</li>
             <li>Private helper tools</li>
+            <li>Creative experiments</li>
             <li>Future side projects</li>
           </ul>
 
           <div class="card-actions">
-            <a class="btn-card btn-private" href="https://kaffeetrinker80.github.io/private/">Open Private</a>
+            <a class="btn-card btn-projects" href="https://kaffeetrinker80.github.io/private/">Open More Projects</a>
           </div>
         </article>
 
         <article class="card theocratic">
           <div class="card-top">
             <div class="icon">T</div>
-            <div class="tag">Neutral and separated</div>
+            <div class="tag">Separate and organized</div>
           </div>
 
           <h3>Theocratic Tools</h3>
           <p>
-            Carefully separated tools for planning, coordination and internal organization.
+            Separate tools for planning, coordination and internal organization.
           </p>
 
           <ul class="list">
@@ -476,9 +516,20 @@
       </div>
     </section>
 
+    <section class="contact">
+      <div>
+        <div class="contact-title">Feedback or ideas</div>
+        <div class="contact-text">
+          If you notice something helpful, unclear or worth improving, feel free to get in touch.
+        </div>
+      </div>
+      <a href="mailto:cryptopower@outlook.de">cryptopower@outlook.de</a>
+    </section>
+
     <div class="footer">
       Made with Love © · kaffeetrinker80
     </div>
   </div>
 </body>
 </html>
+
