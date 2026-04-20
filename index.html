@@ -156,29 +156,23 @@
       overflow: hidden;
     }
 
-    .eyebrow {
-      display: inline-block;
-      background: var(--primary-soft);
-      color: var(--primary);
-      font-weight: 600;
-      font-size: .85rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      padding: 6px 14px;
-      border-radius: 999px;
-      margin-bottom: 20px;
-      border: 1px solid rgba(110, 168, 255, 0.2);
-    }
-
     .hero h1 {
-      margin: 0 0 16px;
-      font-size: 3rem;
+      margin: 0 0 8px; /* Kleinerer Abstand zum Untertitel */
+      font-size: 3.5rem; /* Noch etwas größer gemacht */
       line-height: 1.1;
       letter-spacing: -0.02em;
       font-weight: 700;
       background: linear-gradient(135deg, #ffffff 0%, #aab4c3 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+    }
+
+    .hero-subtitle {
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--primary);
+      margin: 0 0 20px;
+      letter-spacing: -0.01em;
     }
 
     .hero p {
@@ -369,15 +363,18 @@
     .footer-contact a { color: var(--primary); text-decoration: none; transition: color var(--transition-smooth); }
     .footer-contact a:hover { color: #fff; text-decoration: underline; }
 
+    /* Mobile Anpassungen für die neuen Schriftgrößen */
     @media (max-width: 960px){
       .grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.4rem; }
+      .hero h1 { font-size: 2.8rem; }
+      .hero-subtitle { font-size: 1.2rem; }
     }
 
     @media (max-width: 640px){
       .container { padding: 24px 16px 40px; }
       .hero { padding: 32px 24px; }
-      .hero h1 { font-size: 2rem; }
+      .hero h1 { font-size: 2.2rem; }
+      .hero-subtitle { font-size: 1.1rem; }
       .section-head h2 { font-size: 1.6rem; }
     }
   </style>
@@ -399,8 +396,8 @@
     </header>
 
     <section class="hero animate-in delay-1">
-      <div class="eyebrow">Personal tool hub</div>
-      <h1>Simple, structured and still evolving.</h1>
+      <h1>Personal Tool Hub</h1>
+      <div class="hero-subtitle">Simple, structured and still evolving.</div>
       <p>
         This is the central landing page for my browser-based tools and small projects.
         The focus is on practical workflows, clean structure and lightweight tools that are easy to open and use on desktop and mobile.
