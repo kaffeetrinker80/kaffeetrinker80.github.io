@@ -6,25 +6,26 @@
   <title>kaffeetrinker80</title>
   <style>
     :root{
-      --bg:#f5f6f8;
-      --surface:#ffffff;
-      --surface-soft:#f8fafc;
-      --text:#1f2937;
-      --muted:#6b7280;
-      --border:#e5e7eb;
-      --shadow:0 10px 28px rgba(15, 23, 42, 0.08);
+      --bg:#1f2329;
+      --bg-soft:#252a31;
+      --surface:#2a3038;
+      --surface-soft:#313844;
+      --text:#eef2f7;
+      --muted:#aab4c3;
+      --border:#3c4552;
+      --shadow:0 16px 34px rgba(0,0,0,.24);
 
-      --primary:#2563eb;
-      --primary-soft:#eaf2ff;
+      --primary:#6ea8ff;
+      --primary-soft:#26364d;
 
-      --work:#1565c0;
-      --work-soft:#e3f0ff;
+      --work:#8dc2ff;
+      --work-soft:#25384e;
 
-      --projects:#7c3aed;
-      --projects-soft:#efe7ff;
+      --projects:#c5a8ff;
+      --projects-soft:#3b3150;
 
-      --theocratic:#2e7d32;
-      --theocratic-soft:#e8f5e9;
+      --theocratic:#8fd39a;
+      --theocratic-soft:#263f2c;
 
       --radius-xl:28px;
       --radius-lg:22px;
@@ -33,14 +34,12 @@
 
     *{box-sizing:border-box}
 
-    html{
-      scroll-behavior:smooth;
-    }
+    html{scroll-behavior:smooth}
 
     body{
       margin:0;
       font-family:Arial, Helvetica, sans-serif;
-      background:linear-gradient(180deg,#f8fafc 0%, #f3f4f6 100%);
+      background:linear-gradient(180deg,#1d2127 0%, #252a31 100%);
       color:var(--text);
     }
 
@@ -159,13 +158,7 @@
 
     .btn-primary{
       background:var(--primary);
-      color:#fff;
-    }
-
-    .btn-secondary{
-      background:#fff;
-      color:var(--text);
-      border:1px solid var(--border);
+      color:#102036;
     }
 
     .section-head{
@@ -196,28 +189,28 @@
       border:1px solid var(--border);
       border-radius:var(--radius-lg);
       box-shadow:var(--shadow);
-      padding:20px;
+      padding:22px 20px;
       display:flex;
       flex-direction:column;
-      min-height:270px;
-      transition:transform .16s ease, box-shadow .16s ease;
+      min-height:252px;
+      transition:transform .16s ease, box-shadow .16s ease, border-color .16s ease;
     }
 
     .card:hover{
       transform:translateY(-3px);
+      border-color:#546173;
     }
 
     .card-top{
       display:flex;
       align-items:center;
-      justify-content:space-between;
       gap:12px;
       margin-bottom:16px;
     }
 
     .icon{
-      width:54px;
-      height:54px;
+      width:56px;
+      height:56px;
       border-radius:18px;
       display:flex;
       align-items:center;
@@ -225,6 +218,7 @@
       font-size:1.35rem;
       font-weight:700;
       flex:0 0 auto;
+      border:1px solid rgba(255,255,255,.05);
     }
 
     .work .icon{
@@ -240,16 +234,6 @@
     .theocratic .icon{
       background:var(--theocratic-soft);
       color:var(--theocratic);
-    }
-
-    .tag{
-      font-size:.82rem;
-      color:var(--muted);
-      background:var(--surface-soft);
-      border:1px solid var(--border);
-      padding:8px 10px;
-      border-radius:999px;
-      white-space:nowrap;
     }
 
     .card h3{
@@ -275,7 +259,7 @@
     .list li{
       position:relative;
       padding-left:16px;
-      color:#374151;
+      color:#d7dee8;
       line-height:1.45;
     }
 
@@ -284,7 +268,7 @@
       width:8px;
       height:8px;
       border-radius:50%;
-      background:#cbd5e1;
+      background:#5f6b7a;
       position:absolute;
       left:0;
       top:.48em;
@@ -305,68 +289,32 @@
       padding:12px 14px;
       border-radius:14px;
       border:1px solid var(--border);
-      background:#fff;
+      background:var(--surface-soft);
       color:var(--text);
       transition:transform .16s ease, filter .16s ease;
     }
 
     .btn-card:hover{
       transform:translateY(-1px);
-      filter:brightness(.99);
+      filter:brightness(1.04);
     }
 
     .btn-work{
-      background:var(--work-soft);
       color:var(--work);
-      border-color:#cfe0ff;
+      background:var(--work-soft);
+      border-color:#41536a;
     }
 
     .btn-projects{
-      background:var(--projects-soft);
       color:var(--projects);
-      border-color:#dfd2ff;
+      background:var(--projects-soft);
+      border-color:#554a6b;
     }
 
     .btn-theocratic{
-      background:var(--theocratic-soft);
       color:var(--theocratic);
-      border-color:#cfe8d1;
-    }
-
-    .contact{
-      margin-top:28px;
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:var(--radius-lg);
-      box-shadow:var(--shadow);
-      padding:20px 22px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:14px;
-      flex-wrap:wrap;
-    }
-
-    .contact-title{
-      font-weight:700;
-      margin-bottom:4px;
-    }
-
-    .contact-text{
-      color:var(--muted);
-      line-height:1.6;
-      font-size:.95rem;
-    }
-
-    .contact a{
-      color:var(--primary);
-      font-weight:700;
-      text-decoration:none;
-      background:var(--primary-soft);
-      border:1px solid #d5e4ff;
-      border-radius:999px;
-      padding:11px 14px;
-      white-space:nowrap;
+      background:var(--theocratic-soft);
+      border-color:#415443;
     }
 
     .footer{
@@ -374,6 +322,22 @@
       text-align:center;
       color:var(--muted);
       font-size:.9rem;
+    }
+
+    .footer-contact{
+      margin-top:10px;
+      text-align:center;
+      color:#93a0b2;
+      font-size:.86rem;
+    }
+
+    .footer-contact a{
+      color:#b8c6d8;
+      text-decoration:none;
+    }
+
+    .footer-contact a:hover{
+      text-decoration:underline;
     }
 
     @media (max-width: 960px){
@@ -401,10 +365,6 @@
 
       .section-head h2{
         font-size:1.35rem;
-      }
-
-      .contact{
-        padding:18px;
       }
     }
   </style>
@@ -435,7 +395,6 @@
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="#categories">Explore categories</a>
-        <a class="btn btn-secondary" href="https://kaffeetrinker80.github.io/theocratic/">Open Theocratic Tools</a>
       </div>
     </section>
 
@@ -450,8 +409,7 @@
       <div class="grid">
         <article class="card work">
           <div class="card-top">
-            <div class="icon">W</div>
-            <div class="tag">Practical and structured</div>
+            <div class="icon">🛠️</div>
           </div>
 
           <h3>Work Tools</h3>
@@ -472,8 +430,7 @@
 
         <article class="card projects">
           <div class="card-top">
-            <div class="icon">M</div>
-            <div class="tag">Ideas and experiments</div>
+            <div class="icon">✨</div>
           </div>
 
           <h3>More Projects</h3>
@@ -494,8 +451,7 @@
 
         <article class="card theocratic">
           <div class="card-top">
-            <div class="icon">T</div>
-            <div class="tag">Separate and organized</div>
+            <div class="icon">📋</div>
           </div>
 
           <h3>Theocratic Tools</h3>
@@ -516,20 +472,14 @@
       </div>
     </section>
 
-    <section class="contact">
-      <div>
-        <div class="contact-title">Feedback or ideas</div>
-        <div class="contact-text">
-          If you notice something helpful, unclear or worth improving, feel free to get in touch.
-        </div>
-      </div>
-      <a href="mailto:cryptopower@outlook.de">cryptopower@outlook.de</a>
-    </section>
-
     <div class="footer">
       Made with Love © · kaffeetrinker80
+    </div>
+    <div class="footer-contact">
+      Feedback or ideas: <a href="mailto:cryptopower@outlook.de">cryptopower@outlook.de</a>
     </div>
   </div>
 </body>
 </html>
+
 
