@@ -96,13 +96,14 @@
       padding: 32px 20px 60px;
     }
 
+    /* TOPBAR & BURGER MENU */
     .topbar {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 16px;
       margin-bottom: 32px;
-      flex-wrap: wrap;
+      position: relative; /* Wichtig für das Dropdown-Menü */
     }
 
     .brand {
@@ -126,31 +127,85 @@
       font-weight: 300;
     }
 
-    .nav {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .nav a {
-      text-decoration: none;
-      color: var(--text);
+    /* Burger Button */
+    .burger-btn {
       background: var(--surface);
       border: 1px solid var(--border);
-      padding: 10px 18px;
-      border-radius: 999px;
+      color: var(--text);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
       backdrop-filter: blur(12px);
-      font-size: .95rem;
-      font-weight: 400;
       transition: all var(--transition-smooth);
+      z-index: 100;
+      padding: 0;
     }
 
-    .nav a:hover {
-      transform: translateY(-2px);
+    .burger-btn:hover {
       background: var(--surface-soft);
       border-color: var(--border-hover);
+      transform: translateY(-2px);
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
+
+    .burger-btn svg {
+      transition: transform 0.3s ease;
+    }
+
+    /* Dropdown Menü */
+    .dropdown-menu {
+      position: absolute;
+      top: calc(100% + 12px);
+      right: 0;
+      background: rgba(30, 35, 43, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      min-width: 220px;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
+      
+      /* Versteckt by default */
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-10px);
+      transition: all var(--transition-smooth);
+      z-index: 99;
+    }
+
+    .dropdown-menu.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+      text-decoration: none;
+      color: var(--text);
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 400;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.2s ease;
+    }
+
+    .dropdown-menu a:hover {
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
+      transform: translateX(4px); /* Sanftes Einrücken beim Hovern */
+    }
+
+    /* END TOPBAR */
 
     .hero {
       background: var(--surface);
@@ -165,8 +220,8 @@
     }
 
     .hero h1 {
-      margin: 0 0 8px; /* Kleinerer Abstand zum Untertitel */
-      font-size: 3.5rem; /* Noch etwas größer gemacht */
+      margin: 0 0 8px;
+      font-size: 3.5rem;
       line-height: 1.1;
       letter-spacing: -0.02em;
       font-weight: 700;
@@ -199,7 +254,6 @@
       margin-top: 32px;
     }
 
-    /* Pulsing Main Button */
     @keyframes pulse-glow {
       0% { box-shadow: 0 0 0 0 rgba(110, 168, 255, 0.4); }
       70% { box-shadow: 0 0 0 15px rgba(110, 168, 255, 0); }
@@ -256,7 +310,6 @@
       overflow: hidden;
     }
 
-    /* Glow Hover Effects */
     .card.work:hover { transform: translateY(-5px); border-color: var(--work); box-shadow: 0 12px 30px rgba(141, 194, 255, 0.15); }
     .card.projects:hover { transform: translateY(-5px); border-color: var(--projects); box-shadow: 0 12px 30px rgba(197, 168, 255, 0.15); }
     .card.theocratic:hover { transform: translateY(-5px); border-color: var(--theocratic); box-shadow: 0 12px 30px rgba(143, 211, 154, 0.15); }
@@ -326,7 +379,6 @@
       display: flex;
     }
 
-    /* Card Button Base & Shimmer Animation */
     .btn-card {
       width: 100%;
       text-align: center;
@@ -352,10 +404,7 @@
       transition: all 0.6s ease;
     }
 
-    .btn-card:hover::after {
-      left: 150%;
-      transition: all 0.6s ease;
-    }
+    .btn-card:hover::after { left: 150%; transition: all 0.6s ease; }
 
     .btn-work { color: var(--work); background: var(--work-soft); }
     .btn-work:hover { background: var(--work); color: #102036; box-shadow: 0 4px 15px rgba(141, 194, 255, 0.3); }
@@ -371,7 +420,6 @@
     .footer-contact a { color: var(--primary); text-decoration: none; transition: color var(--transition-smooth); }
     .footer-contact a:hover { color: #fff; text-decoration: underline; }
 
-    /* Mobile Anpassungen für die neuen Schriftgrößen */
     @media (max-width: 960px){
       .grid { grid-template-columns: 1fr; }
       .hero h1 { font-size: 2.8rem; }
@@ -395,11 +443,31 @@
         <div class="brand-subtitle">Tools, projects and structured browser-based helpers</div>
       </div>
 
-      <nav class="nav">
-        <a href="#categories">Categories</a>
-        <a href="/worktools/">Work Tools</a>
-        <a href="https://kaffeetrinker80.github.io/private/">More Projects</a>
-        <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
+      <button class="burger-btn" id="burgerBtn" aria-label="Toggle Menu">
+        <svg id="burgerIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+
+      <nav class="dropdown-menu" id="dropdownMenu">
+        <a href="#categories">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
+          Categories
+        </a>
+        <a href="/worktools/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+          Work Tools
+        </a>
+        <a href="https://kaffeetrinker80.github.io/private/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+          More Projects
+        </a>
+        <a href="https://kaffeetrinker80.github.io/theocratic/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          Theocratic Tools
+        </a>
       </nav>
     </header>
 
@@ -514,5 +582,50 @@
       Feedback or ideas: <a href="mailto:cryptopower@outlook.de">cryptopower@outlook.de</a>
     </div>
   </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const burgerBtn = document.getElementById("burgerBtn");
+      const dropdownMenu = document.getElementById("dropdownMenu");
+      const burgerIcon = document.getElementById("burgerIcon");
+
+      // Menü öffnen/schließen
+      burgerBtn.addEventListener("click", (e) => {
+        e.stopPropagation(); // Verhindert, dass der Klick direkt aufs document durchschlägt
+        const isActive = dropdownMenu.classList.toggle("active");
+        
+        // Icon austauschen (Burger <-> X)
+        if (isActive) {
+          burgerIcon.innerHTML = `
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          `;
+          burgerIcon.style.transform = "rotate(90deg)";
+        } else {
+          burgerIcon.innerHTML = `
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          `;
+          burgerIcon.style.transform = "rotate(0deg)";
+        }
+      });
+
+      // Menü schließen, wenn man außerhalb klickt
+      document.addEventListener("click", (e) => {
+        if (!dropdownMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
+          dropdownMenu.classList.remove("active");
+          
+          // Icon zurück auf Burger
+          burgerIcon.innerHTML = `
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          `;
+          burgerIcon.style.transform = "rotate(0deg)";
+        }
+      });
+    });
+  </script>
 </body>
 </html>
