@@ -103,8 +103,8 @@
       align-items: center;
       gap: 16px;
       margin-bottom: 32px;
-      position: relative; /* Wichtig für das Dropdown-Menü */
-      z-index: 1000; /* FIX: Zwingt die Topbar ÜBER alle anderen Elemente (wie Hero) */
+      position: relative;
+      z-index: 1000;
     }
 
     .brand {
@@ -128,7 +128,6 @@
       font-weight: 300;
     }
 
-    /* Burger Button */
     .burger-btn {
       background: var(--surface);
       border: 1px solid var(--border);
@@ -157,7 +156,6 @@
       transition: transform 0.3s ease;
     }
 
-    /* Dropdown Menü */
     .dropdown-menu {
       position: absolute;
       top: calc(100% + 12px);
@@ -172,8 +170,6 @@
       gap: 4px;
       min-width: 220px;
       box-shadow: 0 24px 48px rgba(0,0,0,0.4);
-      
-      /* Versteckt by default */
       opacity: 0;
       visibility: hidden;
       transform: translateY(-10px);
@@ -203,10 +199,8 @@
     .dropdown-menu a:hover {
       background: rgba(255, 255, 255, 0.05);
       color: #fff;
-      transform: translateX(4px); /* Sanftes Einrücken beim Hovern */
+      transform: translateX(4px);
     }
-
-    /* END TOPBAR */
 
     .hero {
       background: var(--surface);
@@ -218,7 +212,6 @@
       margin-bottom: 40px;
       position: relative;
       overflow: hidden;
-      /* Der Z-Index hier ist automatisch niedriger als die 1000 von der topbar */
     }
 
     .hero h1 {
@@ -417,7 +410,46 @@
     .btn-theocratic { color: var(--theocratic); background: var(--theocratic-soft); }
     .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; box-shadow: 0 4px 15px rgba(143, 211, 154, 0.3); }
 
-    .footer { margin-top: 60px; text-align: center; color: var(--muted); font-size: .95rem; font-weight: 300; }
+    /* COFFEE BUTTON */
+    .coffee-wrap {
+      text-align: center;
+      margin-top: 60px; /* Gleicher Abstand wie der Footer vorher hatte */
+    }
+
+    .btn-coffee {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 400;
+      transition: all var(--transition-smooth);
+      backdrop-filter: blur(12px);
+    }
+
+    .btn-coffee:hover {
+      background: rgba(255, 184, 108, 0.1);
+      border-color: rgba(255, 184, 108, 0.3);
+      color: #ffb86c;
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(255, 184, 108, 0.15);
+    }
+
+    .btn-coffee svg {
+      transition: transform var(--transition-smooth);
+    }
+
+    .btn-coffee:hover svg {
+      transform: rotate(-10deg) scale(1.1);
+    }
+
+    /* FOOTER */
+    .footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: .95rem; font-weight: 300; }
     .footer-contact { margin-top: 8px; text-align: center; color: #93a0b2; font-size: .9rem; font-weight: 300; }
     .footer-contact a { color: var(--primary); text-decoration: none; transition: color var(--transition-smooth); }
     .footer-contact a:hover { color: #fff; text-decoration: underline; }
@@ -434,6 +466,7 @@
       .hero h1 { font-size: 2.2rem; }
       .hero-subtitle { font-size: 1.1rem; }
       .section-head h2 { font-size: 1.6rem; }
+      .btn-coffee { padding: 10px 18px; font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -577,6 +610,19 @@
       </div>
     </section>
 
+    <div class="coffee-wrap animate-in delay-5">
+      <a class="btn-coffee" href="https://paypal.me/neudecker2003" target="_blank" rel="noopener noreferrer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
+          <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
+          <line x1="6" y1="2" x2="6" y2="4"/>
+          <line x1="10" y1="2" x2="10" y2="4"/>
+          <line x1="14" y1="2" x2="14" y2="4"/>
+        </svg>
+        Buy the kaffeetrinker a real coffee
+      </a>
+    </div>
+
     <div class="footer animate-in delay-5">
       Made with Love © · kaffeetrinker80
     </div>
@@ -593,7 +639,7 @@
 
       // Menü öffnen/schließen
       burgerBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // Verhindert, dass der Klick direkt aufs document durchschlägt
+        e.stopPropagation(); 
         const isActive = dropdownMenu.classList.toggle("active");
         
         // Icon austauschen (Burger <-> X)
@@ -618,7 +664,6 @@
         if (!dropdownMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
           dropdownMenu.classList.remove("active");
           
-          // Icon zurück auf Burger
           burgerIcon.innerHTML = `
             <line x1="3" y1="12" x2="21" y2="12"></line>
             <line x1="3" y1="6" x2="21" y2="6"></line>
