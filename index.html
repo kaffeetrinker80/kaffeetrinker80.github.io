@@ -448,11 +448,44 @@
       transform: rotate(-10deg) scale(1.1);
     }
 
-    /* FOOTER */
+    /* FOOTER & CONTACT BADGES */
     .footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: .95rem; font-weight: 300; }
     .footer-contact { margin-top: 8px; text-align: center; color: #93a0b2; font-size: .9rem; font-weight: 300; }
     .footer-contact a { color: var(--primary); text-decoration: none; transition: color var(--transition-smooth); }
     .footer-contact a:hover { color: #fff; text-decoration: underline; }
+
+    .contact-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .footer-contact .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      transition: all var(--transition-smooth);
+    }
+
+    .footer-contact .badge:hover {
+      transform: translateY(-2px);
+      background: var(--surface-soft);
+      border-color: var(--primary);
+      color: #fff;
+      text-decoration: none; /* Verhindert den Hover-Unterstrich der Standard-Links */
+    }
+
+    .footer-contact .badge svg {
+      color: var(--primary);
+    }
 
     @media (max-width: 960px){
       .grid { grid-template-columns: 1fr; }
@@ -627,7 +660,18 @@
       Made with Love © · kaffeetrinker80
     </div>
     <div class="footer-contact animate-in delay-5">
-      Feedback or ideas: <a href="mailto:cryptopower@outlook.de">cryptopower@outlook.de</a>
+      <p style="margin: 0;">Get in touch for feedback or ideas:</p>
+      <div class="contact-badges">
+        <a href="mailto:cryptopower@outlook.de" class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          Email
+        </a>
+        
+        <a href="https://t.me/kaffeetrinker80" target="_blank" class="badge">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+          Telegram
+        </a>
+      </div>
     </div>
   </div>
 
