@@ -152,8 +152,9 @@
       box-shadow: 0 8px 20px rgba(0,0,0,0.2);
     }
 
+    /* Sanftere, leicht verlangsamte Animation für das Burger Icon */
     .burger-btn svg {
-      transition: transform 0.3s ease;
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .dropdown-menu {
@@ -240,6 +241,39 @@
       line-height: 1.6;
       font-size: 1.15rem;
       font-weight: 300;
+    }
+
+    /* Info Notices Styles */
+    .notices {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .notice-box {
+      padding: 20px 24px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: .95rem;
+      line-height: 1.6;
+    }
+
+    .notice-box.privacy {
+      border-left: 4px solid var(--theocratic); /* Grüner Akzent */
+    }
+
+    .notice-box.tip {
+      border-left: 4px solid var(--primary); /* Blauer Akzent */
+    }
+
+    .notice-box strong {
+      display: block;
+      color: var(--text);
+      font-size: 1.05rem;
+      margin-bottom: 6px;
     }
 
     .hero-actions {
@@ -413,7 +447,7 @@
     /* COFFEE BUTTON */
     .coffee-wrap {
       text-align: center;
-      margin-top: 60px; /* Gleicher Abstand wie der Footer vorher hatte */
+      margin-top: 60px;
     }
 
     .btn-coffee {
@@ -480,7 +514,7 @@
       background: var(--surface-soft);
       border-color: var(--primary);
       color: #fff;
-      text-decoration: none; /* Verhindert den Hover-Unterstrich der Standard-Links */
+      text-decoration: none;
     }
 
     .footer-contact .badge svg {
@@ -546,6 +580,18 @@
         This is the central landing page for my browser-based tools and small projects.
         The focus is on practical workflows, clean structure and lightweight tools that are easy to open and use on desktop and mobile.
       </p>
+
+      <div class="notices">
+        <div class="notice-box privacy">
+          <strong>🔒 Strict Privacy & Data Security</strong>
+          Although these tools are hosted on GitHub, your data is never uploaded there. Whenever you open a file or import data, it is read <strong>strictly locally</strong> inside your own browser on your own device. The data never leaves your device and is not sent to me, to GitHub, or to any external server.
+        </div>
+        
+        <div class="notice-box tip">
+          <strong>📱 Tablet & Mobile Experience</strong>
+          If you are not working on a PC or laptop, you can still get the best experience on a tablet. Simply use your browser's zoom function (e.g., zoom out to 75% or 80%) to fit the interfaces perfectly onto your screen.
+        </div>
+      </div>
 
       <div class="hero-actions">
         <a class="btn btn-primary" href="#categories">Explore categories</a>
