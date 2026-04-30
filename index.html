@@ -21,6 +21,29 @@
       --bg-soft: #1a1e24;
       --surface: rgba(30, 35, 43, 0.7);
       --surface-soft: rgba(49, 56, 68, 0.85);
+      --text: #eef2f7;<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>kaffeetrinker80 | Tool Hub</title>
+  
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon-180.png">
+  <link rel="manifest" href="/site.webmanifest">
+  <meta name="theme-color" content="#12151a">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #12151a;
+      --bg-soft: #1a1e24;
+      --surface: rgba(30, 35, 43, 0.7);
+      --surface-soft: rgba(49, 56, 68, 0.85);
       --text: #eef2f7;
       --muted: #94a3b8;
       --border: rgba(255, 255, 255, 0.08);
@@ -71,7 +94,6 @@
 
     .container { max-width: 1120px; margin: 0 auto; padding: 20px 20px 40px; position: relative; }
 
-    /* HEADER FIX */
     .topbar { 
       display: flex; 
       justify-content: flex-end; 
@@ -102,7 +124,6 @@
     .dropdown-menu a { text-decoration: none; color: var(--text); padding: 14px; border-radius: 10px; display: block; font-size: 1rem; transition: background 0.2s; }
     .dropdown-menu a:hover { background: rgba(255, 255, 255, 0.05); }
 
-    /* HERO */
     .hero {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-xl); padding: 40px 24px; margin-bottom: 24px; text-align: center;
@@ -123,7 +144,6 @@
       animation: fancy-pulse 3s infinite;
     }
 
-    /* PHILOSOPHY */
     .philosophy-box {
       padding: 24px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
       border-radius: 20px; margin-bottom: 20px;
@@ -136,7 +156,6 @@
     .phil-item strong { display: block; color: #fff; font-size: 0.9rem; margin-bottom: 2px; }
     .phil-item span { color: var(--muted); font-size: 0.8rem; }
 
-    /* NOTICES */
     .notices { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 32px; }
     .notice-box {
       padding: 20px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border);
@@ -146,7 +165,6 @@
     .notice-box.tip { border-left-color: var(--work); }
     .notice-box strong { display: block; color: #fff; margin-bottom: 4px; }
 
-    /* GRID & CARDS */
     .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
@@ -167,7 +185,6 @@
     .list li { position: relative; padding-left: 18px; margin-bottom: 6px; color: #d7dee8; font-size: 0.9rem; }
     .list li::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--muted); position: absolute; left: 0; top: 0.6em; }
 
-    /* CARD BUTTONS WITH GLOW */
     .btn-card { 
       width: 100%; text-align: center; text-decoration: none; font-weight: 600; padding: 12px; border-radius: 12px; 
       transition: all 0.3s ease; position: relative; overflow: hidden;
@@ -180,8 +197,6 @@
     .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; box-shadow: 0 0 20px rgba(143, 211, 154, 0.4); }
     .btn-work:hover { background: var(--work); color: #102036; box-shadow: 0 0 20px rgba(141, 194, 255, 0.4); }
     .btn-projects:hover { background: var(--projects); color: #1a1025; box-shadow: 0 0 20px rgba(197, 168, 255, 0.4); }
-
-    .btn-card:active { transform: scale(0.98); }
 
     .coffee-wrap { text-align: center; margin-top: 40px; }
     .btn-coffee {
@@ -303,7 +318,7 @@
     <div class="coffee-wrap animate-in delay-3">
       <a class="btn-coffee" href="https://paypal.me/neudecker2003" target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-        Buy a coffee
+        Buy the kaffeetrinker a real coffee
       </a>
     </div>
 
