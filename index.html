@@ -28,28 +28,21 @@
       --border: rgba(255, 255, 255, 0.08);
       --border-hover: rgba(255, 255, 255, 0.15);
       --shadow: 0 16px 34px rgba(0,0,0,.3);
-
       --primary: #6ea8ff;
       --primary-soft: rgba(110, 168, 255, 0.15);
-
       --work: #8dc2ff;
       --work-soft: rgba(141, 194, 255, 0.15);
-
       --projects: #c5a8ff;
       --projects-soft: rgba(197, 168, 255, 0.15);
-
       --theocratic: #8fd39a;
       --theocratic-soft: rgba(143, 211, 154, 0.15);
-
       --radius-xl: 28px;
       --radius-lg: 22px;
       --radius-md: 16px;
-      
       --transition-smooth: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -61,7 +54,6 @@
       overflow-x: hidden;
     }
 
-    /* Ambient Background Glow */
     body::before, body::after {
       content: "";
       position: absolute;
@@ -73,22 +65,16 @@
       opacity: 0.15;
       pointer-events: none;
     }
-
     body::before { background: var(--primary); top: -100px; left: -100px; }
     body::after { background: var(--projects); bottom: 20%; right: -200px; }
 
-    /* Entrance Animations */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* NEU: Überschriften Shine Animation */
     @keyframes shine {
       to { background-position: 200% center; }
     }
-
-    /* NEU: Fancy Button Pulse */
     @keyframes fancy-pulse {
       0% { box-shadow: 0 0 0 0 rgba(110, 168, 255, 0.7); transform: scale(1); }
       70% { box-shadow: 0 0 0 15px rgba(110, 168, 255, 0); transform: scale(1.03); }
@@ -102,13 +88,8 @@
     .delay-4 { animation-delay: 0.4s; }
     .delay-5 { animation-delay: 0.5s; }
 
-    .container {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 32px 20px 60px;
-    }
+    .container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 60px; }
 
-    /* TOPBAR & BURGER MENU */
     .topbar {
       display: flex;
       justify-content: space-between;
@@ -118,13 +99,6 @@
       position: relative;
       z-index: 1000;
     }
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
     .brand-title {
       font-size: 1.5rem;
       font-weight: 700;
@@ -133,12 +107,7 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
-    .brand-subtitle {
-      color: var(--muted);
-      font-size: .95rem;
-      font-weight: 300;
-    }
+    .brand-subtitle { color: var(--muted); font-size: .95rem; font-weight: 300; }
 
     .burger-btn {
       background: var(--surface);
@@ -154,18 +123,6 @@
       backdrop-filter: blur(12px);
       transition: all var(--transition-smooth);
       z-index: 100;
-      padding: 0;
-    }
-
-    .burger-btn:hover {
-      background: var(--surface-soft);
-      border-color: var(--border-hover);
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    }
-
-    .burger-btn svg {
-      transition: transform 0.3s ease;
     }
 
     .dropdown-menu {
@@ -188,31 +145,9 @@
       transition: all var(--transition-smooth);
       z-index: 99;
     }
-
-    .dropdown-menu.active {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-    }
-
-    .dropdown-menu a {
-      text-decoration: none;
-      color: var(--text);
-      padding: 12px 16px;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-weight: 400;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: all 0.2s ease;
-    }
-
-    .dropdown-menu a:hover {
-      background: rgba(255, 255, 255, 0.05);
-      color: #fff;
-      transform: translateX(4px);
-    }
+    .dropdown-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
+    .dropdown-menu a { text-decoration: none; color: var(--text); padding: 12px 16px; border-radius: 10px; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
+    .dropdown-menu a:hover { background: rgba(255, 255, 255, 0.05); transform: translateX(4px); }
 
     .hero {
       background: var(--surface);
@@ -220,94 +155,55 @@
       border: 1px solid var(--border);
       border-radius: var(--radius-xl);
       box-shadow: var(--shadow);
-      padding: 48px 40px;
-      margin-bottom: 40px;
+      padding: 60px 40px;
+      margin-bottom: 24px;
       position: relative;
       overflow: hidden;
+      text-align: center;
     }
-
-    /* AKTUALISIERT: Überschrift mit Shine-Effekt */
     .hero h1 {
-      margin: 0 0 8px;
-      font-size: 3.5rem;
+      margin: 0 0 12px;
+      font-size: 4rem;
       line-height: 1.1;
       letter-spacing: -0.02em;
       font-weight: 700;
-      background: linear-gradient(
-        90deg, 
-        #ffffff 0%, 
-        #aab4c3 25%, 
-        #ffffff 50%, 
-        #aab4c3 75%, 
-        #ffffff 100%
-      );
+      background: linear-gradient(90deg, #ffffff 0%, #aab4c3 25%, #ffffff 50%, #aab4c3 75%, #ffffff 100%);
       background-size: 200% auto;
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       animation: shine 5s linear infinite;
     }
-
-    .hero-subtitle {
-      font-size: 1.4rem;
-      font-weight: 400;
-      color: var(--primary);
-      margin: 0 0 20px;
-      letter-spacing: -0.01em;
-    }
-
-    .hero p {
-      margin: 0;
-      max-width: 700px;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 1.15rem;
-      font-weight: 300;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-top: 32px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      text-decoration: none;
-      border-radius: 999px;
-      padding: 14px 24px;
-      font-weight: 600;
-      font-size: 1rem;
-      transition: all var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-    }
-
-    /* AKTUALISIERT: Primary Button mit neuem Fancy Pulse */
+    .hero-subtitle { font-size: 1.5rem; color: var(--primary); font-weight: 400; margin-bottom: 32px; }
     .btn-primary {
+      display: inline-flex;
       background: var(--primary);
       color: #102036;
+      border-radius: 999px;
+      padding: 16px 32px;
+      text-decoration: none;
+      font-weight: 600;
       animation: fancy-pulse 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
+      transition: all var(--transition-smooth);
     }
+    .btn-primary:hover { transform: translateY(-2px) scale(1.05); animation: none; box-shadow: 0 10px 25px rgba(110, 168, 255, 0.4); }
 
-    .btn-primary:hover {
-      transform: translateY(-2px) scale(1.05);
-      animation: none;
-      box-shadow: 0 10px 25px rgba(110, 168, 255, 0.4);
-    }
-
-    .section-head { margin: 40px 0 24px; }
-    .section-head h2 { margin: 0 0 12px; font-size: 2rem; letter-spacing: -0.02em; }
-    .section-head p { margin: 0; color: var(--muted); line-height: 1.6; max-width: 600px; font-size: 1.05rem; font-weight: 300; }
-
-    .grid {
+    .info-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      margin-bottom: 40px;
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 24px;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
     }
+    .info-section h4 { margin: 0 0 16px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); }
+    .info-section p { margin: 0 0 16px; color: #d7dee8; font-size: 1rem; line-height: 1.6; font-weight: 300; }
+    .info-grid-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .info-grid-list li { font-size: 0.85rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+    .info-grid-list li::before { content: "→"; color: var(--primary); font-weight: 700; }
 
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
     .card {
       background: var(--surface);
       backdrop-filter: blur(12px);
@@ -318,209 +214,39 @@
       flex-direction: column;
       min-height: 280px;
       transition: all var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
     }
-
-    .card.work:hover { transform: translateY(-5px); border-color: var(--work); box-shadow: 0 12px 30px rgba(141, 194, 255, 0.15); }
-    .card.projects:hover { transform: translateY(-5px); border-color: var(--projects); box-shadow: 0 12px 30px rgba(197, 168, 255, 0.15); }
-    .card.theocratic:hover { transform: translateY(-5px); border-color: var(--theocratic); box-shadow: 0 12px 30px rgba(143, 211, 154, 0.15); }
-
-    .card-top {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 20px;
-    }
-
+    .card:hover { transform: translateY(-5px); }
     .icon {
-      width: 60px;
-      height: 60px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex: 0 0 auto;
-      border: 1px solid rgba(255,255,255,.05);
-      transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+      width: 60px; height: 60px; border-radius: 18px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; background: var(--surface-soft); transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
+    .card:hover .icon { transform: scale(1.1) rotate(360deg); }
+    .work .icon { color: var(--work); background: var(--work-soft); }
+    .projects .icon { color: var(--projects); background: var(--projects-soft); }
+    .theocratic .icon { color: var(--theocratic); background: var(--theocratic-soft); }
 
-    /* AKTUALISIERT: Icons drehen sich 360 Grad beim Hover der Card */
-    .card:hover .icon { 
-      transform: scale(1.1) rotate(360deg); 
-    }
+    .list { list-style: none; padding: 0; margin: 0 0 24px; }
+    .list li { position: relative; padding-left: 20px; margin-bottom: 8px; color: #d7dee8; font-size: 0.95rem; font-weight: 300; }
+    .list li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #5f6b7a; position: absolute; left: 0; top: .6em; }
 
-    .work .icon { background: var(--work-soft); color: var(--work); }
-    .projects .icon { background: var(--projects-soft); color: var(--projects); }
-    .theocratic .icon { background: var(--theocratic-soft); color: var(--theocratic); }
-
-    .card h3 { margin: 0 0 12px; font-size: 1.4rem; font-weight: 600; letter-spacing: -0.01em; }
-    .card p { margin: 0 0 20px; color: var(--muted); line-height: 1.6; font-weight: 300; }
-
-    .list {
-      list-style: none;
-      margin: 0 0 24px;
-      padding: 0;
-      display: grid;
-      gap: 10px;
-    }
-
-    .list li {
-      position: relative;
-      padding-left: 20px;
-      color: #d7dee8;
-      font-size: 0.95rem;
-      font-weight: 300;
-    }
-
-    .list li::before {
-      content: "";
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: #5f6b7a;
-      position: absolute;
-      left: 0;
-      top: .55em;
-      transition: background var(--transition-smooth);
-    }
-
-    .card.work:hover .list li::before { background: var(--work); }
-    .card.projects:hover .list li::before { background: var(--projects); }
-    .card.theocratic:hover .list li::before { background: var(--theocratic); }
-
-    .card-actions {
-      margin-top: auto;
-      display: flex;
-    }
-
-    .btn-card {
-      width: 100%;
-      text-align: center;
-      text-decoration: none;
-      font-weight: 600;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid transparent;
-      transition: all var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .btn-card::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 50%;
-      height: 100%;
-      background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
-      transform: skewX(-25deg);
-      transition: all 0.6s ease;
-    }
-
-    .btn-card:hover::after { left: 150%; transition: all 0.6s ease; }
-
+    .btn-card { width: 100%; text-align: center; text-decoration: none; font-weight: 600; padding: 14px; border-radius: 14px; transition: 0.3s; }
     .btn-work { color: var(--work); background: var(--work-soft); }
-    .btn-work:hover { background: var(--work); color: #102036; box-shadow: 0 4px 15px rgba(141, 194, 255, 0.3); }
-
+    .btn-work:hover { background: var(--work); color: #102036; }
     .btn-projects { color: var(--projects); background: var(--projects-soft); }
-    .btn-projects:hover { background: var(--projects); color: #1a1025; box-shadow: 0 4px 15px rgba(197, 168, 255, 0.3); }
-
+    .btn-projects:hover { background: var(--projects); color: #1a1025; }
     .btn-theocratic { color: var(--theocratic); background: var(--theocratic-soft); }
-    .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; box-shadow: 0 4px 15px rgba(143, 211, 154, 0.3); }
+    .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; }
 
-    /* COFFEE BUTTON */
-    .coffee-wrap {
-      text-align: center;
-      margin-top: 60px;
-    }
+    .coffee-wrap { text-align: center; margin-top: 60px; }
+    .btn-coffee { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 12px 24px; border-radius: 999px; text-decoration: none; transition: 0.3s; }
+    .btn-coffee:hover { color: #ffb86c; border-color: rgba(255, 184, 108, 0.3); transform: translateY(-3px); }
 
-    .btn-coffee {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      color: var(--muted);
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 999px;
-      font-size: 0.95rem;
-      font-weight: 400;
-      transition: all var(--transition-smooth);
-      backdrop-filter: blur(12px);
-    }
+    .footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: .95rem; }
+    .contact-badges { display: flex; justify-content: center; gap: 12px; margin-top: 12px; }
+    .badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--muted); text-decoration: none; transition: 0.3s; }
+    .badge:hover { border-color: var(--primary); color: #fff; }
 
-    .btn-coffee:hover {
-      background: rgba(255, 184, 108, 0.1);
-      border-color: rgba(255, 184, 108, 0.3);
-      color: #ffb86c;
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(255, 184, 108, 0.15);
-    }
-
-    .btn-coffee svg {
-      transition: transform var(--transition-smooth);
-    }
-
-    .btn-coffee:hover svg {
-      transform: rotate(-10deg) scale(1.1);
-    }
-
-    /* FOOTER & CONTACT BADGES */
-    .footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: .95rem; font-weight: 300; }
-    .footer-contact { margin-top: 8px; text-align: center; color: #93a0b2; font-size: .9rem; font-weight: 300; }
-    .footer-contact a { color: var(--primary); text-decoration: none; transition: color var(--transition-smooth); }
-    .footer-contact a:hover { color: #fff; text-decoration: underline; }
-
-    .contact-badges {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 12px;
-    }
-
-    .footer-contact .badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      text-decoration: none;
-      color: var(--muted);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      padding: 8px 16px;
-      border-radius: 999px;
-      font-size: 0.85rem;
-      transition: all var(--transition-smooth);
-    }
-
-    .footer-contact .badge:hover {
-      transform: translateY(-2px);
-      background: var(--surface-soft);
-      border-color: var(--primary);
-      color: #fff;
-      text-decoration: none;
-    }
-
-    .footer-contact .badge svg {
-      color: var(--primary);
-    }
-
-    @media (max-width: 960px){
-      .grid { grid-template-columns: 1fr; }
-      .hero h1 { font-size: 2.8rem; }
-      .hero-subtitle { font-size: 1.2rem; }
-    }
-
-    @media (max-width: 640px){
-      .container { padding: 24px 16px 40px; }
-      .hero { padding: 32px 24px; }
-      .hero h1 { font-size: 2.2rem; }
-      .hero-subtitle { font-size: 1.1rem; }
-      .section-head h2 { font-size: 1.6rem; }
-      .btn-coffee { padding: 10px 18px; font-size: 0.9rem; }
-    }
+    @media (max-width: 960px){ .grid, .info-box { grid-template-columns: 1fr; } .hero h1 { font-size: 2.8rem; } }
   </style>
 </head>
 <body>
@@ -528,169 +254,104 @@
     <header class="topbar animate-in">
       <div class="brand">
         <div class="brand-title">kaffeetrinker80</div>
-        <div class="brand-subtitle">Tools, projects and structured browser-based helpers</div>
+        <div class="brand-subtitle">Tools, projects and structured helpers</div>
       </div>
-
-      <button class="burger-btn" id="burgerBtn" aria-label="Toggle Menu">
-        <svg id="burgerIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="3" y1="12" x2="21" y2="12"></line>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <line x1="3" y1="18" x2="21" y2="18"></line>
-        </svg>
+      <button class="burger-btn" id="burgerBtn">
+        <svg id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
-
       <nav class="dropdown-menu" id="dropdownMenu">
-        <a href="#categories">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></svg>
-          Categories
-        </a>
-        <a href="/worktools/">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          Work Tools
-        </a>
-        <a href="https://kaffeetrinker80.github.io/private/">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
-          More Projects
-        </a>
-        <a href="https://kaffeetrinker80.github.io/theocratic/">
-          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
-          Theocratic Tools
-        </a>
+        <a href="#categories">Categories</a>
+        <a href="/worktools/">Work Tools</a>
+        <a href="https://kaffeetrinker80.github.io/private/">More Projects</a>
+        <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
       </nav>
     </header>
 
     <section class="hero animate-in delay-1">
       <h1>Personal Tool Hub</h1>
       <div class="hero-subtitle">Simple, structured and still evolving.</div>
-      <p>
-        This is the central landing page for my browser-based tools and small projects.
-        The focus is on practical workflows, clean structure and lightweight tools that are easy to open and use on desktop and mobile.
-      </p>
+      <a class="btn-primary" href="#categories">Explore categories</a>
+    </section>
 
-      <div class="hero-actions">
-        <a class="btn btn-primary" href="#categories">Explore categories</a>
+    <section class="info-box animate-in delay-2">
+      <div class="info-section">
+        <h4>The Purpose</h4>
+        <p>
+          This is the central landing page for my browser-based tools. 
+          The focus is on practical workflows, clean structure and lightweight tools 
+          that are easy to open and use on desktop and mobile[cite: 1].
+        </p>
+        <ul class="info-grid-list">
+          <li>Water Hygiene</li>
+          <li>Service Reports</li>
+          <li>Volunteer Planning</li>
+          <li>Microphone Tools</li>
+        </ul>
+      </div>
+      <div class="info-section">
+        <h4>The Philosophy</h4>
+        <p>
+          Simple, single-file tools that run directly in your browser. Data is stored locally 
+          as JSON, ensuring privacy and speed without the need for a backend[cite: 1].
+        </p>
+        <ul class="info-grid-list">
+          <li>Local JSON Storage</li>
+          <li>Mobile Optimized</li>
+          <li>Print Ready</li>
+          <li>Offline Capable</li>
+        </ul>
       </div>
     </section>
 
     <section id="categories">
-      <div class="section-head animate-in delay-2">
-        <h2>Main Categories</h2>
-        <p>
-          Three main areas keep everything organized: practical work tools, theocratic tools and additional projects collected separately.
-        </p>
-      </div>
-
       <div class="grid">
         <article class="card work animate-in delay-3">
-          <div class="card-top">
-            <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="20" height="14" x="2" y="7" rx="2" ry="2"/>
-                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
-              </svg>
-            </div>
-          </div>
-
+          <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
           <h3>Work Tools</h3>
-          <p>
-            Practical tools for structured records, logs and mobile-friendly workflow support.
-          </p>
-
+          <p>Structured records, flushing logs and mobile-friendly documentation helpers[cite: 1].</p>
           <ul class="list">
             <li>Spülprotokoll / Arbeitsnachweis</li>
-            <li>Documentation helpers</li>
-            <li>Simple browser-based tools</li>
+            <li>Temperature records</li>
           </ul>
-
-          <div class="card-actions">
-            <a class="btn-card btn-work" href="/worktools/">Open Work Tools</a>
-          </div>
+          <a class="btn-card btn-work" href="/worktools/">Open Work Tools</a>
         </article>
 
         <article class="card projects animate-in delay-4">
-          <div class="card-top">
-            <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/>
-                <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/>
-                <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/>
-                <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/>
-              </svg>
-            </div>
-          </div>
-
+          <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
           <h3>More Projects</h3>
-          <p>
-            Personal projects, experiments and smaller ideas collected in one place.
-          </p>
-
+          <p>Personal experiments, drafts and smaller side-projects collected in one place[cite: 1].</p>
           <ul class="list">
             <li>Private helper tools</li>
             <li>Creative experiments</li>
-            <li>Future side projects</li>
           </ul>
-
-          <div class="card-actions">
-            <a class="btn-card btn-projects" href="https://kaffeetrinker80.github.io/private/">Open More Projects</a>
-          </div>
+          <a class="btn-card btn-projects" href="https://kaffeetrinker80.github.io/private/">Open More Projects</a>
         </article>
 
         <article class="card theocratic animate-in delay-5">
-          <div class="card-top">
-            <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-              </svg>
-            </div>
-          </div>
-
+          <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
           <h3>Theocratic Tools</h3>
-          <p>
-            Separate tools for planning, coordination and internal organization.
-          </p>
-
+          <p>Tools for planning, coordination and internal organization tasks[cite: 1].</p>
           <ul class="list">
-            <li>Planning support</li>
-            <li>Schedules and structure</li>
-            <li>Organizational tools</li>
+            <li>Microphone Service Tool</li>
+            <li>Volunteer planning helpers</li>
           </ul>
-
-          <div class="card-actions">
-            <a class="btn-card btn-theocratic" href="https://kaffeetrinker80.github.io/theocratic/">Open Theocratic Tools</a>
-          </div>
+          <a class="btn-card btn-theocratic" href="https://kaffeetrinker80.github.io/theocratic/">Open Theocratic Tools</a>
         </article>
       </div>
     </section>
 
     <div class="coffee-wrap animate-in delay-5">
-      <a class="btn-coffee" href="https://paypal.me/neudecker2003" target="_blank" rel="noopener noreferrer">
-        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M17 8h1a4 4 0 1 1 0 8h-1"/>
-          <path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/>
-          <line x1="6" y1="2" x2="6" y2="4"/>
-          <line x1="10" y1="2" x2="10" y2="4"/>
-          <line x1="14" y1="2" x2="14" y2="4"/>
-        </svg>
+      <a class="btn-coffee" href="https://paypal.me/neudecker2003" target="_blank">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
         Buy the kaffeetrinker a real coffee
       </a>
     </div>
 
     <div class="footer animate-in delay-5">
       Made with Love © · kaffeetrinker80
-    </div>
-    <div class="footer-contact animate-in delay-5">
-      <p style="margin: 0;">Get in touch for feedback or ideas:</p>
       <div class="contact-badges">
-        <a href="mailto:cryptopower@outlook.de" class="badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
-          Email
-        </a>
-        
-        <a href="https://t.me/kaffeetrinker80" target="_blank" class="badge">
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
-          Telegram
-        </a>
+        <a href="mailto:cryptopower@outlook.de" class="badge">Email</a>
+        <a href="https://t.me/kaffeetrinker80" class="badge">Telegram</a>
       </div>
     </div>
   </div>
@@ -700,38 +361,14 @@
       const burgerBtn = document.getElementById("burgerBtn");
       const dropdownMenu = document.getElementById("dropdownMenu");
       const burgerIcon = document.getElementById("burgerIcon");
-
       burgerBtn.addEventListener("click", (e) => {
         e.stopPropagation(); 
         const isActive = dropdownMenu.classList.toggle("active");
-        
-        if (isActive) {
-          burgerIcon.innerHTML = `
-            <line x1="18" y1="6" x2="6" y2="18"></line>
-            <line x1="6" y1="6" x2="18" y2="18"></line>
-          `;
-          burgerIcon.style.transform = "rotate(90deg)";
-        } else {
-          burgerIcon.innerHTML = `
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          `;
-          burgerIcon.style.transform = "rotate(0deg)";
-        }
+        burgerIcon.style.transform = isActive ? "rotate(90deg)" : "rotate(0deg)";
       });
-
-      document.addEventListener("click", (e) => {
-        if (!dropdownMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
-          dropdownMenu.classList.remove("active");
-          
-          burgerIcon.innerHTML = `
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          `;
-          burgerIcon.style.transform = "rotate(0deg)";
-        }
+      document.addEventListener("click", () => {
+        dropdownMenu.classList.remove("active");
+        burgerIcon.style.transform = "rotate(0deg)";
       });
     });
   </script>
