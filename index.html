@@ -57,24 +57,14 @@
     body::before, body::after {
       content: "";
       position: absolute;
-      width: 600px;
-      height: 600px;
-      border-radius: 50%;
-      filter: blur(120px);
-      z-index: -1;
-      opacity: 0.15;
-      pointer-events: none;
+      width: 600px; height: 600px; border-radius: 50%;
+      filter: blur(120px); z-index: -1; opacity: 0.15; pointer-events: none;
     }
     body::before { background: var(--primary); top: -100px; left: -100px; }
     body::after { background: var(--projects); bottom: 20%; right: -200px; }
 
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes shine {
-      to { background-position: 200% center; }
-    }
+    @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes shine { to { background-position: 200% center; } }
     @keyframes fancy-pulse {
       0% { box-shadow: 0 0 0 0 rgba(110, 168, 255, 0.7); transform: scale(1); }
       70% { box-shadow: 0 0 0 15px rgba(110, 168, 255, 0); transform: scale(1.03); }
@@ -85,135 +75,63 @@
     .delay-1 { animation-delay: 0.1s; }
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
-    .delay-5 { animation-delay: 0.5s; }
 
     .container { max-width: 1120px; margin: 0 auto; padding: 32px 20px 60px; }
 
-    .topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      margin-bottom: 32px;
-      position: relative;
-      z-index: 1000;
-    }
-    .brand-title {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: .02em;
-      background: linear-gradient(90deg, #fff, #aab4c3);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .brand-subtitle { color: var(--muted); font-size: .95rem; font-weight: 300; }
-
+    /* HEADER */
+    .topbar { display: flex; justify-content: flex-end; margin-bottom: 32px; position: relative; z-index: 1000; }
     .burger-btn {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      color: var(--text);
-      width: 46px;
-      height: 46px;
-      border-radius: 14px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      backdrop-filter: blur(12px);
-      transition: all var(--transition-smooth);
-      z-index: 100;
+      background: var(--surface); border: 1px solid var(--border); color: var(--text);
+      width: 46px; height: 46px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; backdrop-filter: blur(12px); transition: all var(--transition-smooth);
     }
 
     .dropdown-menu {
-      position: absolute;
-      top: calc(100% + 12px);
-      right: 0;
-      background: rgba(30, 35, 43, 0.85);
-      backdrop-filter: blur(20px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-md);
-      padding: 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      min-width: 220px;
-      box-shadow: 0 24px 48px rgba(0,0,0,0.4);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(-10px);
-      transition: all var(--transition-smooth);
-      z-index: 99;
+      position: absolute; top: calc(100% + 12px); right: 0; background: rgba(30, 35, 43, 0.95);
+      backdrop-filter: blur(20px); border: 1px solid var(--border); border-radius: var(--radius-md);
+      padding: 8px; display: flex; flex-direction: column; gap: 4px; min-width: 220px;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.4); opacity: 0; visibility: hidden; transform: translateY(-10px); transition: all var(--transition-smooth);
     }
     .dropdown-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu a { text-decoration: none; color: var(--text); padding: 12px 16px; border-radius: 10px; display: flex; align-items: center; gap: 12px; transition: 0.2s; }
     .dropdown-menu a:hover { background: rgba(255, 255, 255, 0.05); transform: translateX(4px); }
 
+    /* HERO */
     .hero {
-      background: var(--surface);
-      backdrop-filter: blur(16px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-xl);
-      box-shadow: var(--shadow);
-      padding: 60px 40px;
-      margin-bottom: 24px;
-      position: relative;
-      overflow: hidden;
-      text-align: center;
+      background: var(--surface); backdrop-filter: blur(16px); border: 1px solid var(--border);
+      border-radius: var(--radius-xl); padding: 60px 40px; margin-bottom: 32px; position: relative; overflow: hidden; text-align: center;
     }
     .hero h1 {
-      margin: 0 0 12px;
-      font-size: 4rem;
-      line-height: 1.1;
-      letter-spacing: -0.02em;
-      font-weight: 700;
+      margin: 0; font-size: 4rem; line-height: 1.1; font-weight: 700;
       background: linear-gradient(90deg, #ffffff 0%, #aab4c3 25%, #ffffff 50%, #aab4c3 75%, #ffffff 100%);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
       animation: shine 5s linear infinite;
     }
-    .hero-subtitle { font-size: 1.5rem; color: var(--primary); font-weight: 400; margin-bottom: 32px; }
+    .hero-byline { font-size: 1.3rem; color: var(--primary); margin-top: 8px; font-weight: 400; }
+    .hero-hobby { color: var(--muted); font-size: 0.95rem; margin-top: 4px; font-weight: 300; }
+
     .btn-primary {
-      display: inline-flex;
-      background: var(--primary);
-      color: #102036;
-      border-radius: 999px;
-      padding: 16px 32px;
-      text-decoration: none;
-      font-weight: 600;
+      display: inline-flex; margin-top: 32px; background: var(--primary); color: #102036;
+      border-radius: 999px; padding: 16px 32px; text-decoration: none; font-weight: 600;
       animation: fancy-pulse 2.5s infinite cubic-bezier(0.66, 0, 0, 1);
-      transition: all var(--transition-smooth);
     }
-    .btn-primary:hover { transform: translateY(-2px) scale(1.05); animation: none; box-shadow: 0 10px 25px rgba(110, 168, 255, 0.4); }
 
-    .info-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 32px;
-      margin-bottom: 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+    /* NOTICE BOXES (Theocratic Style) */
+    .notices { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 40px; }
+    .notice-box {
+      padding: 24px; background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border);
+      border-radius: 16px; color: var(--muted); font-size: .95rem; line-height: 1.6;
     }
-    .info-section h4 { margin: 0 0 16px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--primary); }
-    .info-section p { margin: 0 0 16px; color: #d7dee8; font-size: 1rem; line-height: 1.6; font-weight: 300; }
-    .info-grid-list { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .info-grid-list li { font-size: 0.85rem; color: var(--muted); display: flex; align-items: center; gap: 8px; }
-    .info-grid-list li::before { content: "→"; color: var(--primary); font-weight: 700; }
+    .notice-box.privacy { border-left: 4px solid var(--theocratic); }
+    .notice-box.tip { border-left: 4px solid var(--work); }
+    .notice-box strong { display: block; color: var(--text); font-size: 1.05rem; margin-bottom: 8px; }
 
+    /* GRID & CARDS */
     .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
     .card {
-      background: var(--surface);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 28px 24px;
-      display: flex;
-      flex-direction: column;
-      min-height: 280px;
-      transition: all var(--transition-smooth);
+      background: var(--surface); backdrop-filter: blur(12px); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); padding: 28px 24px; display: flex; flex-direction: column;
+      min-height: 320px; transition: all var(--transition-smooth);
     }
     .card:hover { transform: translateY(-5px); }
     .icon {
@@ -221,155 +139,137 @@
       margin-bottom: 20px; background: var(--surface-soft); transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
     }
     .card:hover .icon { transform: scale(1.1) rotate(360deg); }
+    
+    .theocratic .icon { color: var(--theocratic); background: var(--theocratic-soft); }
     .work .icon { color: var(--work); background: var(--work-soft); }
     .projects .icon { color: var(--projects); background: var(--projects-soft); }
-    .theocratic .icon { color: var(--theocratic); background: var(--theocratic-soft); }
 
-    .list { list-style: none; padding: 0; margin: 0 0 24px; }
-    .list li { position: relative; padding-left: 20px; margin-bottom: 8px; color: #d7dee8; font-size: 0.95rem; font-weight: 300; }
-    .list li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #5f6b7a; position: absolute; left: 0; top: .6em; }
+    .list { list-style: none; padding: 0; margin: 0 0 24px; flex-grow: 1; }
+    .list li { position: relative; padding-left: 20px; margin-bottom: 8px; color: #d7dee8; font-size: 0.9rem; font-weight: 300; }
+    .list li::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--muted); position: absolute; left: 0; top: .6em; }
 
     .btn-card { width: 100%; text-align: center; text-decoration: none; font-weight: 600; padding: 14px; border-radius: 14px; transition: 0.3s; }
+    .btn-theocratic { color: var(--theocratic); background: var(--theocratic-soft); }
+    .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; }
     .btn-work { color: var(--work); background: var(--work-soft); }
     .btn-work:hover { background: var(--work); color: #102036; }
     .btn-projects { color: var(--projects); background: var(--projects-soft); }
     .btn-projects:hover { background: var(--projects); color: #1a1025; }
-    .btn-theocratic { color: var(--theocratic); background: var(--theocratic-soft); }
-    .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; }
 
     .coffee-wrap { text-align: center; margin-top: 60px; }
-    .btn-coffee { display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 12px 24px; border-radius: 999px; text-decoration: none; transition: 0.3s; }
-    .btn-coffee:hover { color: #ffb86c; border-color: rgba(255, 184, 108, 0.3); transform: translateY(-3px); }
+    .btn-coffee {
+      display: inline-flex; align-items: center; gap: 10px; background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.08); color: var(--muted); padding: 12px 24px; border-radius: 999px; text-decoration: none;
+    }
+    .btn-coffee:hover { color: #ffb86c; border-color: rgba(255, 184, 108, 0.3); }
 
-    .footer { margin-top: 32px; text-align: center; color: var(--muted); font-size: .95rem; }
+    .footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: .95rem; }
     .contact-badges { display: flex; justify-content: center; gap: 12px; margin-top: 12px; }
-    .badge { display: flex; align-items: center; gap: 8px; padding: 8px 16px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--muted); text-decoration: none; transition: 0.3s; }
-    .badge:hover { border-color: var(--primary); color: #fff; }
+    .badge { padding: 8px 16px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.85rem; }
 
-    @media (max-width: 960px){ .grid, .info-box { grid-template-columns: 1fr; } .hero h1 { font-size: 2.8rem; } }
+    @media (max-width: 960px){ .grid, .notices { grid-template-columns: 1fr; } .hero h1 { font-size: 3rem; } }
   </style>
 </head>
 <body>
   <div class="container">
     <header class="topbar animate-in">
-      <div class="brand">
-        <div class="brand-title">kaffeetrinker80</div>
-        <div class="brand-subtitle">Tools, projects and structured helpers</div>
-      </div>
       <button class="burger-btn" id="burgerBtn">
-        <svg id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
       </button>
       <nav class="dropdown-menu" id="dropdownMenu">
-        <a href="#categories">Categories</a>
+        <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
         <a href="/worktools/">Work Tools</a>
         <a href="https://kaffeetrinker80.github.io/private/">More Projects</a>
-        <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
       </nav>
     </header>
 
     <section class="hero animate-in delay-1">
       <h1>Personal Tool Hub</h1>
-      <div class="hero-subtitle">Simple, structured and still evolving.</div>
-      <a class="btn-primary" href="#categories">Explore categories</a>
+      <div class="hero-byline">by kaffeetrinker80</div>
+      <div class="hero-hobby">Coffee-powered hobby developer</div>
+      <a class="btn-primary" href="#categories">Explore Categories</a>
     </section>
 
-    <section class="info-box animate-in delay-2">
-      <div class="info-section">
-        <h4>The Purpose</h4>
-        <p>
-          This is the central landing page for my browser-based tools. 
-          The focus is on practical workflows, clean structure and lightweight tools 
-          that are easy to open and use on desktop and mobile[cite: 1].
-        </p>
-        <ul class="info-grid-list">
-          <li>Water Hygiene</li>
-          <li>Service Reports</li>
-          <li>Volunteer Planning</li>
-          <li>Microphone Tools</li>
+    <div class="notices animate-in delay-2">
+      <div class="notice-box privacy">
+        <strong>🔒 Privacy Conform & Secure</strong>
+        Your data is read strictly locally inside your browser. Nothing is sent to external servers or GitHub. Everything remains on your device[cite: 2].
+      </div>
+      <div class="notice-box tip">
+        <strong>📱 Tablet & Mobile Experience</strong>
+        On tablets, use the browser's zoom function (e.g., 75% or 80%) to fit the interfaces perfectly onto your screen[cite: 2].
+      </div>
+    </div>
+
+    <section id="categories" class="grid animate-in delay-3">
+      <!-- THEOCRATIC -->
+      <article class="card theocratic">
+        <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+        <h3>Theocratic Tools</h3>
+        <p>Tools for kingdom halls, congregation, assembly or convention planning.</p>
+        <ul class="list">
+          <li>Assembly & RC Counting</li>
+          <li>AV & Cleaning Planner</li>
+          <li>Volunteer Management</li>
         </ul>
-      </div>
-      <div class="info-section">
-        <h4>The Philosophy</h4>
-        <p>
-          Simple, single-file tools that run directly in your browser. Data is stored locally 
-          as JSON, ensuring privacy and speed without the need for a backend[cite: 1].
-        </p>
-        <ul class="info-grid-list">
-          <li>Local JSON Storage</li>
-          <li>Mobile Optimized</li>
-          <li>Print Ready</li>
-          <li>Offline Capable</li>
+        <a class="btn-card btn-theocratic" href="https://kaffeetrinker80.github.io/theocratic/">Open Tools</a>
+      </article>
+
+      <!-- WORK -->
+      <article class="card work">
+        <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h3>Work Tools</h3>
+        <p>Specialized tools for water hygiene and facility management.</p>
+        <ul class="list">
+          <li>Trinkwasserhygiene Protokollierung</li>
+          <li>Labor Planungs Tool</li>
+          <li>Thermische Desinfektion</li>
         </ul>
-      </div>
+        <a class="btn-card btn-work" href="/worktools/">Open Tools</a>
+      </article>
+
+      <!-- PROJECTS -->
+      <article class="card projects">
+        <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
+        <h3>More Projects</h3>
+        <p>Personal experiments, drafts and internal helper tools[cite: 2].</p>
+        <ul class="list">
+          <li>Private helper tools</li>
+          <li>Creative experiments</li>
+          <li>Future side projects</li>
+        </ul>
+        <a class="btn-card btn-projects" href="https://kaffeetrinker80.github.io/private/">Open Projects</a>
+      </article>
     </section>
 
-    <section id="categories">
-      <div class="grid">
-        <article class="card work animate-in delay-3">
-          <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
-          <h3>Work Tools</h3>
-          <p>Structured records, flushing logs and mobile-friendly documentation helpers[cite: 1].</p>
-          <ul class="list">
-            <li>Spülprotokoll / Arbeitsnachweis</li>
-            <li>Temperature records</li>
-          </ul>
-          <a class="btn-card btn-work" href="/worktools/">Open Work Tools</a>
-        </article>
-
-        <article class="card projects animate-in delay-4">
-          <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
-          <h3>More Projects</h3>
-          <p>Personal experiments, drafts and smaller side-projects collected in one place[cite: 1].</p>
-          <ul class="list">
-            <li>Private helper tools</li>
-            <li>Creative experiments</li>
-          </ul>
-          <a class="btn-card btn-projects" href="https://kaffeetrinker80.github.io/private/">Open More Projects</a>
-        </article>
-
-        <article class="card theocratic animate-in delay-5">
-          <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
-          <h3>Theocratic Tools</h3>
-          <p>Tools for planning, coordination and internal organization tasks[cite: 1].</p>
-          <ul class="list">
-            <li>Microphone Service Tool</li>
-            <li>Volunteer planning helpers</li>
-          </ul>
-          <a class="btn-card btn-theocratic" href="https://kaffeetrinker80.github.io/theocratic/">Open Theocratic Tools</a>
-        </article>
-      </div>
-    </section>
-
-    <div class="coffee-wrap animate-in delay-5">
+    <div class="coffee-wrap animate-in delay-3">
       <a class="btn-coffee" href="https://paypal.me/neudecker2003" target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-        Buy the kaffeetrinker a real coffee
+        Buy the kaffeetrinker a coffee
       </a>
     </div>
 
-    <div class="footer animate-in delay-5">
+    <footer class="footer animate-in delay-3">
       Made with Love © · kaffeetrinker80
       <div class="contact-badges">
         <a href="mailto:cryptopower@outlook.de" class="badge">Email</a>
         <a href="https://t.me/kaffeetrinker80" class="badge">Telegram</a>
       </div>
-    </div>
+    </footer>
   </div>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const burgerBtn = document.getElementById("burgerBtn");
-      const dropdownMenu = document.getElementById("dropdownMenu");
-      const burgerIcon = document.getElementById("burgerIcon");
-      burgerBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); 
-        const isActive = dropdownMenu.classList.toggle("active");
-        burgerIcon.style.transform = isActive ? "rotate(90deg)" : "rotate(0deg)";
-      });
-      document.addEventListener("click", () => {
-        dropdownMenu.classList.remove("active");
-        burgerIcon.style.transform = "rotate(0deg)";
-      });
+    const burgerBtn = document.getElementById("burgerBtn");
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    const burgerIcon = document.getElementById("burgerIcon");
+    burgerBtn.addEventListener("click", (e) => {
+      e.stopPropagation(); 
+      const isActive = dropdownMenu.classList.toggle("active");
+      burgerIcon.style.transform = isActive ? "rotate(90deg)" : "rotate(0deg)";
+    });
+    document.addEventListener("click", () => {
+      dropdownMenu.classList.remove("active");
+      burgerIcon.style.transform = "rotate(0deg)";
     });
   </script>
 </body>
