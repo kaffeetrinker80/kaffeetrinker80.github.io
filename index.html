@@ -80,13 +80,24 @@
       cursor: pointer; backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
     }
 
-    .dropdown-menu {
-      position: absolute; top: 80px; right: 20px; background: #1a1e24;
-      border: 1px solid var(--border); border-radius: 16px; padding: 8px;
-      display: flex; flex-direction: column; min-width: 200px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5); opacity: 0; visibility: hidden;
-      transform: translateY(-10px); transition: 0.3s; z-index: 2000;
-    }
+.dropdown-menu {
+  position: absolute; 
+  top: 80px; 
+  right: 20px; 
+  background: #1a1e24;
+  border: 1px solid var(--border); 
+  border-radius: 16px; 
+  padding: 8px;
+  display: flex; 
+  flex-direction: column; 
+  min-width: 200px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.5); 
+  opacity: 0; 
+  visibility: hidden;
+  transform: translateY(-10px); 
+  transition: 0.3s; 
+  z-index: 5000; /* Erhöht, um über allen Blöcken zu liegen */
+}
     .dropdown-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
     .dropdown-menu a { text-decoration: none; color: var(--text); padding: 14px; border-radius: 10px; display: block; font-size: 1rem; }
 
