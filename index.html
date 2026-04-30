@@ -19,8 +19,7 @@
     :root {
       --bg: #12151a;
       --bg-soft: #1a1e24;
-      --surface: rgba(30, 35, 43, 0.8);
-      --surface-soft: rgba(49, 56, 68, 0.9);
+      --surface: #1e232b; /* Feste Farbe statt zu viel Transparenz gegen Schwarz-Bug */
       --text: #eef2f7;
       --muted: #94a3b8;
       --border: rgba(255, 255, 255, 0.1);
@@ -46,13 +45,11 @@
       line-height: 1.5;
     }
 
-    /* Ambient Background Glow */
     body::before, body::after {
       content: "";
       position: fixed;
       width: 400px; height: 400px; border-radius: 50%;
       filter: blur(80px); z-index: -1; opacity: 0.15; pointer-events: none;
-      will-change: transform;
     }
     body::before { background: #6ea8ff; top: -100px; left: -100px; }
     body::after { background: #c5a8ff; bottom: 10%; right: -150px; }
@@ -70,21 +67,14 @@
     .delay-2 { animation-delay: 0.2s; }
     .delay-3 { animation-delay: 0.3s; }
 
-    .container { max-width: 1120px; margin: 0 auto; padding: 20px 20px 40px; position: relative; z-index: 1; }
+    .container { max-width: 1120px; margin: 0 auto; padding: 20px 20px 40px; position: relative; }
 
-    /* HEADER */
-    .topbar { 
-      display: flex; 
-      justify-content: flex-end; 
-      margin-bottom: 24px; 
-      position: relative; 
-      z-index: 9999; 
-    }
-
+    .topbar { display: flex; justify-content: flex-end; margin-bottom: 24px; position: relative; z-index: 9999; }
+    
     .burger-btn {
-      background: #1e232b; border: 1px solid var(--border); color: var(--text);
+      background: var(--bg-soft); border: 1px solid var(--border); color: var(--text);
       width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; position: relative; z-index: 10000;
+      cursor: pointer; z-index: 10000;
     }
 
     .line { transition: 0.3s ease; transform-origin: center; stroke: currentColor; }
@@ -94,18 +84,17 @@
       border: 1px solid var(--border); border-radius: 16px; padding: 8px;
       display: flex; flex-direction: column; min-width: 220px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.8); opacity: 0; visibility: hidden;
-      transform: translateY(-10px); transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      transform: translateY(-10px); transition: all 0.4s var(--transition-smooth);
       z-index: 9999;
     }
     .dropdown-menu.active { opacity: 1; visibility: visible; transform: translateY(0); }
-    .dropdown-menu a { text-decoration: none; color: var(--text); padding: 14px; border-radius: 10px; display: block; font-size: 1rem; }
+    .dropdown-menu a { text-decoration: none; color: var(--text); padding: 14px; border-radius: 10px; display: block; font-size: 1rem; transition: background 0.2s; }
     .dropdown-menu a:hover { background: rgba(255, 255, 255, 0.05); }
 
-    /* SECTIONS */
     .hero {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-xl); padding: 40px 24px; margin-bottom: 24px; text-align: center;
-      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
     .hero h1 {
       margin: 0; font-size: 2.8rem; line-height: 1.1; font-weight: 700;
@@ -143,7 +132,6 @@
     .notice-box.tip { border-left-color: var(--work); }
     .notice-box strong { display: block; color: #fff; margin-bottom: 4px; }
 
-    /* GRID & CARDS */
     .grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
     .card {
       background: var(--surface); border: 1px solid var(--border);
@@ -173,9 +161,9 @@
     .btn-work { color: var(--work); background: rgba(141, 194, 255, 0.1); border: 1px solid rgba(141, 194, 255, 0.2); }
     .btn-projects { color: var(--projects); background: rgba(197, 168, 255, 0.1); border: 1px solid rgba(197, 168, 255, 0.2); }
 
-    .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; box-shadow: 0 0 20px rgba(143, 211, 154, 0.4); }
-    .btn-work:hover { background: var(--work); color: #102036; box-shadow: 0 0 20px rgba(141, 194, 255, 0.4); }
-    .btn-projects:hover { background: var(--projects); color: #1a1025; box-shadow: 0 0 20px rgba(197, 168, 255, 0.4); }
+    .btn-theocratic:hover { background: var(--theocratic); color: #0d1f11; box-shadow: 0 0 20px rgba(143, 211, 154, 0.5); }
+    .btn-work:hover { background: var(--work); color: #102036; box-shadow: 0 0 20px rgba(141, 194, 255, 0.5); }
+    .btn-projects:hover { background: var(--projects); color: #1a1025; box-shadow: 0 0 20px rgba(197, 168, 255, 0.5); }
 
     .coffee-wrap { text-align: center; margin-top: 40px; }
     .btn-coffee {
@@ -187,7 +175,8 @@
 
     .footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 0.85rem; }
     .contact-badges { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
-    .badge { padding: 8px 16px; border-radius: 999px; background: #1e232b; border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.8rem; }
+    .badge { padding: 6px 14px; border-radius: 999px; background: var(--bg-soft); border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
+    .badge:hover { border-color: var(--primary); color: #fff; }
 
     @media (min-width: 768px) {
       .hero h1 { font-size: 4rem; }
@@ -226,20 +215,20 @@
       <h4>Philosophy & Purpose</h4>
       <p class="philosophy-text">
         Lightweight, browser-based helpers designed for specific workflows. 
-        Data stays local, ensuring maximum privacy and performance[cite: 1, 2].
+        Data stays local, ensuring maximum privacy and performance.
       </p>
       <div class="philosophy-grid">
         <div class="phil-item">
           <strong>JSON Portability</strong>
-          <span>Full control via local JSON import and export[cite: 1, 2].</span>
+          <span>Full control via local JSON import and export.</span>
         </div>
         <div class="phil-item">
           <strong>Offline Ready</strong>
-          <span>Single-file structure. Use tools even without a connection[cite: 2].</span>
+          <span>Single-file structure. Use tools even without a connection.</span>
         </div>
         <div class="phil-item">
           <strong>Serverless</strong>
-          <span>No backends or tracking. Maximum speed and reduced complexity[cite: 1, 2].</span>
+          <span>No backends or tracking. Maximum speed and reduced complexity.</span>
         </div>
       </div>
     </div>
@@ -247,11 +236,11 @@
     <div class="notices animate-in delay-2">
       <div class="notice-box privacy">
         <strong>🔒 Privacy Conform & Secure</strong>
-        Your data is read strictly locally inside your browser. Nothing is sent to external servers or GitHub[cite: 2].
+        Your data is read strictly locally inside your browser. Nothing is sent to external servers or GitHub.
       </div>
       <div class="notice-box tip">
         <strong>📱 Tablet & Mobile Experience</strong>
-        On tablets, use the browser's zoom function (75-80%) to fit the interfaces perfectly[cite: 2].
+        On tablets, use the browser's zoom function (75-80%) to fit the interfaces perfectly.
       </div>
     </div>
 
@@ -259,11 +248,11 @@
       <article class="card theocratic">
         <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
         <h3>Theocratic Tools</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Kingdom halls, congregation and convention planning[cite: 2].</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Kingdom halls, congregation and convention planning.</p>
         <ul class="list">
-          <li>Assembly & RC Planners[cite: 2]</li>
-          <li>AV & Cleaning Planner[cite: 2]</li>
-          <li>PTC Tool[cite: 2]</li>
+          <li>Assembly & RC Planners</li>
+          <li>AV & Cleaning Planner</li>
+          <li>PTC Tool</li>
         </ul>
         <a class="btn-card btn-theocratic" href="https://kaffeetrinker80.github.io/theocratic/">Open Tools</a>
       </article>
@@ -271,11 +260,11 @@
       <article class="card work">
         <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <h3>Work Tools</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Water hygiene and facility management[cite: 3].</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Water hygiene and facility management.</p>
         <ul class="list">
-          <li>Trinkwasserhygiene[cite: 3]</li>
-          <li>Labor Planungs Tool[cite: 3]</li>
-          <li>Thermische Desinfektion[cite: 3]</li>
+          <li>Trinkwasserhygiene</li>
+          <li>Labor Planungs Tool</li>
+          <li>Thermische Desinfektion</li>
         </ul>
         <a class="btn-card btn-work" href="/worktools/">Open Tools</a>
       </article>
@@ -283,11 +272,11 @@
       <article class="card projects">
         <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
         <h3>More Projects</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Experiments and internal helper tools[cite: 2].</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Experiments and internal helper tools.</p>
         <ul class="list">
-          <li>Private helper tools[cite: 2]</li>
-          <li>Creative experiments[cite: 2]</li>
-          <li>Future side projects[cite: 1]</li>
+          <li>Private helper tools</li>
+          <li>Creative experiments</li>
+          <li>Future side projects</li>
         </ul>
         <a class="btn-card btn-projects" href="https://kaffeetrinker80.github.io/private/">Open Projects</a>
       </article>
@@ -296,15 +285,15 @@
     <div class="coffee-wrap animate-in delay-3">
       <a class="btn-coffee" href="https://paypal.me/neudecker2003" target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
-        Buy the kaffeetrinker a real coffee[cite: 1]
+        Buy the kaffeetrinker a real coffee
       </a>
     </div>
 
     <footer class="footer animate-in delay-3">
-      Made with Love © · kaffeetrinker80[cite: 1]
+      Made with Love © · kaffeetrinker80
       <div class="contact-badges">
-        <a href="mailto:cryptopower@outlook.de" class="badge">Email[cite: 1]</a>
-        <a href="https://t.me/kaffeetrinker80" class="badge">Telegram[cite: 1]</a>
+        <a href="mailto:cryptopower@outlook.de" class="badge">Email</a>
+        <a href="https://t.me/kaffeetrinker80" class="badge">Telegram</a>
       </div>
     </footer>
   </div>
