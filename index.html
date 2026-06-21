@@ -73,13 +73,40 @@
 
     .topbar { display: flex; justify-content: flex-end; margin-bottom: 24px; position: relative; z-index: 9999; }
     
+    /* BURGER MENU STYLES */
     .burger-btn {
       background: var(--bg-soft); border: 1px solid var(--border); color: var(--text);
       width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
-      cursor: pointer; z-index: 10000;
+      cursor: pointer; z-index: 10000; transition: background 0.3s, border-color 0.3s;
+    }
+    .burger-btn:hover {
+      background: rgba(255, 255, 255, 0.03);
+      border-color: rgba(255, 255, 255, 0.2);
     }
 
-    .line { transition: 0.3s ease; transform-origin: center; stroke: currentColor; }
+    .burger-icon {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .line { 
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s ease; 
+      stroke: currentColor;
+    }
+
+    /* CSS-Animationen für das X (getriggert über die .active Klasse am Dropdown/Button) */
+    .burger-btn.active .burger-icon {
+      transform: rotate(180deg); /* Sanfte Gesamtdrehung beim Öffnen */
+    }
+    .burger-btn.active #line1 {
+      transform: translateY(6px) rotate(45deg);
+    }
+    .burger-btn.active #line2 {
+      opacity: 0;
+      transform: scaleX(0);
+    }
+    .burger-btn.active #line3 {
+      transform: translateY(-6px) rotate(-45deg);
+    }
 
     .dropdown-menu {
       position: absolute; top: 60px; right: 0; background: #1a1e24;
@@ -296,10 +323,10 @@
   <div class="container">
     <header class="topbar animate-in">
       <button class="burger-btn" id="burgerBtn" aria-label="Menu">
-        <svg id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line class="line" id="line1" x1="4" y1="6" x2="20" y2="6"></line>
-          <line class="line" id="line2" x1="4" y1="12" x2="20" y2="12"></line>
-          <line class="line" id="line3" x1="4" y1="18" x2="20" y2="18"></line>
+        <svg class="burger-icon" id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line class="line" id="line1" x1="4" y1="6" x2="20" y2="6" style="transform-origin: 12px 12px;"></line>
+          <line class="line" id="line2" x1="4" y1="12" x2="20" y2="12" style="transform-origin: 12px 12px;"></line>
+          <line class="line" id="line3" x1="4" y1="18" x2="20" y2="18" style="transform-origin: 12px 12px;"></line>
         </svg>
       </button>
       <nav class="dropdown-menu" id="dropdownMenu">
@@ -358,6 +385,7 @@
           <li>Assembly & RC Planners</li>
           <li>AV & Cleaning Planner</li>
           <li>PTC Tool</li>
+          <li>and more...</li>
         </ul>
         <a class="btn-card btn-theocratic" href="https://kaffeetrinker80.github.io/theocratic/">Open Tools</a>
       </article>
@@ -370,6 +398,7 @@
           <li>Trinkwasserhygiene</li>
           <li>Labor Planungs Tool</li>
           <li>Thermische Desinfektion</li>
+          <li>and more...</li>
         </ul>
         <a class="btn-card btn-work" href="/worktools/">Open Tools</a>
       </article>
@@ -377,11 +406,12 @@
       <article class="card projects">
         <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/></svg></div>
         <h3>Smart Essentials</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Smarte Alltagshelfer für Organisation, Kommunikation und Medien.</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Smart everyday helpers for organization, communication, and media.</p>
         <ul class="list">
           <li>Contact Hub Pro</li>
           <li>QR-Code Generator</li>
           <li>Label & Etiketten Tool</li>
+          <li>and more...</li>
         </ul>
         <a class="btn-card btn-projects" href="https://kaffeetrinker80.github.io/private/">Open Essentials</a>
       </article>
@@ -397,7 +427,7 @@
         </div>
         <div>
           <div class="nova-badge-row">
-            <span class="nova-lock-pill">🔒 Employees only</span>
+            <span class="nova-lock-pill">🔒 Nur Mitarbeiter</span>
           </div>
           <p class="nova-title">NOVA Praxis-Hygiene GmbH</p>
           <p class="nova-sub">Experten für Trinkwasserhygiene · Interne Plattform</p>
@@ -430,35 +460,18 @@
   <script>
     const burgerBtn = document.getElementById("burgerBtn");
     const dropdownMenu = document.getElementById("dropdownMenu");
-    const burgerIcon = document.getElementById("burgerIcon");
-    const l1 = document.getElementById("line1");
-    const l2 = document.getElementById("line2");
-    const l3 = document.getElementById("line3");
 
+    // Das JavaScript toggelt jetzt nur noch die ".active" Klasse an beiden Elementen
     burgerBtn.addEventListener("click", (e) => {
       e.stopPropagation(); 
       const isActive = dropdownMenu.classList.toggle("active");
-      
-      if (isActive) {
-        burgerIcon.style.transform = "rotate(90deg)";
-        l1.setAttribute("x1", "5"); l1.setAttribute("y1", "5"); l1.setAttribute("x2", "19"); l1.setAttribute("y2", "19");
-        l2.style.opacity = "0";
-        l3.setAttribute("x1", "5"); l3.setAttribute("y1", "19"); l3.setAttribute("x2", "19"); l3.setAttribute("y2", "5");
-      } else {
-        burgerIcon.style.transform = "rotate(0deg)";
-        l1.setAttribute("x1", "4"); l1.setAttribute("y1", "6"); l1.setAttribute("x2", "20"); l1.setAttribute("y2", "6");
-        l2.style.opacity = "1";
-        l3.setAttribute("x1", "4"); l3.setAttribute("y1", "18"); l3.setAttribute("x2", "20"); l3.setAttribute("y2", "18");
-      }
+      burgerBtn.classList.toggle("active", isActive);
     });
 
     document.addEventListener("click", (e) => {
       if(!dropdownMenu.contains(e.target) && !burgerBtn.contains(e.target)) {
         dropdownMenu.classList.remove("active");
-        burgerIcon.style.transform = "rotate(0deg)";
-        l1.setAttribute("x1", "4"); l1.setAttribute("y1", "6"); l1.setAttribute("x2", "20"); l1.setAttribute("y2", "6");
-        l2.style.opacity = "1";
-        l3.setAttribute("x1", "4"); l3.setAttribute("y1", "18"); l3.setAttribute("x2", "20"); l3.setAttribute("y2", "18");
+        burgerBtn.classList.remove("active");
       }
     });
   </script>
