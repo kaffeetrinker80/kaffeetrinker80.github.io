@@ -93,9 +93,8 @@
       stroke: currentColor;
     }
 
-    /* CSS-Animationen für das X (getriggert über die .active Klasse am Dropdown/Button) */
     .burger-btn.active .burger-icon {
-      transform: rotate(180deg); /* Sanfte Gesamtdrehung beim Öffnen */
+      transform: rotate(180deg);
     }
     .burger-btn.active #line1 {
       transform: translateY(6px) rotate(45deg);
@@ -393,11 +392,11 @@
       <article class="card work">
         <div class="icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="14" x="2" y="7" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
         <h3>Work Tools</h3>
-        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Water hygiene and facility management.</p>
+        <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 16px;">Water hygiene and facility management tools.</p>
         <ul class="list">
-          <li>Trinkwasserhygiene</li>
-          <li>Labor Planungs Tool</li>
-          <li>Thermische Desinfektion</li>
+          <li>Water Hygiene</li>
+          <li>Laboratory Planning Tool</li>
+          <li>Thermal Disinfection</li>
           <li>and more...</li>
         </ul>
         <a class="btn-card btn-work" href="/worktools/">Open Tools</a>
@@ -461,7 +460,6 @@
     const burgerBtn = document.getElementById("burgerBtn");
     const dropdownMenu = document.getElementById("dropdownMenu");
 
-    // Das JavaScript toggelt jetzt nur noch die ".active" Klasse an beiden Elementen
     burgerBtn.addEventListener("click", (e) => {
       e.stopPropagation(); 
       const isActive = dropdownMenu.classList.toggle("active");
