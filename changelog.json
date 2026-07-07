@@ -1,0 +1,44 @@
+[
+  {
+    "date": "2026-07-05",
+    "tool": "TalkScroll",
+    "category": "projects",
+    "type": "update",
+    "text": "DOCX/PDF-Import, Screen Wake Lock und Touch-Gesten für Mobile ergänzt (v1.3.3)."
+  },
+  {
+    "date": "2026-06-28",
+    "tool": "Terminverwaltung NOVA Sonderobjekte",
+    "category": "nova",
+    "type": "update",
+    "text": "Settings-Tab mit editierbaren Label-Listen, Badge-System und Saison-Pause pro Objekt (v2.9)."
+  },
+  {
+    "date": "2026-06-20",
+    "tool": "PTC Tool",
+    "category": "theocratic",
+    "type": "update",
+    "text": "Datensatz-Version wird jetzt aus dem CSV-Dateinamen angezeigt (v2.1.5)."
+  },
+  {
+    "date": "2026-06-10",
+    "tool": "Audio Patchbay",
+    "category": "projects",
+    "type": "new",
+    "text": "Neues Tool: Audioformat-Konvertierung und Transkription komplett im Browser (v1.5)."
+  },
+  {
+    "date": "2026-06-02",
+    "tool": "Badge & Label Studio",
+    "category": "projects",
+    "type": "update",
+    "text": "Portrait/Landscape-Umschaltung und Zoom-Regler ergänzt (v1.5.x)."
+  },
+  {
+    "date": "2026-05-22",
+    "tool": "ContactHub Pro",
+    "category": "projects",
+    "type": "fix",
+    "text": "Klick-Handler und Insert-Contact-Logik korrigiert (v1.5.3)."
+  }
+]
