@@ -304,6 +304,55 @@
       }
     }
 
+    /* Changelog */
+    .changelog-box {
+      margin-top: 24px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 18px 20px;
+    }
+    .changelog-head {
+      display: flex; align-items: center; justify-content: space-between;
+      margin-bottom: 4px;
+    }
+    .changelog-head h4 {
+      margin: 0; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); font-weight: 600;
+    }
+    .changelog-list { list-style: none; margin: 10px 0 0; padding: 0; }
+    .changelog-item {
+      display: flex; align-items: baseline; gap: 10px;
+      padding: 8px 0; border-top: 1px solid rgba(255,255,255,0.05);
+      font-size: 0.85rem;
+    }
+    .changelog-item:first-child { border-top: none; }
+    .changelog-item.is-hidden { display: none; }
+    .changelog-dot {
+      width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0;
+      margin-top: 6px;
+    }
+    .changelog-dot.theocratic { background: var(--theocratic); }
+    .changelog-dot.work { background: var(--work); }
+    .changelog-dot.projects { background: var(--projects); }
+    .changelog-dot.nova { background: var(--nova); }
+    .changelog-body { flex: 1; min-width: 0; }
+    .changelog-line { color: #d7dee8; margin: 0; }
+    .changelog-line strong { color: #fff; font-weight: 600; }
+    .changelog-meta { color: var(--muted); font-size: 0.75rem; margin-top: 2px; }
+    .changelog-tag {
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      padding: 1px 7px; border-radius: 999px; margin-right: 6px;
+      background: rgba(255,255,255,0.06); color: var(--muted);
+      text-transform: uppercase; letter-spacing: 0.03em;
+    }
+    .changelog-toggle {
+      display: block; margin: 12px auto 0; background: none; border: none;
+      color: var(--primary); font-size: 0.8rem; cursor: pointer; padding: 4px 8px;
+      font-family: inherit;
+    }
+    .changelog-toggle:hover { text-decoration: underline; }
+
     .footer { margin-top: 40px; text-align: center; color: var(--muted); font-size: 0.85rem; }
     .contact-badges { display: flex; justify-content: center; gap: 10px; margin-top: 12px; }
     .badge { padding: 6px 14px; border-radius: 999px; background: var(--bg-soft); border: 1px solid var(--border); color: var(--muted); text-decoration: none; font-size: 0.8rem; transition: 0.3s; }
@@ -440,6 +489,16 @@
       </div>
     </div>
 
+    <div class="changelog-box animate-in delay-3">
+      <div class="changelog-head">
+        <h4>🕘 Letzte Änderungen</h4>
+      </div>
+      <ul class="changelog-list" id="changelogList">
+        <li class="changelog-item"><div class="changelog-body"><p class="changelog-meta">wird geladen…</p></div></li>
+      </ul>
+      <button class="changelog-toggle" id="changelogToggle" style="display:none;">Alle anzeigen</button>
+    </div>
+
     <div class="coffee-wrap animate-in delay-3">
       <a class="btn-coffee" href="https://paypal.me/neudecker2003" target="_blank">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 8h1a4 4 0 1 1 0 8h-1"/><path d="M3 8h14v9a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4Z"/><line x1="6" y1="2" x2="6" y2="4"/><line x1="10" y1="2" x2="10" y2="4"/><line x1="14" y1="2" x2="14" y2="4"/></svg>
@@ -472,6 +531,56 @@
         burgerBtn.classList.remove("active");
       }
     });
+
+    // --- Changelog ---
+    const CHANGELOG_VISIBLE_COUNT = 4;
+    const tagLabels = { new: "🆕 Neu", update: "🔧 Update", fix: "🐞 Fix" };
+
+    function formatDate(iso) {
+      const d = new Date(iso + "T00:00:00");
+      return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+    }
+
+    fetch("./changelog.json")
+      .then(r => r.json())
+      .then(entries => {
+        entries.sort((a, b) => new Date(b.date) - new Date(a.date));
+        const list = document.getElementById("changelogList");
+        const toggle = document.getElementById("changelogToggle");
+        list.innerHTML = "";
+
+        entries.forEach((entry, i) => {
+          const li = document.createElement("li");
+          li.className = "changelog-item" + (i >= CHANGELOG_VISIBLE_COUNT ? " is-hidden" : "");
+          li.innerHTML = `
+            <span class="changelog-dot ${entry.category}"></span>
+            <div class="changelog-body">
+              <p class="changelog-line"><span class="changelog-tag">${tagLabels[entry.type] || entry.type}</span><strong>${entry.tool}</strong> — ${entry.text}</p>
+              <p class="changelog-meta">${formatDate(entry.date)}</p>
+            </div>`;
+          list.appendChild(li);
+        });
+
+        if (entries.length > CHANGELOG_VISIBLE_COUNT) {
+          toggle.style.display = "block";
+          toggle.textContent = `Alle anzeigen (${entries.length})`;
+          toggle.addEventListener("click", () => {
+            const hidden = list.querySelectorAll(".is-hidden");
+            const expanding = hidden.length > 0;
+            list.querySelectorAll(".changelog-item").forEach(item => item.classList.remove("is-hidden"));
+            if (!expanding) {
+              list.querySelectorAll(".changelog-item").forEach((item, i) => {
+                if (i >= CHANGELOG_VISIBLE_COUNT) item.classList.add("is-hidden");
+              });
+            }
+            toggle.textContent = expanding ? "Weniger anzeigen" : `Alle anzeigen (${entries.length})`;
+          });
+        }
+      })
+      .catch(() => {
+        document.getElementById("changelogList").innerHTML =
+          '<li class="changelog-item"><div class="changelog-body"><p class="changelog-meta">Changelog konnte nicht geladen werden.</p></div></li>';
+      });
   </script>
 </body>
 </html>
