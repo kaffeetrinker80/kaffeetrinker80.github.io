@@ -1,44 +1,37 @@
 [
-  {
-    "date": "2026-07-05",
-    "tool": "TalkScroll",
-    "category": "projects",
-    "type": "update",
-    "text": "DOCX/PDF-Import, Screen Wake Lock und Touch-Gesten für Mobile ergänzt (v1.3.3)."
-  },
-  {
-    "date": "2026-06-28",
-    "tool": "Terminverwaltung NOVA Sonderobjekte",
-    "category": "nova",
-    "type": "update",
-    "text": "Settings-Tab mit editierbaren Label-Listen, Badge-System und Saison-Pause pro Objekt (v2.9)."
-  },
-  {
-    "date": "2026-06-20",
-    "tool": "PTC Tool",
-    "category": "theocratic",
-    "type": "update",
-    "text": "Datensatz-Version wird jetzt aus dem CSV-Dateinamen angezeigt (v2.1.5)."
-  },
-  {
-    "date": "2026-06-10",
-    "tool": "Audio Patchbay",
-    "category": "projects",
-    "type": "new",
-    "text": "Neues Tool: Audioformat-Konvertierung und Transkription komplett im Browser (v1.5)."
-  },
-  {
-    "date": "2026-06-02",
-    "tool": "Badge & Label Studio",
-    "category": "projects",
-    "type": "update",
-    "text": "Portrait/Landscape-Umschaltung und Zoom-Regler ergänzt (v1.5.x)."
-  },
-  {
-    "date": "2026-05-22",
-    "tool": "ContactHub Pro",
-    "category": "projects",
-    "type": "fix",
-    "text": "Klick-Handler und Insert-Contact-Logik korrigiert (v1.5.3)."
-  }
+{
+"date": "2026-07-06",
+"tool": "Contact Hub Pro",
+"category": "projects",
+"type": "update",
+"text": "Added a complete DE/EN interface, streamlined the layout for faster contact editing and copying, and removed the unused messaging module (v1.6.x)."
+},
+{
+"date": "2026-07-05",
+"tool": "TalkScroll",
+"category": "projects",
+"type": "update",
+"text": "Improved the responsive layout, settings sidebar controls, mobile usability and teleprompter workflow refinements (v1.3.7)."
+},
+{
+"date": "2026-07-05",
+"tool": "Audio Patchbay",
+"category": "projects",
+"type": "new",
+"text": "New browser-based audio utility for format conversion and transcription, with local processing and no server upload required (v1.5)."
+},
+{
+"date": "2026-07-05",
+"tool": "QR Code Generator",
+"category": "projects",
+"type": "new",
+"text": "New QR utility for URLs, email, WhatsApp, SMS, Wi-Fi, vCard contacts and SEPA payment codes (v1.0.1)."
+},
+{
+"date": "2026-07-03",
+"tool": "NOVAplan",
+"category": "nova",
+"type": "update",
+"text": "Refined the dashboard branding with a clearer NOVAplan header, company identity and consistent footer presentation."
+}
 ]
