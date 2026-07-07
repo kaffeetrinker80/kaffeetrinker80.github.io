@@ -389,7 +389,7 @@
         <a href="/worktools/">Work Tools</a>
         <a href="https://kaffeetrinker80.github.io/private/">Smart Essentials</a>
         <div class="dropdown-divider"></div>
-        <a href="#changelog" class="dropdown-secondary">🕘 Letzte Änderungen</a>
+        <a href="#changelog" class="dropdown-secondary">🕘 Changelog</a>
       </nav>
     </header>
 
@@ -500,12 +500,12 @@
 
     <div class="changelog-box animate-in delay-3" id="changelog">
       <div class="changelog-head">
-        <h4>🕘 Letzte Änderungen</h4>
+        <h4>🕘 Changelog</h4>
       </div>
       <ul class="changelog-list" id="changelogList">
-        <li class="changelog-item"><div class="changelog-body"><p class="changelog-meta">wird geladen…</p></div></li>
+        <li class="changelog-item"><div class="changelog-body"><p class="changelog-meta">Loading…</p></div></li>
       </ul>
-      <button class="changelog-toggle" id="changelogToggle" style="display:none;">Alle anzeigen</button>
+      <button class="changelog-toggle" id="changelogToggle" style="display:none;">Show all</button>
     </div>
 
     <div class="coffee-wrap animate-in delay-3">
@@ -550,11 +550,11 @@
 
     // --- Changelog ---
     const CHANGELOG_VISIBLE_COUNT = 4;
-    const tagLabels = { new: "🆕 Neu", update: "🔧 Update", fix: "🐞 Fix" };
+    const tagLabels = { new: "🆕 New", update: "🔧 Update", fix: "🐞 Fix" };
 
     function formatDate(iso) {
       const d = new Date(iso + "T00:00:00");
-      return d.toLocaleDateString("de-DE", { day: "2-digit", month: "2-digit", year: "numeric" });
+      return d.toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit", year: "numeric" });
     }
 
     fetch("./changelog.json")
@@ -579,7 +579,7 @@
 
         if (entries.length > CHANGELOG_VISIBLE_COUNT) {
           toggle.style.display = "block";
-          toggle.textContent = `Alle anzeigen (${entries.length})`;
+          toggle.textContent = `Show all (${entries.length})`;
           toggle.addEventListener("click", () => {
             const hidden = list.querySelectorAll(".is-hidden");
             const expanding = hidden.length > 0;
@@ -589,13 +589,13 @@
                 if (i >= CHANGELOG_VISIBLE_COUNT) item.classList.add("is-hidden");
               });
             }
-            toggle.textContent = expanding ? "Weniger anzeigen" : `Alle anzeigen (${entries.length})`;
+            toggle.textContent = expanding ? "Show less" : `Show all (${entries.length})`;
           });
         }
       })
       .catch(() => {
         document.getElementById("changelogList").innerHTML =
-          '<li class="changelog-item"><div class="changelog-body"><p class="changelog-meta">Changelog konnte nicht geladen werden.</p></div></li>';
+          '<li class="changelog-item"><div class="changelog-body"><p class="changelog-meta">Changelog could not be loaded.</p></div></li>';
       });
   </script>
 </body>
