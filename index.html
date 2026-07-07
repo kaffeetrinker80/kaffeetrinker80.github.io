@@ -119,6 +119,13 @@
     .dropdown-menu a { text-decoration: none; color: var(--text); padding: 14px; border-radius: 10px; display: block; font-size: 1rem; transition: background 0.2s; }
     .dropdown-menu a:hover { background: rgba(255, 255, 255, 0.05); }
 
+    .dropdown-divider { height: 1px; background: var(--border); margin: 6px 10px; }
+    .dropdown-menu a.dropdown-secondary {
+      color: var(--muted); font-size: 0.82rem; padding: 10px 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .dropdown-menu a.dropdown-secondary:hover { color: var(--text); background: rgba(255, 255, 255, 0.04); }
+
     .hero {
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-xl); padding: 40px 24px; margin-bottom: 24px; text-align: center;
@@ -381,6 +388,8 @@
         <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
         <a href="/worktools/">Work Tools</a>
         <a href="https://kaffeetrinker80.github.io/private/">Smart Essentials</a>
+        <div class="dropdown-divider"></div>
+        <a href="#changelog" class="dropdown-secondary">🕘 Letzte Änderungen</a>
       </nav>
     </header>
 
@@ -489,7 +498,7 @@
       </div>
     </div>
 
-    <div class="changelog-box animate-in delay-3">
+    <div class="changelog-box animate-in delay-3" id="changelog">
       <div class="changelog-head">
         <h4>🕘 Letzte Änderungen</h4>
       </div>
@@ -530,6 +539,13 @@
         dropdownMenu.classList.remove("active");
         burgerBtn.classList.remove("active");
       }
+    });
+
+    dropdownMenu.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        dropdownMenu.classList.remove("active");
+        burgerBtn.classList.remove("active");
+      });
     });
 
     // --- Changelog ---
