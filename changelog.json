@@ -1,37 +1,58 @@
 [
-{
-"date": "2026-07-06",
-"tool": "Contact Hub Pro",
-"category": "projects",
-"type": "update",
-"text": "Added a complete DE/EN interface, streamlined the layout for faster contact editing and copying, and removed the unused messaging module (v1.6.x)."
-},
-{
-"date": "2026-07-05",
-"tool": "TalkScroll",
-"category": "projects",
-"type": "update",
-"text": "Improved the responsive layout, settings sidebar controls, mobile usability and teleprompter workflow refinements (v1.3.7)."
-},
-{
-"date": "2026-07-05",
-"tool": "Audio Patchbay",
-"category": "projects",
-"type": "new",
-"text": "New browser-based audio utility for format conversion and transcription, with local processing and no server upload required (v1.5)."
-},
-{
-"date": "2026-07-05",
-"tool": "QR Code Generator",
-"category": "projects",
-"type": "new",
-"text": "New QR utility for URLs, email, WhatsApp, SMS, Wi-Fi, vCard contacts and SEPA payment codes (v1.0.1)."
-},
-{
-"date": "2026-07-03",
-"tool": "NOVAplan",
-"category": "nova",
-"type": "update",
-"text": "Refined the dashboard branding with a clearer NOVAplan header, company identity and consistent footer presentation."
-}
+  {
+    "date": "2026-07-06",
+    "tool": "Contact Hub Pro",
+    "category": "projects",
+    "type": "update",
+    "text": "Added a complete DE/EN interface, streamlined the layout for faster contact editing and copying, and removed the unused messaging module (v1.6.x)."
+  },
+  {
+    "date": "2026-07-06",
+    "tool": "TalkScroll",
+    "category": "projects",
+    "type": "update",
+    "text": "Refined the responsive layout, settings sidebar controls and tablet workflow for a smoother teleprompter experience (v1.3.7)."
+  },
+  {
+    "date": "2026-06-25",
+    "tool": "Audio Patchbay",
+    "category": "projects",
+    "type": "new",
+    "text": "New browser-based audio utility for format conversion and transcription, with local processing and no server upload required (v1.5)."
+  },
+  {
+    "date": "2026-06-24",
+    "tool": "QR Code Generator",
+    "category": "projects",
+    "type": "new",
+    "text": "New QR utility for URLs, email, WhatsApp, SMS, Wi-Fi, vCard contacts and SEPA payment codes (v1.0.1)."
+  },
+  {
+    "date": "2026-06-23",
+    "tool": "Badge & Label Studio",
+    "category": "projects",
+    "type": "update",
+    "text": "Improved print layout options with portrait/landscape switching and a more flexible zoom control."
+  },
+  {
+    "date": "2026-06-22",
+    "tool": "Convention Notes",
+    "category": "theocratic",
+    "type": "update",
+    "text": "Enhanced the convention note workflow with local autosave, import/export backups and print-friendly notes."
+  },
+  {
+    "date": "2026-06-20",
+    "tool": "PTC Tool",
+    "category": "theocratic",
+    "type": "update",
+    "text": "The imported speaker database version is now detected and displayed directly from the CSV filename (v2.1.5)."
+  },
+  {
+    "date": "2026-06-18",
+    "tool": "NOVAplan",
+    "category": "nova",
+    "type": "update",
+    "text": "Refined the dashboard branding with a clearer NOVAplan header, company identity and consistent footer presentation."
+  }
 ]
