@@ -1,5 +1,19 @@
 [
   {
+    "date": "2026-08-09",
+    "tool": "Smart Collage",
+    "category": "projects",
+    "type": "update",
+    "text": "Zweisprachige Oberfläche DE/EN mit Umschalter im Header und Erkennung der Browsersprache, Hilfe-Dialog mit Kurzanleitung, Praxistipps und Tastaturkürzeln (v1.2)."
+  },
+  {
+    "date": "2026-08-09",
+    "tool": "Smart Collage",
+    "category": "projects",
+    "type": "new",
+    "text": "Neues Tool: Fotocollagen komplett im Browser erstellen. Auto-Layout nach Bildformat, 24 Layoutvarianten für bis zu 12 Fotos, Look-Presets, Rahmen und Schatten, Textebenen, Export als JPG/PNG/WEBP bis 4x, Projektdatei zum Weiterarbeiten (v1.1)."
+  },
+  {
     "date": "2026-07-22",
     "tool": "Team Captain Manager",
     "category": "theocratic",
