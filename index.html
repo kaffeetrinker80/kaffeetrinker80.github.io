@@ -177,14 +177,39 @@
       flex-wrap: wrap; margin-top: 24px;
     }
     .hero-actions .btn-primary { margin-top: 0; }
+    @keyframes quickJumpGlow {
+      0%, 58%, 100% {
+        box-shadow: 0 0 0 0 rgba(197,168,255,0), 0 0 0 rgba(110,168,255,0);
+        border-color: var(--border);
+      }
+      70% {
+        box-shadow: 0 0 0 4px rgba(197,168,255,.08), 0 0 22px rgba(197,168,255,.20);
+        border-color: rgba(197,168,255,.42);
+      }
+      82% {
+        box-shadow: 0 0 0 2px rgba(110,168,255,.06), 0 0 14px rgba(110,168,255,.12);
+        border-color: rgba(110,168,255,.28);
+      }
+    }
+    @keyframes quickJumpSpin {
+      0%, 64% { transform: rotate(0deg); }
+      78%, 100% { transform: rotate(360deg); }
+    }
     .btn-quick-jump {
       display: inline-flex; align-items: center; gap: 9px; min-height: 48px;
       border: 1px solid var(--border); border-radius: 999px; padding: 13px 20px;
       background: rgba(255,255,255,0.035); color: var(--text); font: inherit;
       font-weight: 600; cursor: pointer; transition: all .25s ease;
+      animation: quickJumpGlow 8s ease-in-out infinite;
     }
-    .btn-quick-jump:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
-    .btn-quick-jump svg { color: var(--projects); }
+    .btn-quick-jump:hover {
+      background: rgba(255,255,255,0.07); border-color: rgba(197,168,255,.45);
+      transform: translateY(-2px); box-shadow: 0 0 24px rgba(197,168,255,.18);
+    }
+    .btn-quick-jump svg {
+      color: var(--projects); transform-origin: 50% 50%;
+      animation: quickJumpSpin 8s cubic-bezier(.4,0,.2,1) infinite;
+    }
     .shortcut-pill {
       color: var(--muted); border: 1px solid var(--border); background: rgba(0,0,0,.2);
       border-radius: 7px; padding: 1px 7px; font-size: .72rem; font-weight: 600;
