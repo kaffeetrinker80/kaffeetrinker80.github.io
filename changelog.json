@@ -1,5 +1,19 @@
 [
   {
+    "date": "2026-08-10",
+    "tool": "Tool Hub",
+    "category": "projects",
+    "type": "update",
+    "text": "Neue Schnellsuche auf der Main Landing: Alle öffentlichen Tools aus Theocratic Tools, Work Tools und Smart Essentials lassen sich zentral durchsuchen und direkt öffnen – inklusive Tastatursteuerung und Quick-Jump-Funktion."
+  },
+  {
+    "date": "2026-08-09",
+    "tool": "Iconset Studio",
+    "category": "projects",
+    "type": "new",
+    "text": "Neues Tool: Aus einem Ausgangsbild ein vollständiges Web-Iconset erzeugen – mit umfangreicher Anpassung, Favicon- und App-Icon-Größen, Head-Snippet, Web-App-Manifest und gebündeltem Iconset für den direkten Einsatz."
+  },
+  {
     "date": "2026-08-09",
     "tool": "Smart Collage",
     "category": "projects",
