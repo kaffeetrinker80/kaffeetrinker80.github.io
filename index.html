@@ -169,6 +169,86 @@
       animation: fancy-pulse 3s infinite;
     }
 
+
+
+    /* QUICK TOOL JUMP */
+    .hero-actions {
+      display: flex; justify-content: center; align-items: center; gap: 10px;
+      flex-wrap: wrap; margin-top: 24px;
+    }
+    .hero-actions .btn-primary { margin-top: 0; }
+    .btn-quick-jump {
+      display: inline-flex; align-items: center; gap: 9px; min-height: 48px;
+      border: 1px solid var(--border); border-radius: 999px; padding: 13px 20px;
+      background: rgba(255,255,255,0.035); color: var(--text); font: inherit;
+      font-weight: 600; cursor: pointer; transition: all .25s ease;
+    }
+    .btn-quick-jump:hover { background: rgba(255,255,255,0.07); border-color: rgba(255,255,255,.2); transform: translateY(-2px); }
+    .btn-quick-jump svg { color: var(--projects); }
+    .shortcut-pill {
+      color: var(--muted); border: 1px solid var(--border); background: rgba(0,0,0,.2);
+      border-radius: 7px; padding: 1px 7px; font-size: .72rem; font-weight: 600;
+    }
+
+    .tool-jump-backdrop {
+      position: fixed; inset: 0; z-index: 20000; display: grid; place-items: start center;
+      padding: min(14vh, 120px) 18px 24px; background: rgba(5,8,12,.72);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      opacity: 0; visibility: hidden; transition: opacity .22s ease, visibility .22s ease;
+    }
+    .tool-jump-backdrop.open { opacity: 1; visibility: visible; }
+    .tool-jump-panel {
+      width: min(680px, 100%); max-height: min(72vh, 650px); overflow: hidden;
+      background: #171b21; border: 1px solid rgba(255,255,255,.12); border-radius: 22px;
+      box-shadow: 0 28px 80px rgba(0,0,0,.55); transform: translateY(-12px) scale(.985);
+      transition: transform .24s var(--transition-smooth);
+    }
+    .tool-jump-backdrop.open .tool-jump-panel { transform: translateY(0) scale(1); }
+    .tool-search-wrap {
+      display: flex; align-items: center; gap: 12px; padding: 16px 18px;
+      border-bottom: 1px solid var(--border);
+    }
+    .tool-search-wrap svg { flex: 0 0 auto; color: var(--primary); }
+    #toolJumpSearch {
+      width: 100%; border: 0; outline: 0; background: transparent; color: #fff;
+      font: inherit; font-size: 1.05rem; padding: 4px 0;
+    }
+    #toolJumpSearch::placeholder { color: #748195; }
+    .tool-jump-close {
+      border: 0; background: rgba(255,255,255,.05); color: var(--muted); border-radius: 9px;
+      min-width: 34px; height: 34px; cursor: pointer; font-size: 1.15rem;
+    }
+    .tool-jump-results { overflow-y: auto; max-height: calc(min(72vh, 650px) - 68px); padding: 8px; }
+    .tool-group-label {
+      padding: 10px 12px 5px; color: var(--muted); font-size: .72rem; font-weight: 700;
+      letter-spacing: .09em; text-transform: uppercase;
+    }
+    .tool-result {
+      display: flex; align-items: center; gap: 12px; width: 100%; text-align: left;
+      border: 0; border-radius: 13px; padding: 11px 12px; background: transparent;
+      color: var(--text); cursor: pointer; font: inherit; transition: background .15s ease;
+    }
+    .tool-result:hover, .tool-result.active { background: rgba(255,255,255,.065); }
+    .tool-result-dot { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 auto; background: var(--primary); box-shadow: 0 0 12px color-mix(in srgb, var(--primary) 45%, transparent); }
+    .tool-result[data-group="Theocratic"] .tool-result-dot { background: var(--theocratic); }
+    .tool-result[data-group="Work"] .tool-result-dot { background: var(--work); }
+    .tool-result[data-group="Smart Essentials"] .tool-result-dot { background: var(--projects); }
+    .tool-result-main { flex: 1; min-width: 0; }
+    .tool-result-name { display: block; color: #fff; font-size: .94rem; font-weight: 600; }
+    .tool-result-path { display: block; color: var(--muted); font-size: .76rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
+    .tool-result-arrow { color: #667386; }
+    .tool-jump-empty { color: var(--muted); text-align: center; padding: 28px 16px; }
+    body.tool-jump-open { overflow: hidden; }
+
+    @media (max-width: 560px) {
+      .hero-actions { flex-direction: column; }
+      .hero-actions > * { width: min(100%, 290px); justify-content: center; }
+      .shortcut-pill { display: none; }
+      .tool-jump-backdrop { padding: 70px 10px 14px; }
+      .tool-jump-panel { border-radius: 18px; max-height: calc(100vh - 84px); }
+      .tool-jump-results { max-height: calc(100vh - 155px); }
+    }
+
     .philosophy-box {
       padding: 24px; background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border);
       border-radius: 20px; margin-bottom: 20px;
@@ -535,8 +615,28 @@
       <h1>Personal Tool Hub</h1>
       <div class="hero-byline">by kaffeetrinker80</div>
       <div class="hero-hobby">Coffee-powered hobby developer</div>
-      <a class="btn-primary" href="#categories">Explore Categories</a>
+      <div class="hero-actions">
+        <a class="btn-primary" href="#categories">Explore Categories</a>
+        <button class="btn-quick-jump" id="toolJumpBtn" type="button" aria-haspopup="dialog" aria-controls="toolJumpModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          Jump to Tool
+          <span class="shortcut-pill">/</span>
+        </button>
+      </div>
     </section>
+
+
+
+    <div class="tool-jump-backdrop" id="toolJumpModal" role="dialog" aria-modal="true" aria-label="Jump to a tool" aria-hidden="true">
+      <div class="tool-jump-panel">
+        <div class="tool-search-wrap">
+          <svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+          <input id="toolJumpSearch" type="search" autocomplete="off" spellcheck="false" placeholder="Search 22 tools…" aria-label="Search tools">
+          <button class="tool-jump-close" id="toolJumpClose" type="button" aria-label="Close">×</button>
+        </div>
+        <div class="tool-jump-results" id="toolJumpResults" role="listbox"></div>
+      </div>
+    </div>
 
     <div class="philosophy-box reveal">
       <h4>Philosophy & Purpose</h4>
@@ -688,6 +788,125 @@
         dropdownMenu.classList.remove("active");
         burgerBtn.classList.remove("active");
       });
+    });
+
+
+
+    // --- Quick Tool Jump ---
+    const publicTools = [
+      { name: "Assembly Attendant Tool", group: "Theocratic", path: "/theocratic/assembly-attendant-tool/", aliases: "assembly attendants attendant planning" },
+      { name: "Assembly Cleaning Planner", group: "Theocratic", path: "/theocratic/cleaning-planner-assembly/", aliases: "assembly cleaning" },
+      { name: "Assembly Counting Tool", group: "Theocratic", path: "/theocratic/assembly-counting/", aliases: "assembly count counting attendance" },
+      { name: "Regional Convention A/V Planner", group: "Theocratic", path: "/theocratic/av-planner/", aliases: "regional convention rc av audio video planner" },
+      { name: "Regional Convention Attendant Scheduler", group: "Theocratic", path: "/theocratic/rc-attendant-assignment-tool/", aliases: "regional convention rc attendant scheduler assignments" },
+      { name: "Regional Convention Cleaning Planner", group: "Theocratic", path: "/theocratic/cleaning-planner-rc/", aliases: "regional convention rc cleaning" },
+      { name: "Regional Convention Counting Tool", group: "Theocratic", path: "/theocratic/rc-counting/", aliases: "regional convention rc count counting attendance" },
+      { name: "Regional Convention Volunteers", group: "Theocratic", path: "/theocratic/rc-volunteers-management/", aliases: "regional convention rc volunteers management" },
+      { name: "Congregation Microphone Service", group: "Theocratic", path: "/theocratic/microphoneservice-tool/", aliases: "congregation microphone mic service" },
+      { name: "Congregation Volunteers", group: "Theocratic", path: "/theocratic/congregation-volunteers/", aliases: "congregation volunteers" },
+      { name: "PTC Tool", group: "Theocratic", path: "/theocratic/ptc-tool/", aliases: "public talk coordinator speakers talks outlines" },
+      { name: "KH Cleaning Planner", group: "Theocratic", path: "/theocratic/kh-cleaning-planner/", aliases: "kingdom hall kh cleaning planner" },
+
+      { name: "Thermische Desinfektion", group: "Work", path: "/worktools/spuelprotokoll/", aliases: "spülprotokoll spuelprotokoll thermisch desinfektion legionellen" },
+      { name: "Spülprotokoll Anlagen", group: "Work", path: "/worktools/spuelprotokoll-anlagen/", aliases: "spuelprotokoll anlagen spülen legionellen" },
+      { name: "Terminverwaltung Labor", group: "Work", path: "/worktools/terminverwaltung-labor/", aliases: "termin labor terminplanung kunden objekte" },
+
+      { name: "Audio Patchbay", group: "Smart Essentials", path: "/private/patchbay/", aliases: "audio converter transkript patchbay" },
+      { name: "Contact Hub Pro", group: "Smart Essentials", path: "/private/contact-hub-pro/", aliases: "contacts contact messaging whatsapp" },
+      { name: "Etiketten-Tool", group: "Smart Essentials", path: "/private/etiketten-tool/", aliases: "etiketten labels druck label" },
+      { name: "Iconset Studio", group: "Smart Essentials", path: "/private/iconset-studio/", aliases: "icon favicon icons web app" },
+      { name: "QR-Tool", group: "Smart Essentials", path: "/private/qr-tool/", aliases: "qr code wlan vcard iban" },
+      { name: "Smart Collage", group: "Smart Essentials", path: "/private/smart-collage/", aliases: "photo foto collage layout bilder" },
+      { name: "Talkscroll", group: "Smart Essentials", path: "/private/talkscroll/", aliases: "teleprompter talk scroll speech" }
+    ];
+
+    const toolJumpBtn = document.getElementById("toolJumpBtn");
+    const toolJumpModal = document.getElementById("toolJumpModal");
+    const toolJumpClose = document.getElementById("toolJumpClose");
+    const toolJumpSearch = document.getElementById("toolJumpSearch");
+    const toolJumpResults = document.getElementById("toolJumpResults");
+    let activeToolIndex = 0;
+    let visibleTools = [...publicTools];
+
+    function normalizeToolSearch(value) {
+      return value.toLocaleLowerCase("de-DE").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    function renderToolResults() {
+      const q = normalizeToolSearch(toolJumpSearch.value.trim());
+      visibleTools = publicTools.filter(tool => normalizeToolSearch(`${tool.name} ${tool.group} ${tool.aliases}`).includes(q));
+      activeToolIndex = Math.min(activeToolIndex, Math.max(visibleTools.length - 1, 0));
+
+      if (!visibleTools.length) {
+        toolJumpResults.innerHTML = '<div class="tool-jump-empty">No tool found. Try another term.</div>';
+        return;
+      }
+
+      const groups = ["Theocratic", "Work", "Smart Essentials"];
+      toolJumpResults.innerHTML = groups.map(group => {
+        const groupTools = visibleTools.filter(tool => tool.group === group);
+        if (!groupTools.length) return "";
+        return `<div class="tool-group-label">${group}</div>` + groupTools.map(tool => {
+          const index = visibleTools.indexOf(tool);
+          return `<button class="tool-result ${index === activeToolIndex ? "active" : ""}" data-index="${index}" data-group="${tool.group}" role="option" aria-selected="${index === activeToolIndex}">
+            <span class="tool-result-dot"></span>
+            <span class="tool-result-main"><span class="tool-result-name">${tool.name}</span><span class="tool-result-path">${tool.path}</span></span>
+            <span class="tool-result-arrow">↗</span>
+          </button>`;
+        }).join("");
+      }).join("");
+
+      toolJumpResults.querySelectorAll(".tool-result").forEach(button => {
+        button.addEventListener("mouseenter", () => {
+          activeToolIndex = Number(button.dataset.index);
+          updateActiveTool();
+        });
+        button.addEventListener("click", () => openTool(visibleTools[Number(button.dataset.index)]));
+      });
+    }
+
+    function updateActiveTool() {
+      toolJumpResults.querySelectorAll(".tool-result").forEach(button => {
+        const active = Number(button.dataset.index) === activeToolIndex;
+        button.classList.toggle("active", active);
+        button.setAttribute("aria-selected", active ? "true" : "false");
+      });
+      toolJumpResults.querySelector(`.tool-result[data-index="${activeToolIndex}"]`)?.scrollIntoView({ block: "nearest" });
+    }
+
+    function openTool(tool) { if (tool) window.location.href = tool.path; }
+
+    function openToolJump() {
+      toolJumpModal.classList.add("open");
+      toolJumpModal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("tool-jump-open");
+      toolJumpSearch.value = "";
+      activeToolIndex = 0;
+      renderToolResults();
+      requestAnimationFrame(() => toolJumpSearch.focus());
+    }
+
+    function closeToolJump() {
+      toolJumpModal.classList.remove("open");
+      toolJumpModal.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("tool-jump-open");
+      toolJumpBtn.focus();
+    }
+
+    toolJumpBtn.addEventListener("click", openToolJump);
+    toolJumpClose.addEventListener("click", closeToolJump);
+    toolJumpModal.addEventListener("click", e => { if (e.target === toolJumpModal) closeToolJump(); });
+    toolJumpSearch.addEventListener("input", () => { activeToolIndex = 0; renderToolResults(); });
+    toolJumpSearch.addEventListener("keydown", e => {
+      if (e.key === "ArrowDown") { e.preventDefault(); activeToolIndex = Math.min(activeToolIndex + 1, visibleTools.length - 1); updateActiveTool(); }
+      if (e.key === "ArrowUp") { e.preventDefault(); activeToolIndex = Math.max(activeToolIndex - 1, 0); updateActiveTool(); }
+      if (e.key === "Enter") { e.preventDefault(); openTool(visibleTools[activeToolIndex]); }
+    });
+    document.addEventListener("keydown", e => {
+      const tag = document.activeElement?.tagName;
+      const typing = tag === "INPUT" || tag === "TEXTAREA" || document.activeElement?.isContentEditable;
+      if (e.key === "/" && !typing && !toolJumpModal.classList.contains("open")) { e.preventDefault(); openToolJump(); }
+      if (e.key === "Escape" && toolJumpModal.classList.contains("open")) closeToolJump();
     });
 
     // --- Changelog ---
