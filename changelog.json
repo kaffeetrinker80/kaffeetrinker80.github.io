@@ -1,5 +1,25 @@
 [
   {
+    "date": "2026-10-06",
+    "tool": "KH Winter Service",
+    "text": "Released V0.12.6",
+    "type": "new",
+    "category": "theocratic",
+    "auto": true,
+    "version": "0.12.6",
+    "key": "theocratic/kh-winterservice"
+  },
+  {
+    "date": "2026-10-04",
+    "tool": "Assembly Organization Chart",
+    "text": "Added",
+    "type": "new",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/assembly-chart"
+  },
+  {
     "date": "2026-08-10",
     "tool": "Tool Hub",
     "category": "projects",
