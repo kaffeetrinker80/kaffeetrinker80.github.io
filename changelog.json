@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-10-07",
+    "tool": "KH Cleaning Generator",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/kh-cleaning-generator"
+  },
+  {
     "date": "2026-10-06",
     "tool": "KH Winter Service",
     "text": "Released V0.12.6",
