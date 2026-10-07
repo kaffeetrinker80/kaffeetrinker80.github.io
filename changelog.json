@@ -10,6 +10,16 @@
     "key": "theocratic/kh-cleaning-generator"
   },
   {
+    "date": "2026-10-07",
+    "tool": "Spülprotokoll – Kontrolle der Wassertemperaturen",
+    "text": "Updated to V3.0.10",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "3.0.10",
+    "key": "nova/spuelprotokoll-anlagen"
+  },
+  {
     "date": "2026-10-06",
     "tool": "KH Winter Service",
     "text": "Released V0.12.6",
