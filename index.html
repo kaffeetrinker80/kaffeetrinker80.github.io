@@ -94,12 +94,12 @@
 
     .container { max-width: 1120px; margin: 0 auto; padding: 20px 20px 40px; position: relative; }
 
-    .topbar { display: flex; justify-content: flex-end; margin-bottom: 24px; position: relative; z-index: 9999; }
+    .topbar { position: absolute; top: 16px; right: 16px; z-index: 50; }
     
     /* BURGER MENU STYLES */
     .burger-btn {
       background: var(--bg-soft); border: 1px solid var(--border); color: var(--text);
-      width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center;
+      width: 42px; height: 42px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
       cursor: pointer; z-index: 10000; transition: background 0.3s, border-color 0.3s;
     }
     .burger-btn:hover {
@@ -131,7 +131,7 @@
     }
 
     .dropdown-menu {
-      position: absolute; top: 60px; right: 0; background: #1a1e24;
+      position: absolute; top: 52px; right: 0; background: #1a1e24; text-align: left;
       border: 1px solid var(--border); border-radius: 16px; padding: 8px;
       display: flex; flex-direction: column; min-width: 220px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.8); opacity: 0; visibility: hidden;
@@ -150,6 +150,7 @@
     .dropdown-menu a.dropdown-secondary:hover { color: var(--text); background: rgba(255, 255, 255, 0.04); }
 
     .hero {
+      position: relative; z-index: 20;
       background: var(--surface); border: 1px solid var(--border);
       border-radius: var(--radius-xl); padding: 40px 24px; margin-bottom: 24px; text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -266,6 +267,8 @@
     body.tool-jump-open { overflow: hidden; }
 
     @media (max-width: 560px) {
+      .hero { padding-top: 64px; }
+      .topbar { top: 12px; right: 12px; }
       .hero-actions { flex-direction: column; }
       .hero-actions > * { width: min(100%, 290px); justify-content: center; }
       .shortcut-pill { display: none; }
@@ -619,24 +622,24 @@
   <div class="scroll-progress" id="scrollProgress"></div>
 
   <div class="container">
-    <header class="topbar animate-in">
-      <button class="burger-btn" id="burgerBtn" aria-label="Menu">
-        <svg class="burger-icon" id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line class="line" id="line1" x1="4" y1="6" x2="20" y2="6" style="transform-origin: 12px 12px;"></line>
-          <line class="line" id="line2" x1="4" y1="12" x2="20" y2="12" style="transform-origin: 12px 12px;"></line>
-          <line class="line" id="line3" x1="4" y1="18" x2="20" y2="18" style="transform-origin: 12px 12px;"></line>
-        </svg>
-      </button>
-      <nav class="dropdown-menu" id="dropdownMenu">
-        <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
-        <a href="/worktools/">Work Tools</a>
-        <a href="https://kaffeetrinker80.github.io/private/">Smart Essentials</a>
-        <div class="dropdown-divider"></div>
-        <a href="#changelog" class="dropdown-secondary">🕘 Changelog</a>
-      </nav>
-    </header>
 
     <section class="hero animate-in delay-1">
+      <header class="topbar">
+        <button class="burger-btn" id="burgerBtn" aria-label="Menu">
+          <svg class="burger-icon" id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line class="line" id="line1" x1="4" y1="6" x2="20" y2="6" style="transform-origin: 12px 12px;"></line>
+            <line class="line" id="line2" x1="4" y1="12" x2="20" y2="12" style="transform-origin: 12px 12px;"></line>
+            <line class="line" id="line3" x1="4" y1="18" x2="20" y2="18" style="transform-origin: 12px 12px;"></line>
+          </svg>
+        </button>
+        <nav class="dropdown-menu" id="dropdownMenu">
+          <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
+          <a href="/worktools/">Work Tools</a>
+          <a href="https://kaffeetrinker80.github.io/private/">Smart Essentials</a>
+          <div class="dropdown-divider"></div>
+          <a href="#changelog" class="dropdown-secondary">🕘 Changelog</a>
+        </nav>
+      </header>
       <h1>Personal Tool Hub</h1>
       <div class="hero-byline">by kaffeetrinker80</div>
       <div class="hero-hobby">Coffee-powered hobby developer</div>
