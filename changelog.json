@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-10-08",
+    "tool": "Attendant Tool",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/attendant-tool"
+  },
+  {
     "date": "2026-10-07",
     "tool": "KH Cleaning Generator",
     "text": "Updated",
