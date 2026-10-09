@@ -10,6 +10,26 @@
     "key": "theocratic/congregation-notes"
   },
   {
+    "date": "2026-10-09",
+    "tool": "Convention Organization Chart",
+    "text": "Added",
+    "type": "new",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/convention-chart"
+  },
+  {
+    "date": "2026-10-09",
+    "tool": "PTC Organizer – Master Data",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/ptc-organizer"
+  },
+  {
     "date": "2026-10-08",
     "tool": "Attendant Tool",
     "text": "Updated",
