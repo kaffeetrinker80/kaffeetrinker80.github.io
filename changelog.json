@@ -2,11 +2,11 @@
   {
     "date": "2026-10-09",
     "tool": "Congregation Notes",
-    "text": "Updated to V1.2.25",
+    "text": "Updated to V1.2.27",
     "type": "update",
     "category": "theocratic",
     "auto": true,
-    "version": "1.2.25",
+    "version": "1.2.27",
     "key": "theocratic/congregation-notes"
   },
   {
