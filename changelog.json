@@ -1,5 +1,35 @@
 [
   {
+    "date": "2026-10-10",
+    "tool": "Attendance Counting",
+    "text": "Updated to V1.41",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "1.41",
+    "key": "theocratic/attendance-counting"
+  },
+  {
+    "date": "2026-10-10",
+    "tool": "Attendant Tool",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/attendant-tool"
+  },
+  {
+    "date": "2026-10-10",
+    "tool": "ID3 Studio",
+    "text": "Updated",
+    "type": "update",
+    "category": "projects",
+    "auto": true,
+    "version": null,
+    "key": "private/id3-studio"
+  },
+  {
     "date": "2026-10-09",
     "tool": "Congregation Notes",
     "text": "Updated to V1.2.27",
