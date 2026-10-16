@@ -10,6 +10,16 @@
     "key": "theocratic/attendant-tool"
   },
   {
+    "date": "2026-10-16",
+    "tool": "KH Winter Service",
+    "text": "Updated to V0.13.0",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "0.13.0",
+    "key": "theocratic/kh-winterservice"
+  },
+  {
     "date": "2026-10-10",
     "tool": "Attendance Counting",
     "text": "Updated to V1.41",
