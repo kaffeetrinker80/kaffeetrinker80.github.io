@@ -1,9 +1,13 @@
+
 {
   "name": "Toolhub - kaffeetrinker80",
   "short_name": "kaffeetrinker80",
   "start_url": "/",
   "scope": "/",
   "display": "standalone",
+  "launch_handler": {
+    "client_mode": "navigate-existing"
+  },
   "background_color": "#1f1f1f",
   "theme_color": "#1f1f1f",
   "icons": [
