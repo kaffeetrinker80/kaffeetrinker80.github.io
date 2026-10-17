@@ -12,11 +12,11 @@
   {
     "date": "2026-10-17",
     "tool": "KH Winter Service",
-    "text": "Updated to V0.13.4",
+    "text": "Updated to V0.15.0",
     "type": "update",
     "category": "theocratic",
     "auto": true,
-    "version": "0.13.4",
+    "version": "0.15.0",
     "key": "theocratic/kh-winterservice"
   },
   {
