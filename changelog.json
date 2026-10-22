@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-10-22",
+    "tool": "PTC Tool",
+    "text": "Updated to V2.8.1",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "2.8.1",
+    "key": "theocratic/ptc-tool"
+  },
+  {
     "date": "2026-10-18",
     "tool": "KH Winter Service",
     "text": "Updated to V0.15.1",
