@@ -10,6 +10,16 @@
     "key": "theocratic/attendant-tool"
   },
   {
+    "date": "2026-10-23",
+    "tool": "Team Captain Manager",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/tc-manager"
+  },
+  {
     "date": "2026-10-22",
     "tool": "PTC Tool",
     "text": "Updated to V2.8.1",
