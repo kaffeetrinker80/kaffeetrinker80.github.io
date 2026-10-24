@@ -1,5 +1,35 @@
 [
   {
+    "date": "2026-10-24",
+    "tool": "Attendant Tool",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/attendant-tool"
+  },
+  {
+    "date": "2026-10-24",
+    "tool": "PTC Organizer – Master Data",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/ptc-organizer"
+  },
+  {
+    "date": "2026-10-24",
+    "tool": "PTC Tool",
+    "text": "Updated to V2.8.2",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "2.8.2",
+    "key": "theocratic/ptc-tool"
+  },
+  {
     "date": "2026-10-23",
     "tool": "Attendant Tool",
     "text": "Updated",
