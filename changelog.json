@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-10-26",
+    "tool": "PTC Organizer – Master Data",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/ptc-organizer"
+  },
+  {
     "date": "2026-10-25",
     "tool": "Attendant Tool",
     "text": "Updated",
