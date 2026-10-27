@@ -1,5 +1,25 @@
 [
   {
+    "date": "2026-10-27",
+    "tool": "PTC Organizer – Master Data",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/ptc-organizer"
+  },
+  {
+    "date": "2026-10-27",
+    "tool": "PTC Tool",
+    "text": "Updated to V2.9.0",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "2.9.0",
+    "key": "theocratic/ptc-tool"
+  },
+  {
     "date": "2026-10-26",
     "tool": "PTC Organizer – Master Data",
     "text": "Updated",
