@@ -20,6 +20,26 @@
     "key": "theocratic/ptc-tool"
   },
   {
+    "date": "2026-10-27",
+    "tool": "KH Winter Service",
+    "text": "Updated to V0.15.4",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "0.15.4",
+    "key": "theocratic/kh-winterservice"
+  },
+  {
+    "date": "2026-10-27",
+    "tool": "Fahrtenwerk · Dein Fahrtenbuch",
+    "text": "Added",
+    "type": "new",
+    "category": "nova",
+    "auto": true,
+    "version": null,
+    "key": "nova/fahrtenbuch"
+  },
+  {
     "date": "2026-10-26",
     "tool": "PTC Organizer – Master Data",
     "text": "Updated",
