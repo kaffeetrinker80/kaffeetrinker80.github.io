@@ -20,6 +20,16 @@
     "key": "nova/fahrtenbuch"
   },
   {
+    "date": "2026-10-28",
+    "tool": "PTC Organizer – Master Data",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/ptc-organizer"
+  },
+  {
     "date": "2026-10-27",
     "tool": "PTC Organizer – Master Data",
     "text": "Updated",
