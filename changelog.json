@@ -2,11 +2,11 @@
   {
     "date": "2026-10-29",
     "tool": "Fahrtenwerk · Dein Fahrtenbuch",
-    "text": "Updated to V0.6.1",
+    "text": "Updated to V0.7.2",
     "type": "update",
     "category": "nova",
     "auto": true,
-    "version": "0.6.1",
+    "version": "0.7.2",
     "key": "nova/fahrtenbuch"
   },
   {
