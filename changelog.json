@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-10-29",
+    "tool": "Fahrtenwerk · Dein Fahrtenbuch",
+    "text": "Updated to V0.6.1",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "0.6.1",
+    "key": "nova/fahrtenbuch"
+  },
+  {
     "date": "2026-10-28",
     "tool": "KH Winter Service",
     "text": "Updated to V1.0.9",
