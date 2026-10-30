@@ -40,6 +40,16 @@
     "key": "private/iconset-studio"
   },
   {
+    "date": "2026-10-30",
+    "tool": "Fahrtenwerk · Dein Fahrtenbuch",
+    "text": "Updated to V0.7.3",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "0.7.3",
+    "key": "nova/fahrtenbuch"
+  },
+  {
     "date": "2026-10-29",
     "tool": "Fahrtenwerk · Dein Fahrtenbuch",
     "text": "Updated to V0.7.2",
