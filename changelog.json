@@ -1,5 +1,45 @@
 [
   {
+    "date": "2026-10-30",
+    "tool": "Attendance Counting",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "1.41",
+    "key": "theocratic/attendance-counting"
+  },
+  {
+    "date": "2026-10-30",
+    "tool": "PTC Organizer",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/ptc-organizer"
+  },
+  {
+    "date": "2026-10-30",
+    "tool": "PTC Tool",
+    "text": "Updated to V2.9.1",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "2.9.1",
+    "key": "theocratic/ptc-tool"
+  },
+  {
+    "date": "2026-10-30",
+    "tool": "Iconset Studio",
+    "text": "Updated",
+    "type": "update",
+    "category": "projects",
+    "auto": true,
+    "version": null,
+    "key": "private/iconset-studio"
+  },
+  {
     "date": "2026-10-29",
     "tool": "Fahrtenwerk · Dein Fahrtenbuch",
     "text": "Updated to V0.7.2",
