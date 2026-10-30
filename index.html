@@ -24,7 +24,7 @@
   <meta property="og:description" content="Lightweight, browser-based helpers. Local-first, privacy by design.">
   <meta property="og:url" content="https://kaffeetrinker80.github.io/">
   <meta property="og:image" content="https://kaffeetrinker80.github.io/android-chrome-512x512.png">
-  <meta property="og:image" content="https://kaffeetrinker80.github.io/og-image.png">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -155,6 +155,42 @@
       border-radius: var(--radius-xl); padding: 40px 24px; margin-bottom: 24px; text-align: center;
       box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     }
+
+    /* Einmalig gezeichneter, dezenter Rahmen des Hero-Bereichs */
+    .hero-trace {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      pointer-events: none;
+      overflow: visible;
+    }
+    .hero-trace-path {
+      fill: none;
+      stroke: var(--primary);
+      stroke-width: 1.3;
+      stroke-linecap: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      opacity: 0;
+      filter: drop-shadow(0 0 4px rgba(110, 168, 255, .22));
+      animation: hero-trace-draw 2.5s ease-in-out .55s forwards;
+    }
+    @keyframes hero-trace-draw {
+      0% { stroke-dashoffset: 100; opacity: 0; }
+      7% { opacity: .7; }
+      85% { stroke-dashoffset: 0; opacity: .7; }
+      100% { stroke-dashoffset: 0; opacity: .22; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-trace-path {
+        animation: none !important;
+        stroke-dashoffset: 0;
+        opacity: .22;
+      }
+    }
+
     .hero h1 {
       margin: 0; font-size: 2.8rem; line-height: 1.1; font-weight: 700;
       background: linear-gradient(90deg, #fff, #aab4c3, #fff, #aab4c3, #fff);
@@ -624,6 +660,9 @@
   <div class="container">
 
     <section class="hero animate-in delay-1">
+      <svg class="hero-trace" id="heroTrace" aria-hidden="true" focusable="false" preserveAspectRatio="none">
+        <rect class="hero-trace-path" id="heroTracePath" x="1" y="1" width="98" height="98" rx="28" pathLength="100" />
+      </svg>
       <header class="topbar">
         <button class="burger-btn" id="burgerBtn" aria-label="Menu">
           <svg class="burger-icon" id="burgerIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -820,6 +859,26 @@
 
 
 
+    // SVG-Rahmen in echten Pixelmaßen halten, damit die runden Ecken auch
+    // auf breiten Desktop- und schmalen Mobilansichten gleichmäßig bleiben.
+    const heroTrace = document.getElementById("heroTrace");
+    const heroTracePath = document.getElementById("heroTracePath");
+    const heroSection = heroTrace.closest(".hero");
+    function sizeHeroTrace() {
+      const { width, height } = heroSection.getBoundingClientRect();
+      if (!width || !height) return;
+      heroTrace.setAttribute("viewBox", `0 0 ${width} ${height}`);
+      heroTracePath.setAttribute("width", Math.max(0, width - 2));
+      heroTracePath.setAttribute("height", Math.max(0, height - 2));
+      heroTracePath.setAttribute("rx", Math.min(28, width / 2, height / 2));
+    }
+    sizeHeroTrace();
+    if (typeof ResizeObserver !== "undefined") {
+      new ResizeObserver(sizeHeroTrace).observe(heroSection);
+    } else {
+      window.addEventListener("resize", sizeHeroTrace);
+    }
+
     // --- Quick Tool Jump ---
     const publicTools = [
       { name: "Attendant Tool", group: "Theocratic", path: "/theocratic/attendant-tool/", aliases: "attendant attendants planning assembly circuit assembly regional convention convention rc" },
@@ -832,6 +891,7 @@
       { name: "Congregation Volunteers", group: "Theocratic", path: "/theocratic/congregation-volunteers/", aliases: "congregation volunteers" },
       { name: "Congregation Notes", group: "Theocratic", path: "/theocratic/congregation-notes/", aliases: "congregation notes notes congregation meeting notes elders organization" },
       { name: "PTC Tool", group: "Theocratic", path: "/theocratic/ptc-tool/", aliases: "public talk coordinator speakers talks outlines" },
+      { name: "PTC Organizer", group: "Theocratic", path: "/theocratic/ptc-organizer/", aliases: "ptc organizer public talk coordinator speakers scheduling planning talks outlines organisation" },
       { name: "KH Cleaning Planner", group: "Theocratic", path: "/theocratic/kh-cleaning-planner/", aliases: "kingdom hall kh cleaning planner" },
       { name: "KH Cleaning Generator", group: "Theocratic", path: "/theocratic/kh-cleaning-generator/", aliases: "kingdom hall kh cleaning generator annual yearly plan schedule aushang jahresplan export" },
       { name: "Intermediate Cleaning Planner", group: "Theocratic", path: "/theocratic/intermediate-cleaning/", aliases: "intermediate cleaning zwischenreinigung kingdom hall kh foyer toilets toiletten lobby dienstgruppe fsg russian russisch" },
