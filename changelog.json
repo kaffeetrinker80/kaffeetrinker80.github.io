@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-10-31",
+    "tool": "Congregation Microphone Service",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "3.4.1",
+    "key": "theocratic/microphoneservice-tool"
+  },
+  {
     "date": "2026-10-30",
     "tool": "Attendance Counting",
     "text": "Updated",
