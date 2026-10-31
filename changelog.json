@@ -1,6 +1,26 @@
 [
   {
     "date": "2026-10-31",
+    "tool": "Attendance Counting",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "1.41",
+    "key": "theocratic/attendance-counting"
+  },
+  {
+    "date": "2026-10-31",
+    "tool": "Congregation Volunteers",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/congregation-volunteers"
+  },
+  {
+    "date": "2026-10-31",
     "tool": "Congregation Microphone Service",
     "text": "Updated",
     "type": "update",
@@ -8,6 +28,26 @@
     "auto": true,
     "version": "3.4.1",
     "key": "theocratic/microphoneservice-tool"
+  },
+  {
+    "date": "2026-10-31",
+    "tool": "PTC Organizer",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/ptc-organizer"
+  },
+  {
+    "date": "2026-10-31",
+    "tool": "PTC Tool",
+    "text": "Updated to V2.9.2",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "2.9.2",
+    "key": "theocratic/ptc-tool"
   },
   {
     "date": "2026-10-30",
