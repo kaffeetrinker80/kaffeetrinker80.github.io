@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-04",
+    "tool": "Fahrtenbuch-Auswertung",
+    "text": "Updated to V1.3.2",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "1.3.2",
+    "key": "nova/fahrtenbuchauswertung"
+  },
+  {
     "date": "2026-11-03",
     "tool": "KH Winter Service",
     "text": "Updated to V0.16.5",
