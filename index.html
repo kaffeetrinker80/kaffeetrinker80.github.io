@@ -149,6 +149,24 @@
     }
     .dropdown-menu a.dropdown-secondary:hover { color: var(--text); background: rgba(255, 255, 255, 0.04); }
 
+    /* Schlüsselbund – abgesetzter Eintrag im Burger-Menü */
+    .dropdown-menu a.dropdown-vault {
+      display: flex; align-items: center; gap: 12px;
+      padding: 10px 12px; margin: 2px 0;
+      border: 1px solid rgba(94, 234, 212, 0.22);
+      background: var(--nova-glow);
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .dropdown-menu a.dropdown-vault:hover { background: rgba(94, 234, 212, 0.18); border-color: rgba(94, 234, 212, 0.45); }
+    .vault-icon {
+      width: 34px; height: 34px; flex: none; border-radius: 10px;
+      display: grid; place-items: center;
+      background: var(--nova); color: #062b26;
+    }
+    .vault-text { display: flex; flex-direction: column; line-height: 1.2; }
+    .vault-title { font-weight: 600; font-size: 0.95rem; }
+    .vault-sub { font-size: 0.74rem; color: var(--muted); margin-top: 2px; white-space: nowrap; }
+
     .hero {
       position: relative; z-index: 20;
       background: var(--surface); border: 1px solid var(--border);
@@ -675,6 +693,16 @@
           <a href="https://kaffeetrinker80.github.io/theocratic/">Theocratic Tools</a>
           <a href="/worktools/">Work Tools</a>
           <a href="https://kaffeetrinker80.github.io/private/">Smart Essentials</a>
+          <div class="dropdown-divider"></div>
+          <a href="/schluesselbund.html" class="dropdown-vault">
+            <span class="vault-icon" aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="4.5"/><path d="M10.7 12.3 20 3"/><path d="m16 7 3 3"/><path d="m18 5 2 2"/></svg>
+            </span>
+            <span class="vault-text">
+              <span class="vault-title">Schlüsselbund</span>
+              <span class="vault-sub">Logins &amp; PINs · local only</span>
+            </span>
+          </a>
           <div class="dropdown-divider"></div>
           <a href="#changelog" class="dropdown-secondary">🕘 Changelog</a>
         </nav>
