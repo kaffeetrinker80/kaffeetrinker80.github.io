@@ -142,40 +142,36 @@
     :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     /* ---------- Header ---------- */
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 30;
-      background: var(--header-bg);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-bottom: 1px solid var(--line);
-    }
+    .topbar { position: relative; z-index: 2; padding: 22px 20px 0; }
     .topbar-inner {
       width: min(1500px, 100%);
       margin: 0 auto;
-      padding: 12px 20px;
+      padding: 22px 26px;
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 16px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
     }
-    .brand { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .brand { display: flex; align-items: center; gap: 16px; min-width: 0; }
     .brand-mark {
-      width: 40px; height: 40px; flex: none;
-      border-radius: 12px;
+      width: 54px; height: 54px; flex: none;
+      border-radius: 16px;
       display: grid; place-items: center;
       background: var(--brand);
       color: var(--brand-ink);
     }
-    .brand-mark svg { width: 22px; height: 22px; }
+    .brand-mark svg { width: 28px; height: 28px; }
     .brand h1 {
       margin: 0;
-      font-size: 1.28rem;
+      font-size: 1.65rem;
       font-weight: 700;
       letter-spacing: -0.02em;
       white-space: nowrap;
     }
-    .brand-sub { color: var(--muted); font-size: .82rem; margin-top: -1px; }
+    .brand-sub { color: var(--muted); font-size: .95rem; margin-top: 1px; }
     .version {
       font-size: .74rem;
       font-weight: 700;
@@ -239,7 +235,7 @@
     }
 
     /* ---------- Sidebar ---------- */
-    .sidebar { position: sticky; top: 82px; padding: 16px; }
+    .sidebar { position: sticky; top: 16px; padding: 16px; }
     .side-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 12px; }
     .side-head h2 { margin: 0; font-size: 1rem; font-weight: 700; }
 
@@ -483,6 +479,57 @@
     .search-hit-project { font-family: "Outfit", sans-serif; font-weight: 600; margin: 16px 0 8px; display: flex; align-items: center; gap: 8px; }
     .search-hit-project:first-child { margin-top: 4px; }
 
+    /* ---------- Übersicht ---------- */
+    .ov-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; flex-wrap: wrap; }
+    .ov-head h2 { margin: 0; font-size: 1.6rem; font-weight: 700; letter-spacing: -0.02em; }
+    .ov-lead { color: var(--muted); margin: 4px 0 0; max-width: 62ch; }
+    .stats-row { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 18px 0 4px; }
+    .stat { background: var(--surface-2); border: 1px solid var(--line); border-radius: 16px; padding: 14px 16px; }
+    .stat b { display: block; font-family: "Outfit", sans-serif; font-size: 1.7rem; font-weight: 700; line-height: 1.1; }
+    .stat span { color: var(--muted); font-size: .84rem; }
+    .stat.u b { color: var(--accent); }
+    .stat.p b { color: var(--pin); }
+    .section-label { font-family: "Outfit", sans-serif; font-weight: 600; font-size: 1.02rem; margin: 20px 0 10px; display: flex; align-items: center; gap: 8px; }
+    .section-label .n { color: var(--muted); font-weight: 500; }
+    .pgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; }
+    .pcard {
+      text-align: left; font: inherit; color: var(--text); cursor: pointer;
+      background: var(--surface-2); border: 1px solid var(--line); border-radius: 16px;
+      padding: 14px 16px; display: grid; gap: 4px; align-content: start;
+      transition: border-color .15s, transform .15s, background .15s;
+    }
+    .pcard:hover { border-color: var(--accent-line); transform: translateY(-1px); }
+    .pcard-name { font-weight: 700; font-size: 1.02rem; overflow-wrap: anywhere; line-height: 1.3; }
+    .pcard-url { color: var(--muted); font-size: .8rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .pcard-foot { display: flex; gap: 6px; margin-top: 8px; align-items: center; min-height: 22px; }
+    .pcard-foot .leer { color: var(--muted); font-size: .78rem; }
+    .pcard.new { border-style: dashed; border-width: 1.5px; border-color: var(--line-strong); color: var(--muted); place-items: center; text-align: center; min-height: 104px; }
+    .pcard.new:hover { color: var(--accent); }
+    .pcard.new svg { width: 22px; height: 22px; }
+    .howto { margin-top: 20px; border: 1px solid var(--line); border-radius: 16px; padding: 4px 16px; background: var(--surface-2); }
+    .howto summary { cursor: pointer; font-family: "Outfit", sans-serif; font-weight: 600; padding: 10px 0; }
+    .howto[open] summary { margin-bottom: 4px; }
+    .steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; padding-bottom: 14px; }
+    @media (min-width: 1380px) { .steps { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+    @media (max-width: 620px) { .steps { grid-template-columns: 1fr; } }
+    .step { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 14px; }
+    .step-head { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; }
+    .step-icon { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; flex: none; background: var(--accent-soft); color: var(--accent); }
+    .step-icon svg { width: 16px; height: 16px; }
+    .step-icon.p { background: var(--pin-soft); color: var(--pin); }
+    .step-icon.b { background: var(--surface-3); color: var(--text); }
+    .step h4 { margin: 0; font-family: "Outfit", sans-serif; font-size: .98rem; }
+    .step p { margin: 0; color: var(--muted); font-size: .86rem; }
+    .empty-cta { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+    .tag.home { grid-template-columns: auto minmax(0, 1fr); padding-left: 12px; }
+    .tag.home::before { display: none; }
+    .tag.home svg { width: 16px; height: 16px; color: var(--muted); }
+    .tag.home.active svg { color: var(--accent); }
+    .side-sep { height: 1px; background: var(--line); margin: 4px 2px; }
+    button.search-hit-project { border: 0; background: none; color: var(--text); font-size: 1rem; cursor: pointer; padding: 0; }
+    button.search-hit-project:hover { color: var(--accent); }
+    @media (max-width: 620px) { .stats-row { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; } .stat { padding: 10px; } .stat b { font-size: 1.3rem; } }
+
     /* ---------- Formulare & Dialoge ---------- */
     label.field { display: grid; gap: 5px; font-size: .84rem; font-weight: 600; }
     label.field .hint { font-weight: 400; color: var(--muted); font-size: .78rem; }
@@ -573,7 +620,10 @@
     }
     @media (max-width: 900px) {
       .app { padding: 12px; }
-      .topbar-inner { padding: 10px 12px; }
+      .topbar { padding: 12px 12px 0; }
+      .topbar-inner { padding: 14px 16px; flex-wrap: wrap; gap: 12px; }
+      .brand-mark { width: 44px; height: 44px; border-radius: 13px; }
+      .brand h1 { font-size: 1.3rem; }
       .brand-sub { display: none; }
       .layout { grid-template-columns: 1fr; gap: 12px; }
       .sidebar { position: static; padding: 12px; }
@@ -586,7 +636,7 @@
       .add-row { margin-left: 0; }
     }
     @media (max-width: 620px) {
-      .brand h1 { font-size: 1.08rem; }
+      .brand h1 { font-size: 1.12rem; }
       .version { display: none; }
       .main { padding: 14px; }
       .entry { grid-template-columns: 1fr; }
@@ -634,6 +684,7 @@
     <symbol id="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6 10l6 6 6-6M4 20h16"/></symbol>
     <symbol id="i-up" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M6 10l6-6 6 6M4 20h16"/></symbol>
     <symbol id="i-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V3h12v6"/><rect x="3" y="9" width="18" height="8" rx="2"/><path d="M6 14h12v7H6z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></symbol>
     <symbol id="i-dice" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M8 8h.01M16 8h.01M12 12h.01M8 16h.01M16 16h.01"/></symbol>
   </svg>
 
@@ -645,7 +696,7 @@
           <h1>Tool Hub Schlüsselbund</h1>
           <div class="brand-sub">Logins, PINs und Passwörter für alle Tool-Hub-Tools</div>
         </div>
-        <span class="version" id="versionBadge">V2.3.0</span>
+        <span class="version" id="versionBadge">V2.4.0</span>
       </div>
       <div class="topbar-spacer"></div>
       <a class="btn sm quiet back-link" href="/" title="Zurück zum Tool Hub">← Tool Hub</a>
@@ -775,7 +826,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const APP = { name: 'Tool Hub Schlüsselbund', version: '2.3.0' };
+    const APP = { name: 'Tool Hub Schlüsselbund', version: '2.4.0' };
     const STORAGE_KEY = 'toolHubSchluesselbund.projects.v2';
     const ACTIVE_KEY = 'toolHubSchluesselbund.active.v2';
     const THEME_KEY = 'toolHubSchluesselbund.theme';
@@ -930,7 +981,7 @@
         projects = Array.isArray(parsed) ? parsed.map(normalizeProject) : parseImport(parsed);
       } catch { projects = []; }
 
-      activeProjectId = localStorage.getItem(ACTIVE_KEY) || (migrated ? localStorage.getItem(LEGACY_ACTIVE_KEY) : '') || '';
+      activeProjectId = ''; // Start immer in der Übersicht
       if (migrated && projects.length) {
         persist();
         setTimeout(() => toast('Daten aus dem Supabase User Local Manager übernommen.'), 400);
@@ -946,11 +997,7 @@
     function save() { persist(); render(); }
 
     function ensureActive() {
-      if (projects.length && !projects.some(p => p.id === activeProjectId)) {
-        activeProjectId = sortedProjects()[0].id;
-      }
-      if (!projects.length) activeProjectId = '';
-      localStorage.setItem(ACTIVE_KEY, activeProjectId);
+      if (activeProjectId && !projects.some(p => p.id === activeProjectId)) activeProjectId = '';
     }
 
     const sortedProjects = () => [...projects].sort((a, b) => a.name.localeCompare(b.name, 'de'));
@@ -969,7 +1016,7 @@
 
     // ---------- Suche ----------
     function matchUser(u, q) { return !q || [u.email, u.role, u.notes].join(' ').toLowerCase().includes(q); }
-    function matchAccess(a, q) { return !q || [roleLabel(a.role), a.role === 'admin' ? 'admin' : 'standard', a.description].join(' ').toLowerCase().includes(q); }
+    function matchAccess(a, q) { return !q || [a.role === 'admin' ? 'admin mit admin-rechten' : 'standard ohne', secretType(a.secret), a.description].join(' ').toLowerCase().includes(q); }
 
     const byEmail = (a, b) => a.email.localeCompare(b.email, 'de');
     const byRole = (a, b) => (a.role === b.role ? (a.createdAt || '').localeCompare(b.createdAt || '') : (a.role === 'admin' ? -1 : 1));
@@ -992,11 +1039,15 @@
 
     function renderTags() {
       const el = $('projectTags');
+      const home = `
+        <button class="tag home ${!activeProjectId ? 'active' : ''}" type="button" data-home>
+          <svg><use href="#i-home"/></svg><span class="tag-name">Übersicht</span>
+        </button>`;
       if (!projects.length) {
-        el.innerHTML = `<div class="empty small">Noch keine Projekte.</div>`;
+        el.innerHTML = home + `<div class="empty small">Noch keine Projekte.</div>`;
         return;
       }
-      el.innerHTML = sortedProjects().map(p => `
+      el.innerHTML = home + `<div class="side-sep"></div>` + sortedProjects().map(p => `
         <button class="tag ${p.id === activeProjectId && !(searchAll && query) ? 'active' : ''}" type="button" data-pid="${p.id}" title="${esc(p.name)}">
           <span style="min-width:0">
             <span class="tag-name">${esc(p.name)}</span>
@@ -1100,40 +1151,106 @@
         </div>`;
     }
 
+    const STEPS = [
+      { icon: 'home', cls: '', title: 'Ein Projekt pro Tool', text: 'Lege für jedes Tool ein Projekt an, mit Name und GitHub-Link. Über „Tool öffnen“ springst du direkt hin.' },
+      { icon: 'user', cls: '', title: 'Benutzer-Login', text: 'Für Tools mit Anmeldung: E-Mail und Passwort, dazu optional Rolle und Notiz.' },
+      { icon: 'pin', cls: 'p', title: 'PIN / Passwort', text: 'Für Tools ohne Benutzer. Gerne zwei Zugänge: mit und ohne Admin-Rechte. Nur Ziffern werden als PIN angezeigt.' },
+      { icon: 'down', cls: 'b', title: 'Nur lokal + Backup', text: 'Alles bleibt in diesem Browser. Sichere regelmäßig per Export, auf einem neuen Gerät holst du es per Import zurück.' },
+    ];
+
+    function stepsHtml() {
+      return `<div class="steps">${STEPS.map((st, i) => `
+        <div class="step">
+          <div class="step-head"><span class="step-icon ${st.cls}">${icon(st.icon)}</span><h4>${i + 1}. ${st.title}</h4></div>
+          <p>${st.text}</p>
+        </div>`).join('')}</div>`;
+    }
+
+    function overviewHtml() {
+      if (!projects.length) {
+        return `
+          <div class="ov-head">
+            <div>
+              <h2>Willkommen im Schlüsselbund</h2>
+              <p class="ov-lead">Hier sammelst du die Zugänge zu deinen Tool-Hub-Tools: Benutzer-Logins genauso wie PINs und Passwörter, für die es keinen Benutzer gibt. So geht’s:</p>
+            </div>
+          </div>
+          <div style="margin-top:18px">${stepsHtml()}</div>
+          <div class="empty-cta">
+            <button class="btn primary" type="button" data-act="newProject">${icon('plus')}Erstes Projekt anlegen</button>
+            <label class="btn" for="importFile">${icon('up')}Backup importieren</label>
+          </div>`;
+      }
+      const nU = projects.reduce((s, p) => s + p.users.length, 0);
+      const nA = projects.reduce((s, p) => s + p.accesses.length, 0);
+      const cards = sortedProjects().map(p => `
+        <button class="pcard" type="button" data-open="${p.id}">
+          <span class="pcard-name">${esc(p.name)}</span>
+          <span class="pcard-url">${esc(p.url ? shortUrl(p.url) : 'Kein Link hinterlegt')}</span>
+          <span class="pcard-foot">
+            ${p.users.length ? `<span class="count u" title="Benutzer">${icon('user')}${p.users.length}</span>` : ''}
+            ${p.accesses.length ? `<span class="count p" title="PIN / Passwort">${icon('pin')}${p.accesses.length}</span>` : ''}
+            ${!p.users.length && !p.accesses.length ? '<span class="leer">Noch leer</span>' : ''}
+          </span>
+        </button>`).join('');
+      return `
+        <div class="ov-head">
+          <div>
+            <h2>Übersicht</h2>
+            <p class="ov-lead">Wähle ein Projekt, um seine Zugänge zu sehen, oder suche direkt in allen Projekten.</p>
+          </div>
+          <button class="btn primary" type="button" data-act="newProject">${icon('plus')}Projekt</button>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><b>${projects.length}</b><span>${projects.length === 1 ? 'Projekt' : 'Projekte'}</span></div>
+          <div class="stat u"><b>${nU}</b><span>Benutzer</span></div>
+          <div class="stat p"><b>${nA}</b><span>PIN / Passwort</span></div>
+        </div>
+        <div class="controls">
+          <div class="search">
+            ${icon('search')}
+            <input type="search" id="search" placeholder="In allen Projekten suchen …" value="${esc(query)}" />
+            <span class="kbd">/</span>
+          </div>
+        </div>
+        <div class="section-label" style="margin-top:4px">Projekte <span class="n">${projects.length}</span></div>
+        <div class="pgrid">
+          ${cards}
+          <button class="pcard new" type="button" data-act="newProject">${icon('plus')}<span>Neues Projekt</span></button>
+        </div>
+        <details class="howto">
+          <summary>So funktioniert der Schlüsselbund</summary>
+          ${stepsHtml()}
+        </details>`;
+    }
+
     function renderMain() {
       const main = $('main');
       const searchHadFocus = document.activeElement?.id === 'search';
       const caret = searchHadFocus ? document.activeElement.selectionStart : null;
 
-      if (!projects.length) {
-        main.innerHTML = `
-          <div class="empty" style="margin-top:40px">
-            <h3>Dein Schlüsselbund ist leer</h3>
-            <p>Lege für jedes Tool ein Projekt an. Darin speicherst du Benutzer-Logins sowie PINs und Passwörter ohne Benutzer, zum Beispiel einen Zugang mit und einen ohne Admin-Rechte.</p>
-            <div class="row">
-              <button class="btn primary" type="button" data-act="newProject">${icon('plus')}Erstes Projekt anlegen</button>
-              <label class="btn" for="importFile">${icon('up')}Backup importieren</label>
-            </div>
-          </div>`;
+      if (!projects.length || (!activeProjectId && !query.trim())) {
+        main.innerHTML = overviewHtml();
+        restoreSearchFocus(searchHadFocus, caret);
         return;
       }
-
       const q = query.trim().toLowerCase();
 
       // Globale Suche
-      if (searchAll && q) {
+      if ((searchAll || !activeProjectId) && q) {
         let total = 0;
         const blocks = sortedProjects().map(p => {
           const us = p.users.filter(u => matchUser(u, q)).sort(byEmail);
           const as = p.accesses.filter(a => matchAccess(a, q)).sort(byRole);
           total += us.length + as.length;
           if (!us.length && !as.length) return '';
-          return `<div class="search-hit-project">${esc(p.name)}</div>
+          return `<button class="search-hit-project" type="button" data-open="${p.id}" title="Projekt öffnen">${esc(p.name)} →</button>
             <div class="entries">${as.map(a => accessCard(p, a, false)).join('')}${us.map(u => userCard(p, u, false)).join('')}</div>`;
         }).join('');
         main.innerHTML = `
-          <div class="project-head"><div><h2>Suche in allen Projekten</h2><div class="project-meta">${total} ${total === 1 ? 'Treffer' : 'Treffer'} für „${esc(query.trim())}“</div></div></div>
-          ${controlsHtml(null)}
+          <div class="project-head"><div><h2>Suche in allen Projekten</h2><div class="project-meta">${total} Treffer für „${esc(query.trim())}“</div></div>
+            <div class="head-actions"><button class="btn sm" type="button" data-act="home">${icon('home')}Übersicht</button></div></div>
+          ${activeProjectId ? controlsHtml(null) : `<div class="controls"><div class="search">${icon('search')}<input type="search" id="search" placeholder="In allen Projekten suchen …" value="${esc(query)}" /><span class="kbd">/</span></div></div>`}
           ${total ? blocks : `<div class="empty small">Nichts gefunden. Prüfe die Schreibweise oder suche nach Rolle, Link oder Beschreibung.</div>`}`;
         restoreSearchFocus(searchHadFocus, caret);
         return;
@@ -1179,6 +1296,7 @@
             ${p.notes ? `<div class="project-notes">${esc(p.notes)}</div>` : ''}
           </div>
           <div class="head-actions">
+            <button class="btn sm" type="button" data-act="home">${icon('home')}Übersicht</button>
             ${p.url ? `<button class="btn sm" type="button" data-act="openProject">${icon('open')}Tool öffnen</button>` : ''}
             <button class="btn sm" type="button" data-act="copyProject">${icon('copy')}Kopieren</button>
             <button class="btn sm" type="button" data-act="print">${icon('print')}Drucken</button>
@@ -1402,7 +1520,7 @@
           } else {
             projects = imported;
           }
-          activeProjectId = imported[0].id;
+          activeProjectId = '';
           save();
           toast(`${imported.length} ${imported.length === 1 ? 'Projekt' : 'Projekte'} importiert.`);
         } catch {
@@ -1436,10 +1554,9 @@
     });
 
     $('projectTags').addEventListener('click', e => {
-      const tag = e.target.closest('.tag[data-pid]');
+      const tag = e.target.closest('.tag');
       if (!tag) return;
-      activeProjectId = tag.dataset.pid;
-      localStorage.setItem(ACTIVE_KEY, activeProjectId);
+      activeProjectId = tag.hasAttribute('data-home') ? '' : tag.dataset.pid;
       if (searchAll) { searchAll = false; }
       query = '';
       filter = 'all';
@@ -1458,6 +1575,9 @@
       const f = e.target.closest('[data-filter]');
       if (f) { filter = f.dataset.filter; renderMain(); return; }
 
+      const o = e.target.closest('[data-open]');
+      if (o) { activeProjectId = o.dataset.open; query = ''; searchAll = false; filter = 'all'; render(); window.scrollTo({ top: 0 }); return; }
+
       const btn = e.target.closest('[data-act]');
       if (!btn) return;
       const act = btn.dataset.act;
@@ -1467,6 +1587,7 @@
 
       switch (act) {
         case 'newProject': return openProjectDialog();
+        case 'home': activeProjectId = ''; query = ''; searchAll = false; filter = 'all'; return render();
         case 'addUser': return openEntryDialog('user', activeProjectId);
         case 'addPin': return openEntryDialog('pin', activeProjectId);
         case 'editProject': return openProjectDialog(pid);
