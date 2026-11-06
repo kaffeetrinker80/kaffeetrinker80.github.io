@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-06",
+    "tool": "PTC Tool",
+    "text": "Updated to V3.0.0",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "3.0.0",
+    "key": "theocratic/ptc-tool"
+  },
+  {
     "date": "2026-11-05",
     "tool": "PTC Organizer",
     "text": "Updated",
