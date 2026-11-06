@@ -10,6 +10,16 @@
     "key": "theocratic/ptc-tool"
   },
   {
+    "date": "2026-11-06",
+    "tool": "Spülprotokoll – Kontrolle der Wassertemperaturen",
+    "text": "Updated to V3.0.11",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "3.0.11",
+    "key": "nova/spuelprotokoll-anlagen"
+  },
+  {
     "date": "2026-11-05",
     "tool": "PTC Organizer",
     "text": "Updated",
