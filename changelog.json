@@ -10,6 +10,26 @@
     "key": "theocratic/ptc-tool"
   },
   {
+    "date": "2026-11-07",
+    "tool": "Fahrtenwerk · Dein Fahrtenbuch",
+    "text": "Released V0.7.4",
+    "type": "new",
+    "category": "work",
+    "auto": true,
+    "version": "0.7.4",
+    "key": "worktools/fahrtenbuch"
+  },
+  {
+    "date": "2026-11-07",
+    "tool": "Fahrtenwerk · Dein Fahrtenbuch",
+    "text": "Updated to V0.7.4",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "0.7.4",
+    "key": "nova/fahrtenbuch"
+  },
+  {
     "date": "2026-11-06",
     "tool": "PTC Tool",
     "text": "Updated to V3.0.0",
