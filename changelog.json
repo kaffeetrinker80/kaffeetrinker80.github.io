@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-08",
+    "tool": "Fahrtenbuch-Auswertung",
+    "text": "Updated",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "1.3.2",
+    "key": "nova/fahrtenbuchauswertung"
+  },
+  {
     "date": "2026-11-07",
     "tool": "PTC Tool",
     "text": "Updated to V3.0.1",
