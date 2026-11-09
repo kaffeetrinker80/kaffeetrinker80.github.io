@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-09",
+    "tool": "Attendant Assignments",
+    "text": "Updated to V0.4.0",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "0.4.0",
+    "key": "theocratic/attendant-assignments"
+  },
+  {
     "date": "2026-11-08",
     "tool": "Fahrtenbuch-Auswertung",
     "text": "Updated",
