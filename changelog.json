@@ -10,6 +10,16 @@
     "key": "theocratic/attendant-assignments"
   },
   {
+    "date": "2026-11-10",
+    "tool": "Attendance Counting",
+    "text": "Updated to V1.48",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "1.48",
+    "key": "theocratic/attendance-counting"
+  },
+  {
     "date": "2026-11-09",
     "tool": "Attendant Assignments",
     "text": "Updated to V0.5.2",
