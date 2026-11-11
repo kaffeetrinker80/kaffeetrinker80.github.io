@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-11",
+    "tool": "Attendant Assignments",
+    "text": "Updated to V0.10.0",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "0.10.0",
+    "key": "theocratic/attendant-assignments"
+  },
+  {
     "date": "2026-11-10",
     "tool": "Attendant Assignments",
     "text": "Updated to V0.7.5",
