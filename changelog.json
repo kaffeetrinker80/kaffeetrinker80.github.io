@@ -1,16 +1,6 @@
 [
   {
     "date": "2026-11-13",
-    "tool": "Attendant Assignments",
-    "text": "Updated to V0.13.0",
-    "type": "update",
-    "category": "theocratic",
-    "auto": true,
-    "version": "0.13.0",
-    "key": "theocratic/attendant-assignments"
-  },
-  {
-    "date": "2026-11-13",
     "tool": "Thermische Desinfektion",
     "text": "Updated to V2.4.11",
     "type": "update",
@@ -18,6 +8,16 @@
     "auto": true,
     "version": "2.4.11",
     "key": "worktools/spuelprotokoll"
+  },
+  {
+    "date": "2026-11-13",
+    "tool": "Attendant Assignments",
+    "text": "Updated to V0.13.4",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": "0.13.4",
+    "key": "theocratic/attendant-assignments"
   },
   {
     "date": "2026-11-12",
