@@ -2,12 +2,22 @@
   {
     "date": "2026-11-14",
     "tool": "Attendant Assignments",
-    "text": "Updated to V0.13.7",
+    "text": "Updated to V0.13.11",
     "type": "update",
     "category": "theocratic",
     "auto": true,
-    "version": "0.13.7",
+    "version": "0.13.11",
     "key": "theocratic/attendant-assignments"
+  },
+  {
+    "date": "2026-11-14",
+    "tool": "Etiketten-Tool",
+    "text": "Updated to V1.6.0",
+    "type": "update",
+    "category": "projects",
+    "auto": true,
+    "version": "1.6.0",
+    "key": "private/etiketten-tool"
   },
   {
     "date": "2026-11-13",
@@ -752,12 +762,5 @@
     "category": "projects",
     "type": "update",
     "text": "Portrait/Landscape-Umschaltung und Zoom-Regler ergänzt (v1.5.x)."
-  },
-  {
-    "date": "2026-05-22",
-    "tool": "ContactHub Pro",
-    "category": "projects",
-    "type": "fix",
-    "text": "Klick-Handler und Insert-Contact-Logik korrigiert (v1.5.3)."
   }
 ]
