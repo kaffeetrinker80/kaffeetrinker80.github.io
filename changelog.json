@@ -12,11 +12,11 @@
   {
     "date": "2026-11-14",
     "tool": "Etiketten-Tool",
-    "text": "Updated to V1.6.0",
+    "text": "Updated to V1.7.0",
     "type": "update",
     "category": "projects",
     "auto": true,
-    "version": "1.6.0",
+    "version": "1.7.0",
     "key": "private/etiketten-tool"
   },
   {
