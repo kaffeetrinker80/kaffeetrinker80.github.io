@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-18",
+    "tool": "Attendant Assignments",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/attendant-assignments"
+  },
+  {
     "date": "2026-11-17",
     "tool": "Convention Organization Chart",
     "text": "Updated",
@@ -761,12 +771,5 @@
     "category": "nova",
     "type": "update",
     "text": "Settings-Tab mit editierbaren Label-Listen, Badge-System und Saison-Pause pro Objekt (v2.9)."
-  },
-  {
-    "date": "2026-06-20",
-    "tool": "PTC Tool",
-    "category": "theocratic",
-    "type": "update",
-    "text": "Datensatz-Version wird jetzt aus dem CSV-Dateinamen angezeigt (v2.1.5)."
   }
 ]
