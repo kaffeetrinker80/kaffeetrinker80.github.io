@@ -2,12 +2,32 @@
   {
     "date": "2026-11-19",
     "tool": "Attendant Assignments",
-    "text": "Updated to V0.14.0",
+    "text": "Updated to V0.14.1",
     "type": "update",
     "category": "theocratic",
     "auto": true,
-    "version": "0.14.0",
+    "version": "0.14.1",
     "key": "theocratic/attendant-assignments"
+  },
+  {
+    "date": "2026-11-19",
+    "tool": "Convention Organization Chart",
+    "text": "Updated",
+    "type": "update",
+    "category": "theocratic",
+    "auto": true,
+    "version": null,
+    "key": "theocratic/convention-chart"
+  },
+  {
+    "date": "2026-11-19",
+    "tool": "Probenahme-Nachschlagewerk Trinkwasser",
+    "text": "Added",
+    "type": "new",
+    "category": "nova",
+    "auto": true,
+    "version": null,
+    "key": "nova/TrinkwV"
   },
   {
     "date": "2026-11-18",
@@ -760,19 +780,5 @@
     "category": "theocratic",
     "type": "new",
     "text": "MergeMaster als eigener Pool: Kontakte aus RC- und Assembly-Chart sammeln, per Checkbox auswählen und als fertige Liste für beide Tools exportieren. Team-Tabs auf Lobby, Cafeteria und Auditorium reduziert, weitere Abteilungen als Badge (v2.1)."
-  },
-  {
-    "date": "2026-07-20",
-    "tool": "Team Captain Manager",
-    "category": "theocratic",
-    "type": "update",
-    "text": "Merge-Funktion mit Dublettenerkennung und automatischer Feldzuordnung fremder Exporte, echtes WhatsApp-Icon, getrennte Buttons für Chat und Chat mit Vorlage, neues Design (v2.0)."
-  },
-  {
-    "date": "2026-07-05",
-    "tool": "TalkScroll",
-    "category": "projects",
-    "type": "update",
-    "text": "DOCX/PDF-Import, Screen Wake Lock und Touch-Gesten für Mobile ergänzt (v1.3.3)."
   }
 ]
