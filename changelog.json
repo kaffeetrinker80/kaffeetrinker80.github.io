@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-20",
+    "tool": "Probenahme-Nachschlagewerk Trinkwasser",
+    "text": "Updated",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": null,
+    "key": "nova/TrinkwV"
+  },
+  {
     "date": "2026-11-19",
     "tool": "Attendant Assignments",
     "text": "Updated to V0.14.1",
@@ -773,12 +783,5 @@
     "category": "theocratic",
     "type": "update",
     "text": "Hilfe-Button neben der Versionsnummer: Kurzanleitung für Team Captains inkl. Erklärung der beiden WhatsApp-Buttons und des MergeMaster (v2.2)."
-  },
-  {
-    "date": "2026-07-21",
-    "tool": "Team Captain Manager",
-    "category": "theocratic",
-    "type": "new",
-    "text": "MergeMaster als eigener Pool: Kontakte aus RC- und Assembly-Chart sammeln, per Checkbox auswählen und als fertige Liste für beide Tools exportieren. Team-Tabs auf Lobby, Cafeteria und Auditorium reduziert, weitere Abteilungen als Badge (v2.1)."
   }
 ]
