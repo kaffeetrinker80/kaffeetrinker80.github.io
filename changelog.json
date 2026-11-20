@@ -10,6 +10,16 @@
     "key": "nova/TrinkwV"
   },
   {
+    "date": "2026-11-20",
+    "tool": "NOVA Auftragsbuch",
+    "text": "Released V0.1.0",
+    "type": "new",
+    "category": "nova",
+    "auto": true,
+    "version": "0.1.0",
+    "key": "nova/auftragsbuch"
+  },
+  {
     "date": "2026-11-19",
     "tool": "Attendant Assignments",
     "text": "Updated to V0.14.1",
@@ -776,12 +786,5 @@
     "category": "projects",
     "type": "new",
     "text": "Neues Tool: Fotocollagen komplett im Browser erstellen. Auto-Layout nach Bildformat, 24 Layoutvarianten für bis zu 12 Fotos, Look-Presets, Rahmen und Schatten, Textebenen, Export als JPG/PNG/WEBP bis 4x, Projektdatei zum Weiterarbeiten (v1.1)."
-  },
-  {
-    "date": "2026-07-22",
-    "tool": "Team Captain Manager",
-    "category": "theocratic",
-    "type": "update",
-    "text": "Hilfe-Button neben der Versionsnummer: Kurzanleitung für Team Captains inkl. Erklärung der beiden WhatsApp-Buttons und des MergeMaster (v2.2)."
   }
 ]
