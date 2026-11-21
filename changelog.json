@@ -12,11 +12,11 @@
   {
     "date": "2026-11-20",
     "tool": "NOVA Auftragsbuch",
-    "text": "Released V0.1.0",
+    "text": "Added",
     "type": "new",
     "category": "nova",
     "auto": true,
-    "version": "0.1.0",
+    "version": null,
     "key": "nova/auftragsbuch"
   },
   {
