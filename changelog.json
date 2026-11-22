@@ -1,5 +1,15 @@
 [
   {
+    "date": "2026-11-22",
+    "tool": "Faktura – Angebot &amp;amp; Rechnung",
+    "text": "Updated to V1.8.1",
+    "type": "update",
+    "category": "projects",
+    "auto": true,
+    "version": "1.8.1",
+    "key": "private/faktura"
+  },
+  {
     "date": "2026-11-21",
     "tool": "Thermische Desinfektion",
     "text": "Updated to V2.4.12",
@@ -788,12 +798,5 @@
     "auto": true,
     "version": null,
     "key": "theocratic/assembly-chart"
-  },
-  {
-    "date": "2026-08-10",
-    "tool": "Tool Hub",
-    "category": "projects",
-    "type": "update",
-    "text": "Neue Schnellsuche auf der Main Landing: Alle öffentlichen Tools aus Theocratic Tools, Work Tools und Smart Essentials lassen sich zentral durchsuchen und direkt öffnen – inklusive Tastatursteuerung und Quick-Jump-Funktion."
   }
 ]
