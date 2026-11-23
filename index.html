@@ -964,13 +964,18 @@
     let activeToolIndex = 0;
     let visibleTools = [...publicTools];
 
+    // Reihenfolge der Kategorien; innerhalb jeder Kategorie wird A–Z sortiert
+    const TOOL_GROUPS = ["Theocratic", "Work", "Smart Essentials", "NOVA"];
+
     function normalizeToolSearch(value) {
       return value.toLocaleLowerCase("de-DE").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
     function renderToolResults() {
       const q = normalizeToolSearch(toolJumpSearch.value.trim());
-      visibleTools = publicTools.filter(tool => normalizeToolSearch(`${tool.name} ${tool.group} ${tool.aliases}`).includes(q));
+      visibleTools = publicTools
+        .filter(tool => normalizeToolSearch(`${tool.name} ${tool.group} ${tool.aliases}`).includes(q))
+        .sort((x, y) => (TOOL_GROUPS.indexOf(x.group) - TOOL_GROUPS.indexOf(y.group)) || x.name.localeCompare(y.name, "de", { sensitivity: "base" }));
       activeToolIndex = Math.min(activeToolIndex, Math.max(visibleTools.length - 1, 0));
 
       if (!visibleTools.length) {
@@ -978,8 +983,7 @@
         return;
       }
 
-      const groups = ["Theocratic", "Work", "Smart Essentials", "NOVA"];
-      toolJumpResults.innerHTML = groups.map(group => {
+      toolJumpResults.innerHTML = TOOL_GROUPS.map(group => {
         const groupTools = visibleTools.filter(tool => tool.group === group);
         if (!groupTools.length) return "";
         return `<div class="tool-group-label">${group}</div>` + groupTools.map(tool => {
