@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>Tool Hub Schlüsselbund</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="icon" href="/favicon.ico" sizes="any">
@@ -626,9 +626,11 @@
       .brand h1 { font-size: 1.3rem; }
       .brand-sub { display: none; }
       .layout { grid-template-columns: 1fr; gap: 12px; }
+      .layout > * { min-width: 0; } /* sonst schiebt die Wischleiste die Seite in die Breite */
       .sidebar { position: static; padding: 12px; }
       .tags { display: flex; overflow-x: auto; padding-bottom: 4px; scroll-snap-type: x proximity; }
-      .tag { min-width: 220px; scroll-snap-align: start; }
+      .tag { min-width: 220px; scroll-snap-align: start; flex: none; }
+      .tag .tag-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
       .side-tools { grid-template-columns: repeat(3, 1fr); }
       .side-tools .wide { grid-column: auto; }
       .project-head { grid-template-columns: 1fr; }
@@ -647,6 +649,108 @@
     }
     @media (prefers-reduced-motion: reduce) {
       * { animation: none !important; transition: none !important; }
+    }
+
+    /* ---------- Mobil (Smartphone) ---------- */
+    @media (max-width: 620px) {
+      body { font-size: 15px; }
+
+      /* Kopf: Marke oben, darunter Zurück-Link und Darstellung */
+      .topbar { padding: calc(10px + env(safe-area-inset-top)) 10px 0; }
+      .topbar-inner { padding: 12px 14px; gap: 10px; border-radius: 18px; }
+      .brand { flex: 1 1 100%; gap: 12px; }
+      .brand > div:last-of-type { min-width: 0; }
+      .brand h1 { overflow: hidden; text-overflow: ellipsis; }
+      .brand-mark { width: 40px; height: 40px; border-radius: 12px; }
+      .brand-mark svg { width: 22px; height: 22px; }
+      .topbar-spacer { display: none; }
+      .back-link { margin-right: auto; padding: 8px 6px; font-size: .85rem; }
+      .theme-switch button { width: 40px; height: 34px; }
+
+      .app { padding: 10px 10px 0; }
+      .notice { font-size: .82rem; padding: 9px 10px; border-radius: 12px; margin-bottom: 10px; }
+
+      /* Projektleiste: wischbar, kompakt */
+      .sidebar { padding: 10px; border-radius: 18px; }
+      .side-head { margin-bottom: 8px; }
+      .tags { gap: 6px; margin: 0 -10px; padding: 0 10px 4px; scrollbar-width: none; }
+      .tags::-webkit-scrollbar { display: none; }
+      .tag { min-width: 168px; max-width: 220px; padding: 9px 10px 9px 30px; }
+      .tag::before { left: 11px; }
+      .tag.home { min-width: auto; padding-left: 10px; }
+      .side-sep { display: none; }
+      .tags .empty.small { min-width: 200px; padding: 10px; }
+      .side-stats { display: none; }
+      .side-tools { grid-template-columns: repeat(3, 1fr); margin-top: 10px; padding-top: 10px; }
+      .side-tools .wide { grid-column: auto; }
+      .side-tools .btn { min-height: 40px; padding: 6px 4px; }
+      .side-tools .btn svg { display: none; }
+
+      .layout { gap: 10px; }
+      .main { padding: 12px; border-radius: 18px; min-height: 0; }
+
+      /* Projektkopf: Aktionen als wischbare Leiste */
+      .project-head { gap: 10px; padding-bottom: 12px; }
+      .project-head h2, .ov-head h2 { font-size: 1.3rem; }
+      .head-actions {
+        flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none;
+        margin: 0 -12px; padding: 0 12px 2px;
+      }
+      .head-actions::-webkit-scrollbar { display: none; }
+      .head-actions .btn { min-height: 38px; flex: none; }
+
+      /* Suche, Filter, Hinzufügen untereinander */
+      .controls { gap: 8px; padding: 12px 0; }
+      .search { flex: 1 1 100%; }
+      .search input[type="search"] { padding-right: 11px; }
+      .controls .check { min-height: 32px; }
+      .segmented { display: flex; flex: 1 1 100%; }
+      .segmented button { flex: 1; padding: 8px 4px; }
+      .add-row { flex: 1 1 100%; margin-left: 0; }
+      .add-row .btn { flex: 1; min-height: 42px; }
+
+      /* Einträge */
+      .entry { gap: 10px; padding: 12px 12px 12px 16px; }
+      .entry-title { font-size: .95rem; }
+      .secret { min-height: 40px; font-size: .95rem; }
+      .entry .btn.icon.sm { width: 40px; height: 40px; padding: 9px; }
+      .entry-actions { gap: 6px; }
+      .entry-actions .btn.sm:not(.icon) { flex: 1; min-height: 40px; }
+      .pin-cells span { width: 32px; height: 40px; }
+
+      /* Übersicht */
+      .stats-row { margin-top: 12px; }
+      .pgrid { grid-template-columns: 1fr; gap: 8px; }
+      .pcard { padding: 12px 14px; }
+      .pcard.new { min-height: 64px; }
+      .empty { padding: 22px 14px; }
+      .empty .row .btn, .empty-cta .btn { flex: 1; min-height: 42px; }
+      .howto { padding: 2px 12px; }
+
+      /* 16px verhindert das automatische Hineinzoomen beim Tippen */
+      input[type="text"], input[type="url"], input[type="email"], input[type="search"], textarea, select { font-size: 16px; }
+
+      /* Dialoge als Bottom-Sheet */
+      dialog {
+        width: 100%; max-width: 100%;
+        margin: auto 0 0; border-radius: 20px 20px 0 0;
+        border-bottom: 0; max-height: 92dvh;
+      }
+      dialog[open] { animation: sheet .2s ease-out; }
+      dialog > form { display: flex; flex-direction: column; max-height: 92dvh; }
+      .dlg-head { padding: 14px 16px 0; }
+      .dlg-body { padding: 12px 16px; overflow-y: auto; overscroll-behavior: contain; }
+      .dlg-foot { padding: 10px 16px calc(12px + env(safe-area-inset-bottom)); }
+      .dlg-foot .btn { flex: 1; min-height: 44px; }
+      .kind-switch label { padding: 10px; }
+      .input-with-btn .btn { min-width: 44px; }
+
+      .toast { bottom: calc(16px + env(safe-area-inset-bottom)); }
+      .footer { padding: 18px 0 calc(16px + env(safe-area-inset-bottom)); }
+    }
+    @keyframes sheet { from { transform: translateY(40px); opacity: .6; } to { transform: none; opacity: 1; } }
+    @media (hover: none) {
+      .pcard:hover { transform: none; }
     }
 
     /* ---------- Druck ---------- */
@@ -696,7 +800,7 @@
           <h1>Tool Hub Schlüsselbund</h1>
           <div class="brand-sub">Logins, PINs und Passwörter für alle Tool-Hub-Tools</div>
         </div>
-        <span class="version" id="versionBadge">V2.4.0</span>
+        <span class="version" id="versionBadge">V2.5.0</span>
       </div>
       <div class="topbar-spacer"></div>
       <a class="btn sm quiet back-link" href="/" title="Zurück zum Tool Hub">← Tool Hub</a>
@@ -826,7 +930,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const APP = { name: 'Tool Hub Schlüsselbund', version: '2.4.0' };
+    const APP = { name: 'Tool Hub Schlüsselbund', version: '2.5.0' };
     const STORAGE_KEY = 'toolHubSchluesselbund.projects.v2';
     const ACTIVE_KEY = 'toolHubSchluesselbund.active.v2';
     const THEME_KEY = 'toolHubSchluesselbund.theme';
@@ -843,6 +947,19 @@
     let editing = null;          // { kind, projectId, entryId }
 
     const $ = (id) => document.getElementById(id);
+    const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
+
+    // Mobil: aktiven Projekt-Anhänger in der Wischleiste sichtbar halten
+    function revealActiveTag() {
+      if (!isMobile()) return;
+      const t = document.querySelector('#projectTags .tag.active');
+      if (t) t.scrollIntoView({ block: 'nearest', inline: 'center' });
+    }
+    // Mobil: nach Projektwechsel zum Inhalt springen (liegt unter der Projektleiste)
+    function scrollToMain() {
+      if (isMobile()) $('main').scrollIntoView({ block: 'start', behavior: 'smooth' });
+      else window.scrollTo({ top: 0 });
+    }
     const icon = (name) => `<svg><use href="#i-${name}"/></svg>`;
 
     // ---------- Hilfsfunktionen ----------
@@ -1058,6 +1175,7 @@
             ${p.accesses.length ? `<span class="count p" title="PIN / Passwort ohne Benutzer">${icon('pin')}${p.accesses.length}</span>` : ''}
           </span>
         </button>`).join('');
+      requestAnimationFrame(revealActiveTag);
     }
 
     function secretHtml(entryId, value, kind) {
@@ -1561,6 +1679,7 @@
       query = '';
       filter = 'all';
       render();
+      if (activeProjectId) scrollToMain();
     });
 
     $('main').addEventListener('input', e => {
@@ -1576,7 +1695,7 @@
       if (f) { filter = f.dataset.filter; renderMain(); return; }
 
       const o = e.target.closest('[data-open]');
-      if (o) { activeProjectId = o.dataset.open; query = ''; searchAll = false; filter = 'all'; render(); window.scrollTo({ top: 0 }); return; }
+      if (o) { activeProjectId = o.dataset.open; query = ''; searchAll = false; filter = 'all'; render(); scrollToMain(); return; }
 
       const btn = e.target.closest('[data-act]');
       if (!btn) return;
