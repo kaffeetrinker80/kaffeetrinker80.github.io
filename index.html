@@ -313,6 +313,7 @@
     .tool-result[data-group="Theocratic"] .tool-result-dot { background: var(--theocratic); }
     .tool-result[data-group="Work"] .tool-result-dot { background: var(--work); }
     .tool-result[data-group="Smart Essentials"] .tool-result-dot { background: var(--projects); }
+    .tool-result[data-group="NOVA"] .tool-result-dot { background: var(--nova); }
     .tool-result-main { flex: 1; min-width: 0; }
     .tool-result-name { display: block; color: #fff; font-size: .94rem; font-weight: 600; }
     .tool-result-path { display: block; color: var(--muted); font-size: .76rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-top: 1px; }
@@ -924,19 +925,34 @@
       { name: "KH Cleaning Generator", group: "Theocratic", path: "/theocratic/kh-cleaning-generator/", aliases: "kingdom hall kh cleaning generator annual yearly plan schedule aushang jahresplan export" },
       { name: "Intermediate Cleaning Planner", group: "Theocratic", path: "/theocratic/intermediate-cleaning/", aliases: "intermediate cleaning zwischenreinigung kingdom hall kh foyer toilets toiletten lobby dienstgruppe fsg russian russisch" },
       { name: "KH Winter Service", group: "Theocratic", path: "/theocratic/kh-winterservice/", aliases: "winterdienst winter service kingdom hall kh königreichssaal krs schnee snow räumen streuen salt grit ice eis wetter weather helfer helpers" },
+      { name: "Attendant Assignments", group: "Theocratic", path: "/theocratic/attendant-assignments/", aliases: "attendant assignments check-in shifts schedule positions evacuation assembly circuit assembly ordner einteilung live" },
+      { name: "Attendant Assignments RC Edition", group: "Theocratic", path: "/theocratic/attendant-assignments/rc.html", aliases: "attendant assignments rc regional convention check-in shifts schedule positions evacuation ordner einteilung live" },
+      { name: "Assembly Organization Chart", group: "Theocratic", path: "/theocratic/assembly-chart/", aliases: "assembly circuit assembly org chart organization organigramm departments overseers kreiskongress" },
+      { name: "Convention Organization Chart", group: "Theocratic", path: "/theocratic/convention-chart/", aliases: "convention regional convention rc org chart organization organigramm departments overseers kongress" },
+      { name: "Assembly & Convention Notes", group: "Theocratic", path: "/theocratic/programs/", aliases: "programs program notes assembly convention rc ca circuit assembly notizen kongress kreiskongress kids kinder" },
+      { name: "Team Captain Manager", group: "Theocratic", path: "/theocratic/tc-manager/", aliases: "team captain manager tc mergemaster whatsapp templates vcard contacts" },
 
       { name: "Thermische Desinfektion", group: "Work", path: "/worktools/spuelprotokoll/", aliases: "spülprotokoll spuelprotokoll thermisch desinfektion legionellen" },
-      { name: "Spülprotokoll Anlagen", group: "Work", path: "/worktools/spuelprotokoll-anlagen/", aliases: "spuelprotokoll anlagen spülen legionellen" },
       { name: "Terminverwaltung Labor", group: "Work", path: "/worktools/terminverwaltung-labor/", aliases: "termin labor terminplanung kunden objekte" },
 
       { name: "Audio Patchbay", group: "Smart Essentials", path: "/private/patchbay/", aliases: "audio converter transkript patchbay" },
       { name: "Contact Hub Pro", group: "Smart Essentials", path: "/private/contact-hub-pro/", aliases: "contacts contact messaging whatsapp" },
       { name: "Etiketten-Tool", group: "Smart Essentials", path: "/private/etiketten-tool/", aliases: "etiketten labels druck label" },
+      { name: "Faktura", group: "Smart Essentials", path: "/private/faktura/", aliases: "faktura rechnung angebot invoice quote offer rechnungstool billing" },
       { name: "Iconset Studio", group: "Smart Essentials", path: "/private/iconset-studio/", aliases: "icon favicon icons web app" },
       { name: "ID3 Studio", group: "Smart Essentials", path: "/private/id3-studio/index.html", aliases: "id3 mp3 tags tagger metadata music audio" },
       { name: "QR-Tool", group: "Smart Essentials", path: "/private/qr-tool/", aliases: "qr code wlan vcard iban" },
       { name: "Smart Collage", group: "Smart Essentials", path: "/private/smart-collage/", aliases: "photo foto collage layout bilder" },
-      { name: "Talkscroll", group: "Smart Essentials", path: "/private/talkscroll/", aliases: "teleprompter talk scroll speech" }
+      { name: "Talkscroll", group: "Smart Essentials", path: "/private/talkscroll/", aliases: "teleprompter talk scroll speech" },
+
+      { name: "Probenahme-Nachschlagewerk", group: "NOVA", path: "/NOVA/TrinkwV/", aliases: "probenahme nachschlagewerk trinkwv trinkwasser legionellen mibi schwimmbad normen spickzettel dakks audit" },
+      { name: "Auftragsbuch", group: "NOVA", path: "/NOVA/auftragsbuch/", aliases: "auftragsbuch aufträge l 015 excel sharepoint auftrag" },
+      { name: "Fahrtenbuch-Auswertung", group: "NOVA", path: "/NOVA/fahrtenbuchauswertung/", aliases: "fahrtenbuch auswertung fahrten kilometer km auto pkw" },
+      { name: "Probenahmeplan Generator", group: "NOVA", path: "/NOVA/probenahmeplan-generator/", aliases: "probenahmeplan generator arbeitsplan prüfbericht pruefbericht pdf probenahme" },
+      { name: "Prüfberichte-Viewer", group: "NOVA", path: "/NOVA/pruefberichte-scanner/", aliases: "prüfberichte pruefberichte viewer scanner laborberichte befunde" },
+      { name: "Terminverwaltung Sonderobjekte", group: "NOVA", path: "/NOVA/sonderobjekte/", aliases: "termin terminverwaltung sonderobjekte objekte kunden planung" },
+      { name: "Spülprotokoll Anlagen", group: "NOVA", path: "/NOVA/spuelprotokoll-anlagen/", aliases: "spuelprotokoll spülprotokoll anlagen spülen wassertemperatur kontrolle legionellen" },
+      { name: "Spülprotokoll Auswertung", group: "NOVA", path: "/NOVA/spuelprotokoll-auswertung/", aliases: "spuelprotokoll spülprotokoll auswertung berichte report legionellen" }
     ];
 
     const toolJumpBtn = document.getElementById("toolJumpBtn");
@@ -962,7 +978,7 @@
         return;
       }
 
-      const groups = ["Theocratic", "Work", "Smart Essentials"];
+      const groups = ["Theocratic", "Work", "Smart Essentials", "NOVA"];
       toolJumpResults.innerHTML = groups.map(group => {
         const groupTools = visibleTools.filter(tool => tool.group === group);
         if (!groupTools.length) return "";
