@@ -287,6 +287,22 @@
     .count.u { color: var(--accent); background: var(--accent-soft); }
     .count.p { color: var(--pin); background: var(--pin-soft); }
 
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .project-select-wrap { display: none; position: relative; }
+    .project-select-wrap::after {
+      content: ""; position: absolute; right: 16px; top: 50%;
+      width: 8px; height: 8px; margin-top: -6px;
+      border-right: 2px solid var(--muted); border-bottom: 2px solid var(--muted);
+      transform: rotate(45deg); pointer-events: none;
+    }
+    select.project-select {
+      appearance: none; -webkit-appearance: none;
+      min-height: 48px; padding: 10px 40px 10px 14px;
+      font-size: 16px; font-weight: 700;
+      border-radius: 12px; border-color: var(--accent-line);
+      background: var(--accent-soft); color: var(--text);
+      text-overflow: ellipsis;
+    }
     .side-stats { color: var(--muted); font-size: .8rem; margin: 14px 2px 10px; }
     .side-tools { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; border-top: 1px solid var(--line); padding-top: 12px; }
     .side-tools .wide { grid-column: 1 / -1; }
@@ -628,9 +644,8 @@
       .layout { grid-template-columns: 1fr; gap: 12px; }
       .layout > * { min-width: 0; } /* sonst schiebt die Wischleiste die Seite in die Breite */
       .sidebar { position: static; padding: 12px; }
-      .tags { display: flex; overflow-x: auto; padding-bottom: 4px; scroll-snap-type: x proximity; }
-      .tag { min-width: 220px; scroll-snap-align: start; flex: none; }
-      .tag .tag-name { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+      .tags { display: none; }
+      .project-select-wrap { display: block; }
       .side-tools { grid-template-columns: repeat(3, 1fr); }
       .side-tools .wide { grid-column: auto; }
       .project-head { grid-template-columns: 1fr; }
@@ -673,13 +688,6 @@
       /* Projektleiste: wischbar, kompakt */
       .sidebar { padding: 10px; border-radius: 18px; }
       .side-head { margin-bottom: 8px; }
-      .tags { gap: 6px; margin: 0 -10px; padding: 0 10px 4px; scrollbar-width: none; }
-      .tags::-webkit-scrollbar { display: none; }
-      .tag { min-width: 168px; max-width: 220px; padding: 9px 10px 9px 30px; }
-      .tag::before { left: 11px; }
-      .tag.home { min-width: auto; padding-left: 10px; }
-      .side-sep { display: none; }
-      .tags .empty.small { min-width: 200px; padding: 10px; }
       .side-stats { display: none; }
       .side-tools { grid-template-columns: repeat(3, 1fr); margin-top: 10px; padding-top: 10px; }
       .side-tools .wide { grid-column: auto; }
@@ -800,7 +808,7 @@
           <h1>Tool Hub Schlüsselbund</h1>
           <div class="brand-sub">Logins, PINs und Passwörter für alle Tool-Hub-Tools</div>
         </div>
-        <span class="version" id="versionBadge">V2.5.0</span>
+        <span class="version" id="versionBadge">V2.6.0</span>
       </div>
       <div class="topbar-spacer"></div>
       <a class="btn sm quiet back-link" href="/" title="Zurück zum Tool Hub">← Tool Hub</a>
@@ -825,6 +833,10 @@
           <h2>Projekte</h2>
           <button class="btn sm primary" type="button" id="newProjectBtn"><svg><use href="#i-plus"/></svg>Projekt</button>
         </div>
+        <label class="project-select-wrap">
+          <span class="sr-only">Projekt wählen</span>
+          <select id="projectSelect" class="project-select"></select>
+        </label>
         <div class="tags" id="projectTags"></div>
         <div class="side-stats" id="stats"></div>
         <div class="side-tools">
@@ -930,7 +942,7 @@
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    const APP = { name: 'Tool Hub Schlüsselbund', version: '2.5.0' };
+    const APP = { name: 'Tool Hub Schlüsselbund', version: '2.6.0' };
     const STORAGE_KEY = 'toolHubSchluesselbund.projects.v2';
     const ACTIVE_KEY = 'toolHubSchluesselbund.active.v2';
     const THEME_KEY = 'toolHubSchluesselbund.theme';
@@ -949,12 +961,6 @@
     const $ = (id) => document.getElementById(id);
     const isMobile = () => window.matchMedia('(max-width: 900px)').matches;
 
-    // Mobil: aktiven Projekt-Anhänger in der Wischleiste sichtbar halten
-    function revealActiveTag() {
-      if (!isMobile()) return;
-      const t = document.querySelector('#projectTags .tag.active');
-      if (t) t.scrollIntoView({ block: 'nearest', inline: 'center' });
-    }
     // Mobil: nach Projektwechsel zum Inhalt springen (liegt unter der Projektleiste)
     function scrollToMain() {
       if (isMobile()) $('main').scrollIntoView({ block: 'start', behavior: 'smooth' });
@@ -1154,6 +1160,21 @@
         : '';
     }
 
+    // Mobil: Projektauswahl als Liste (öffnet die Auswahl des Handys)
+    function renderProjectSelect() {
+      const sel = $('projectSelect');
+      const cnt = (p) => {
+        const parts = [];
+        if (p.users.length) parts.push(`${p.users.length} Benutzer`);
+        if (p.accesses.length) parts.push(`${p.accesses.length} PIN/PW`);
+        return parts.length ? ` · ${parts.join(', ')}` : '';
+      };
+      const current = (searchAll && query) ? '' : activeProjectId;
+      sel.innerHTML = `<option value="">▦ Übersicht (${projects.length} ${projects.length === 1 ? 'Projekt' : 'Projekte'})</option>` +
+        sortedProjects().map(p => `<option value="${p.id}">${esc(p.name)}${cnt(p)}</option>`).join('');
+      sel.value = current;
+    }
+
     function renderTags() {
       const el = $('projectTags');
       const home = `
@@ -1162,6 +1183,7 @@
         </button>`;
       if (!projects.length) {
         el.innerHTML = home + `<div class="empty small">Noch keine Projekte.</div>`;
+        renderProjectSelect();
         return;
       }
       el.innerHTML = home + `<div class="side-sep"></div>` + sortedProjects().map(p => `
@@ -1175,7 +1197,7 @@
             ${p.accesses.length ? `<span class="count p" title="PIN / Passwort ohne Benutzer">${icon('pin')}${p.accesses.length}</span>` : ''}
           </span>
         </button>`).join('');
-      requestAnimationFrame(revealActiveTag);
+      renderProjectSelect();
     }
 
     function secretHtml(entryId, value, kind) {
@@ -1676,6 +1698,15 @@
       if (!tag) return;
       activeProjectId = tag.hasAttribute('data-home') ? '' : tag.dataset.pid;
       if (searchAll) { searchAll = false; }
+      query = '';
+      filter = 'all';
+      render();
+      if (activeProjectId) scrollToMain();
+    });
+
+    $('projectSelect').addEventListener('change', e => {
+      activeProjectId = e.target.value;
+      searchAll = false;
       query = '';
       filter = 'all';
       render();
