@@ -1,0 +1,32 @@
+{
+  "name": "Tool Hub Schlüsselbund",
+  "short_name": "Schlüsselbund",
+  "description": "Logins, PINs und Passwörter für alle Tool-Hub-Tools – nur lokal im Browser gespeichert.",
+  "id": "/schluesselbund",
+  "start_url": "/schluesselbund.html",
+  "scope": "/schluesselbund.html",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#12151a",
+  "theme_color": "#12151a",
+  "icons": [
+    {
+      "src": "android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "android-chrome-512x512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
