@@ -909,56 +909,14 @@
     }
 
     // --- Quick Tool Jump ---
-    const publicTools = [
-      { name: "Attendant Tool", group: "Theocratic", path: "/theocratic/attendant-tool/", aliases: "attendant attendants planning assembly circuit assembly regional convention convention rc" },
-      { name: "Cleaning Planner", group: "Theocratic", path: "/theocratic/cleaning-planner/", aliases: "cleaning planner assembly circuit assembly regional convention convention rc cleaning teams shifts schedule" },
-      { name: "Attendance Counting", group: "Theocratic", path: "/theocratic/attendance-counting/", aliases: "attendance count counting assembly circuit assembly regional convention convention rc" },
-      { name: "Regional Convention A/V Planner", group: "Theocratic", path: "/theocratic/av-planner/", aliases: "regional convention rc av audio video planner" },
-      { name: "Regional Convention Volunteers", group: "Theocratic", path: "/theocratic/rc-volunteers-management/", aliases: "regional convention rc volunteers management" },
-      { name: "Congregation Microphone Service", group: "Theocratic", path: "/theocratic/microphoneservice-tool/", aliases: "congregation microphone mic service" },
-      { name: "Congregation Volunteers", group: "Theocratic", path: "/theocratic/congregation-volunteers/", aliases: "congregation volunteers" },
-      { name: "Congregation Notes", group: "Theocratic", path: "/theocratic/congregation-notes/", aliases: "congregation notes notes congregation meeting notes elders organization" },
-      { name: "PTC Tool", group: "Theocratic", path: "/theocratic/ptc-tool/", aliases: "public talk coordinator speakers talks outlines" },
-      { name: "PTC Organizer", group: "Theocratic", path: "/theocratic/ptc-organizer/", aliases: "ptc organizer public talk coordinator speakers scheduling planning talks outlines organisation" },
-      { name: "KH Cleaning Planner", group: "Theocratic", path: "/theocratic/kh-cleaning-planner/", aliases: "kingdom hall kh cleaning planner" },
-      { name: "KH Cleaning Generator", group: "Theocratic", path: "/theocratic/kh-cleaning-generator/", aliases: "kingdom hall kh cleaning generator annual yearly plan schedule aushang jahresplan export" },
-      { name: "Intermediate Cleaning Planner", group: "Theocratic", path: "/theocratic/intermediate-cleaning/", aliases: "intermediate cleaning zwischenreinigung kingdom hall kh foyer toilets toiletten lobby dienstgruppe fsg russian russisch" },
-      { name: "KH Winter Service", group: "Theocratic", path: "/theocratic/kh-winterservice/", aliases: "winterdienst winter service kingdom hall kh königreichssaal krs schnee snow räumen streuen salt grit ice eis wetter weather helfer helpers" },
-      { name: "Attendant Assignments", group: "Theocratic", path: "/theocratic/attendant-assignments/", aliases: "attendant assignments check-in shifts schedule positions evacuation assembly circuit assembly ordner einteilung live" },
-      { name: "Attendant Assignments RC Edition", group: "Theocratic", path: "/theocratic/attendant-assignments/rc.html", aliases: "attendant assignments rc regional convention check-in shifts schedule positions evacuation ordner einteilung live" },
-      { name: "Assembly Organization Chart", group: "Theocratic", path: "/theocratic/assembly-chart/", aliases: "assembly circuit assembly org chart organization organigramm departments overseers kreiskongress" },
-      { name: "Convention Organization Chart", group: "Theocratic", path: "/theocratic/convention-chart/", aliases: "convention regional convention rc org chart organization organigramm departments overseers kongress" },
-      { name: "Assembly & Convention Notes", group: "Theocratic", path: "/theocratic/programs/", aliases: "programs program notes assembly convention rc ca circuit assembly notizen kongress kreiskongress kids kinder" },
-      { name: "Team Captain Manager", group: "Theocratic", path: "/theocratic/tc-manager/", aliases: "team captain manager tc mergemaster whatsapp templates vcard contacts" },
-
-      { name: "Thermische Desinfektion", group: "Work", path: "/worktools/spuelprotokoll/", aliases: "spülprotokoll spuelprotokoll thermisch desinfektion legionellen" },
-      { name: "Terminverwaltung Labor", group: "Work", path: "/worktools/terminverwaltung-labor/", aliases: "termin labor terminplanung kunden objekte" },
-
-      { name: "Audio Patchbay", group: "Smart Essentials", path: "/private/patchbay/", aliases: "audio converter transkript patchbay" },
-      { name: "Contact Hub Pro", group: "Smart Essentials", path: "/private/contact-hub-pro/", aliases: "contacts contact messaging whatsapp" },
-      { name: "Etiketten-Tool", group: "Smart Essentials", path: "/private/etiketten-tool/", aliases: "etiketten labels druck label" },
-      { name: "Faktura", group: "Smart Essentials", path: "/private/faktura/", aliases: "faktura rechnung angebot invoice quote offer rechnungstool billing" },
-      { name: "Iconset Studio", group: "Smart Essentials", path: "/private/iconset-studio/", aliases: "icon favicon icons web app" },
-      { name: "ID3 Studio", group: "Smart Essentials", path: "/private/id3-studio/index.html", aliases: "id3 mp3 tags tagger metadata music audio" },
-      { name: "QR-Tool", group: "Smart Essentials", path: "/private/qr-tool/", aliases: "qr code wlan vcard iban" },
-      { name: "Smart Collage", group: "Smart Essentials", path: "/private/smart-collage/", aliases: "photo foto collage layout bilder" },
-      { name: "Talkscroll", group: "Smart Essentials", path: "/private/talkscroll/", aliases: "teleprompter talk scroll speech" },
-
-      { name: "Probenahme-Nachschlagewerk", group: "NOVA", path: "/NOVA/TrinkwV/", aliases: "probenahme nachschlagewerk trinkwv trinkwasser legionellen mibi schwimmbad normen spickzettel dakks audit" },
-      { name: "Auftragsbuch", group: "NOVA", path: "/NOVA/auftragsbuch/", aliases: "auftragsbuch aufträge l 015 excel sharepoint auftrag" },
-      { name: "Fahrtenbuch-Auswertung", group: "NOVA", path: "/NOVA/fahrtenbuchauswertung/", aliases: "fahrtenbuch auswertung fahrten kilometer km auto pkw" },
-      { name: "Probenahmeplan Generator", group: "NOVA", path: "/NOVA/probenahmeplan-generator/", aliases: "probenahmeplan generator arbeitsplan prüfbericht pruefbericht pdf probenahme" },
-      { name: "Prüfberichte-Viewer", group: "NOVA", path: "/NOVA/pruefberichte-scanner/", aliases: "prüfberichte pruefberichte viewer scanner laborberichte befunde" },
-      { name: "Terminverwaltung Sonderobjekte", group: "NOVA", path: "/NOVA/sonderobjekte/", aliases: "termin terminverwaltung sonderobjekte objekte kunden planung" },
-      { name: "Spülprotokoll Anlagen", group: "NOVA", path: "/NOVA/spuelprotokoll-anlagen/", aliases: "spuelprotokoll spülprotokoll anlagen spülen wassertemperatur kontrolle legionellen" },
-      { name: "Spülprotokoll Auswertung", group: "NOVA", path: "/NOVA/spuelprotokoll-auswertung/", aliases: "spuelprotokoll spülprotokoll auswertung berichte report legionellen" }
-    ];
+    // Tool-Liste kommt aus search.json (neben dieser Datei) – nur dort pflegen
+    let publicTools = [];
+    let toolsState = "loading"; // loading | ok | error
 
     const toolJumpBtn = document.getElementById("toolJumpBtn");
     const toolJumpModal = document.getElementById("toolJumpModal");
     const toolJumpClose = document.getElementById("toolJumpClose");
     const toolJumpSearch = document.getElementById("toolJumpSearch");
-    toolJumpSearch.placeholder = `Search ${publicTools.length} tools…`;
     const toolJumpResults = document.getElementById("toolJumpResults");
     let activeToolIndex = 0;
     let visibleTools = [...publicTools];
@@ -970,7 +928,30 @@
       return value.toLocaleLowerCase("de-DE").normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     }
 
+    fetch("./search.json", { cache: "no-cache" })
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(list => {
+        if (!Array.isArray(list)) throw new Error("no array");
+        publicTools = list
+          .filter(t => t && t.name && t.path && t.group)
+          .map(t => ({ ...t, aliases: t.aliases || "" }));
+        toolsState = "ok";
+        toolJumpSearch.placeholder = `Search ${publicTools.length} tools…`;
+      })
+      .catch(err => {
+        toolsState = "error";
+        console.warn("search.json konnte nicht geladen werden:", err);
+      })
+      .finally(() => { if (toolJumpModal.classList.contains("open")) renderToolResults(); });
+
     function renderToolResults() {
+      if (toolsState !== "ok") {
+        visibleTools = [];
+        toolJumpResults.innerHTML = toolsState === "loading"
+          ? '<div class="tool-jump-empty">Loading tools…</div>'
+          : '<div class="tool-jump-empty">Tool list could not be loaded. Please try again later.</div>';
+        return;
+      }
       const q = normalizeToolSearch(toolJumpSearch.value.trim());
       visibleTools = publicTools
         .filter(tool => normalizeToolSearch(`${tool.name} ${tool.group} ${tool.aliases}`).includes(q))
