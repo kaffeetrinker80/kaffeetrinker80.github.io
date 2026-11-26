@@ -10,6 +10,16 @@
     "key": "theocratic/kh-winterservice"
   },
   {
+    "date": "2026-11-26",
+    "tool": "Fahrtenbuch-Auswertung",
+    "text": "Updated to V1.3.4",
+    "type": "update",
+    "category": "nova",
+    "auto": true,
+    "version": "1.3.4",
+    "key": "nova/fahrtenbuchauswertung"
+  },
+  {
     "date": "2026-11-25",
     "tool": "KRS Winterdienst",
     "text": "Updated to V0.16.8",
@@ -788,15 +798,5 @@
     "auto": true,
     "version": null,
     "key": "theocratic/attendant-tool"
-  },
-  {
-    "date": "2026-10-08",
-    "tool": "PTC Organizer – Master Data",
-    "text": "Updated",
-    "type": "update",
-    "category": "theocratic",
-    "auto": true,
-    "version": null,
-    "key": "theocratic/ptc-organizer"
   }
 ]
